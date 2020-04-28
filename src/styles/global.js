@@ -14,8 +14,8 @@ export default createGlobalStyle`
 
   body {
     font: 16px 'Poppins', sans-serif;
-    background-color: #12141d;
-    color: #FFF;
+    background-color: #ecebed;
+    color: #333;
     -webkit-font-smoothing: antialiased !important;
   }
 `;

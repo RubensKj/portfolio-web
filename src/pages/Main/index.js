@@ -21,7 +21,7 @@ export default function Main() {
       <TransitionText title="About me" description="This section shows a little about me and how I started to code" />
       <PersonIntroduction />
       <FindMeArea />
-      <TransitionText id="projects" marginTop={105} title="Some of my projects" description="Here are some of my projects, they are in GitHub. This are my favourite ones" />
+      <TransitionText id="projects" marginTop={105} title="Some of my projects" description="Here are some of my projects, they are in GitHub. This are my favorite ones" />
       <ListProjects />
     </Container>
   );

@@ -16,8 +16,9 @@ export const Content = styled.div`
 export const LowerText = styled.h1`
   padding: 5px 25px;
   color: #5a5e73;
+  transition: 0.2s padding, font-size;
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 720px) {
     padding: 5px 15px;
     font-size: 16px;
   }
@@ -28,7 +29,7 @@ export const CodeTextArea = styled.div`
   justify-content: left;
   align-items: center;
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 720px) {
     h1 {
       font-size: 19px;
     }
@@ -64,6 +65,14 @@ export const HigherText = styled.h1`
   font: 44px 'Source Code Pro', monospace;
   color: #49e287;
   -webkit-font-smoothing: antialiased !important;
+
+  /* Transitions */
+  transition: 0.2s font-size;
+
+  svg {
+    transition: 0.2s width, height;
+  }
+
 
   /* Animation */
   overflow: hidden; /* Ensures the content is not revealed until the animation */

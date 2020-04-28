@@ -11,9 +11,7 @@ export default function PersonIntroduction() {
         </ImageArea>
         <DescriptionArea>
           <Description>
-            Hello! My name is Rubens Kleinschmidt Junior, I was born in Blumenau, Santa Catarina, and I'm 17 years old. 
-            I started to use computer since my 8, used to play a lot until my 15 years. 
-            On my 15, haft year, I did some courses in Alura about programming, all about Java. 
+            Hello! My name is Rubens Kleinschmidt Junior and I am complete loved about code. I was born in Blumenau, Santa Catarina, and I am 17 years old. I started to use computer on my 8, used to play a lot until my 15 years. On my 15, haft year, I did some courses in Alura about programming, all about Java.
           </Description>
         </DescriptionArea>
       </IntroductionArea>

@@ -41,6 +41,10 @@ export const UlList = styled.ul`
   justify-content: center;
   align-items: center;
   list-style: none;
+
+  @media only screen and (max-width: 720px) {
+    display: none;
+  }
 `;
 
 export const Link = styled.a`
@@ -62,4 +66,28 @@ export const Text = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const ButtonResponsiveArea = styled.div`
+  @media only screen and (min-width: 720px) {
+    display: none;
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  transition: 0.2s background, display;
+
+  :hover {
+    background: #1b1f35;
+    svg {
+      stroke: #00cc74;
+      transition: 0.2s stroke;
+    }
+  }
 `;

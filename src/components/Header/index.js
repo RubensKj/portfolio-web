@@ -2,9 +2,10 @@ import React from 'react';
 
 // Assets
 import Logo from '../../assets/Logo';
+import MenuIcon from '../../assets/MenuIcon';
 
 // Styles
-import { Container, Wrapper, Redirect, UlList, Link, Text } from './styles';
+import { Container, Wrapper, Redirect, UlList, Link, Text, ButtonResponsiveArea } from './styles';
 
 export default function Header() {
   return (
@@ -24,6 +25,9 @@ export default function Header() {
             <Text>Certifications</Text>
           </Link>
         </UlList>
+        <ButtonResponsiveArea>
+          <MenuIcon />
+        </ButtonResponsiveArea>
       </Wrapper>
     </Container>
   );

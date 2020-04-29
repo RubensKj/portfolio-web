@@ -24,6 +24,8 @@ export const Container = styled.div`
   padding: 5px 15px;
   overflow: hidden;
 
+  transition: 0.2s margin-right;
+
   svg {
     display: flex;
     justify-content: center;
@@ -67,7 +69,20 @@ export const Container = styled.div`
   :nth-child(5) {
     animation-delay: 2.5s;
   }
-`;
+  
+  /* Responsive style */
+  @media only screen and (max-width: 1280px) {
+    position: initial;
+    top: initial;
+    margin-left: initial;
+    margin-right: 20px;
 
-export const Image = styled.img`
+    width: 120px;
+    height: 120px;
+  }
+
+  @media only screen and (max-width: 720px) {
+    position: initial;
+    margin-right: initial;
+  }
 `;

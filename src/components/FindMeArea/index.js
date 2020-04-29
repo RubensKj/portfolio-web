@@ -19,7 +19,7 @@ export default function FindMeArea() {
     <Container>
       <Wrapper>
         <Title>My developer stuffs</Title>
-        <Description>These is what I use for code, languages, IDEs and etc.</Description>
+        <Description>These are what I use for code, languages, IDEs and etc.</Description>
       </Wrapper>
       <WrapperFloat>
         <ItemFloat image={<IntellijIcon size={149} />} top={20} left={55} width={120} height={120} />

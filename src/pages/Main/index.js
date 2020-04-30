@@ -10,7 +10,7 @@ import PersonIntroduction from '../../components/PersonIntroduction';
 import TransitionText from '../../components/TransitionText';
 import ListProjects from '../../components/ListProjects';
 import DeveloperStuffsArea from '../../components/DeveloperStuffsArea';
-import FindMeHereArea from '../../components/FindMeHereArea';
+import CommandPrompt from '../../components/CommandPrompt';
 import Footer from '../../components/Footer';
 
 // Styles
@@ -48,6 +48,7 @@ export default function Main() {
       <TransitionText marginTop={65} title="Certifications" description="These are my certifications that I got until now, more are coming (And projects are too :))" />
       <p>Here comes the list of certifications</p>
       <TransitionText marginTop={65} title="Contact me" description="Hey contact me if you liked my work. Just fill the form below and send me, I am waiting for you :)" />
+      <CommandPrompt command='npm create contact-form' marginBottom={25} />
       <Footer />
     </Container>
   );

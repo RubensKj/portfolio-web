@@ -14,7 +14,7 @@ import ItemFloat from '../ItemFloat';
 // Styles
 import { Container, Wrapper, WrapperFloat, Title, Description } from './styles';
 
-export default function FindMeArea() {
+export default function DeveloperStuffsArea() {
   return (
     <Container>
       <Wrapper>

@@ -21,7 +21,7 @@ export default function Header() {
           <Link href="#projects">
             <Text>Projects</Text>
           </Link>
-          <Link href="#home">
+          <Link href="#certifications">
             <Text>Certifications</Text>
           </Link>
         </UlList>

@@ -1,9 +1,13 @@
 import React from 'react';
 
+// Components
+import TitleTextPrompt from '../TitleTextPrompt';
+import ButtonPrompt from '../ButtonPrompt';
+import InputPrompt from '../InputPrompt';
+
 // Styles
 import {
-  Container, LoginArea, LoginTitle, LoginText,
-  LoginInputArea, LoginInput, LoginButton
+  Container, LoginArea, LoginFormArea
 } from './styles';
 
 import { ConsoleText } from '../CommandPrompt/styles';
@@ -14,14 +18,14 @@ export default function LoginForm() {
       <ConsoleText>INITIALIZING LOGIN..</ConsoleText>
       <ConsoleText>LOGIN INITILIZED.</ConsoleText>
       <LoginArea>
-        <LoginTitle>LOGIN</LoginTitle>
-        <LoginInputArea>
-          <LoginText>User</LoginText>
-          <LoginInput type="text" autoComplete="true" />
-          <LoginText>Password</LoginText>
-          <LoginInput type="password" autoComplete="true" />
-          <LoginButton>Login</LoginButton>
-        </LoginInputArea>
+        <TitleTextPrompt text="LOGIN" />
+        <LoginFormArea>
+          <ConsoleText>User</ConsoleText>
+          <InputPrompt type="text" autoComplete="true" />
+          <ConsoleText>Password</ConsoleText>
+          <InputPrompt type="password" autoComplete="true" />
+          <ButtonPrompt text='Login' />
+        </LoginFormArea>
       </LoginArea>
     </Container>
   );

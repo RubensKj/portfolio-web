@@ -10,7 +10,7 @@ export const Container = styled.div`
   height: 100%;
 `;
 
-export const LoginArea = styled.div`
+export const ContactArea = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,16 +20,7 @@ export const LoginArea = styled.div`
   margin-top: 20px;
 `;
 
-export const LoginTitle = styled.h2`
-  font-size: 13px;
-  color: #8492A6;
-  font-family: 'Source Code Pro', monospace;
-
-  font-weight: 400;
-  text-align: center;
-`;
-
-export const LoginFormArea = styled.form`
+export const ContactFormArea = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;

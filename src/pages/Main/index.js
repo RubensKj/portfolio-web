@@ -11,6 +11,7 @@ import TransitionText from '../../components/TransitionText';
 import ListProjects from '../../components/ListProjects';
 import DeveloperStuffsArea from '../../components/DeveloperStuffsArea';
 import CommandPrompt from '../../components/CommandPrompt';
+import ContactForm from '../../components/ContactForm';
 import Footer from '../../components/Footer';
 
 // Styles
@@ -37,18 +38,17 @@ export default function Main() {
         <HiThereArea />
         <BarInBeginPage width={72} color="#5a5e73" />
       </BeginPageArea>
-      {/* <Anchor id="about_me" height={110} /> */}
       <TransitionText title="About me" description="This section shows a little about me and how I started to code" />
       <PersonIntroduction />
       <DeveloperStuffsArea />
-      {/* <Anchor id="projects" height={105} /> */}
       <TransitionText marginTop={105} title="Some of my projects" description="Here are some of my projects, they are in GitHub. This are my favorite ones" />
       <ListProjects list={projects} />
-      {/* <Anchor id="certifications" height={65} /> */}
       <TransitionText marginTop={65} title="Certifications" description="These are my certifications that I got until now, more are coming (And projects are too :))" />
       <p>Here comes the list of certifications</p>
       <TransitionText marginTop={65} title="Contact me" description="Hey contact me if you liked my work. Just fill the form below and send me, I am waiting for you :)" />
-      <CommandPrompt command='npm create contact-form' marginBottom={25} />
+      <CommandPrompt command='npm create contact-form' marginBottom={25}>
+        <ContactForm />
+      </CommandPrompt>
       <Footer />
     </Container>
   );

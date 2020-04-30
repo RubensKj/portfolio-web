@@ -28,6 +28,7 @@ export const Header = styled.div`
   height: 36px;
   background-color: #00cc74;
   user-select: none;
+  overflow: hidden;
 `;
 
 export const TitleArea = styled.div`
@@ -93,6 +94,8 @@ export const Content = styled.div`
 
   width: 100%;
   height: 100%;
+  
+  overflow: hidden;
 `;
 
 export const ConsoleText = styled.span`

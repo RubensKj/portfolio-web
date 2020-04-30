@@ -38,7 +38,7 @@ export default function LoginForm() {
           <ConsoleText>RubensKj Portfolio [Version 10.0.38324.283]</ConsoleText>
           <ConsoleText>(C) 2020 RubensKj. All rights reserved</ConsoleText>
           <BlankSpace />
-          <ConsoleText>C:\Users\RubensKj>npm login</ConsoleText>
+          <ConsoleText>C:\Users\RubensKj>npm start login</ConsoleText>
           <ConsoleText>INITIALIZING LOGIN..</ConsoleText>
           <ConsoleText>LOGIN INITILIZED.</ConsoleText>
           <LoginArea>

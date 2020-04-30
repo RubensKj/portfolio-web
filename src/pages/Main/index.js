@@ -47,7 +47,7 @@ export default function Main() {
       {/* <Anchor id="certifications" height={65} /> */}
       <TransitionText marginTop={65} title="Certifications" description="These are my certifications that I got until now, more are coming (And projects are too :))" />
       <p>Here comes the list of certifications</p>
-      <FindMeHereArea />
+      <TransitionText marginTop={65} title="Contact me" description="Hey contact me if you liked my work. Just fill the form below and send me, I am waiting for you :)" />
       <Footer />
     </Container>
   );

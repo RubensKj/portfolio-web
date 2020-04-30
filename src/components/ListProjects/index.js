@@ -6,14 +6,13 @@ import ProjectCard from '../ProjectCard';
 // Styles
 import { Container, List } from './styles';
 
-export default function ListProjects() {
+export default function ListProjects({ list }) {
   return (
     <Container>
       <List>
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+        {list.map(project => (
+          <ProjectCard key={project.id} info={project} />
+        ))}
       </List>
     </Container>
   );

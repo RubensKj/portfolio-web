@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+// Services
+import api from '../../services/api';
 
 // Components
 import HiThereArea from '../../components/HiThereArea';
@@ -12,6 +15,20 @@ import FindMeArea from '../../components/FindMeArea';
 import { Container, BeginPageArea } from './styles';
 
 export default function Main() {
+
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    async function getProjects() {
+      await api.get('/users/RubensKj/repos')
+        .then(data => setProjects(data.data))
+        .catch(error => {
+          console.log(error);
+        });
+    }
+    getProjects();
+  }, []);
+
   return (
     <Container>
       <BeginPageArea id="home">
@@ -22,7 +39,7 @@ export default function Main() {
       <PersonIntroduction />
       <FindMeArea />
       <TransitionText id="projects" marginTop={105} title="Some of my projects" description="Here are some of my projects, they are in GitHub. This are my favorite ones" />
-      <ListProjects />
+      <ListProjects list={projects} />
     </Container>
   );
 }

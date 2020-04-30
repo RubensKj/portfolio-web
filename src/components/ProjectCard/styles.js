@@ -62,17 +62,30 @@ export const Title = styled.h2`
   font-size: 18px;
   text-transform: uppercase;
   color: #3C4858;
+
+  /* No break lines */
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const FullPath = styled.span`
   font-size: 14px;
   color: #8492A6 !important;
+
+  /* No break lines */
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const DescriptionArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
   padding: 5px 15px;
 `;
 

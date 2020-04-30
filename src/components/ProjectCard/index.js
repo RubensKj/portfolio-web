@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Assets
+import Folder from '../../assets/Folder';
 import WebsiteIcon from '../../assets/WebsiteIcon';
 
 // Components
@@ -9,20 +10,20 @@ import Bar from '../../components/Bar';
 // Styles
 import { Container, LanguageArea, SVGArea, Information, Header, Title, FullPath, DescriptionArea, Description } from './styles';
 
-export default function ProjectCard() {
+export default function ProjectCard({ info }) {
   return (
     <Container>
       <LanguageArea>
-        <SVGArea><WebsiteIcon size={24} /></SVGArea>
+        <SVGArea>{info.language !== undefined && info.language === 'JavaScript' ? <WebsiteIcon size={24} /> : <Folder size={24} />}</SVGArea>
         <Bar right={5} top={-15} width={32} background="rgba(90,94,115,0.09)" />
       </LanguageArea>
       <Information>
         <Header>
-          <Title>api-azure-maps</Title>
-          <FullPath>RubensKj/api-azure-maps</FullPath>
+          <Title>{info.name !== undefined ? info.name : 'Title not found'}</Title>
+          <FullPath>{info.full_name !== undefined ? info.full_name : 'Full name not found'}</FullPath>
         </Header>
         <DescriptionArea>
-          <Description>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</Description>
+          <Description>{info.description !== null ? info.description : 'This project might be any description.'}</Description>
         </DescriptionArea>
       </Information>
     </Container>

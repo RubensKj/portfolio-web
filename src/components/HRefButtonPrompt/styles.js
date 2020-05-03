@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.button`
+export const Container = styled.a`
+  text-decoration: none;
   font-size: 13px;
   color: #8492A6;
   font-family: 'Source Code Pro', monospace;

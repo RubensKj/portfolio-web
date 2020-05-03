@@ -23,7 +23,7 @@ export default function ProjectCard({ info }) {
           <FullPath>{info.full_name !== undefined ? info.full_name : 'Full name not found'}</FullPath>
         </Header>
         <DescriptionArea>
-          <Description>{info.description !== null ? info.description : 'This project might be any description.'}</Description>
+          <Description>{info.description !== null ? info.description : 'This project might have not description.'}</Description>
         </DescriptionArea>
       </Information>
     </Container>

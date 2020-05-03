@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <Container>
       <Wrapper>
-        <Text>© 2020-2021 | <Strong>RubensKj</Strong>. All rights reserved.</Text>
+        <Text>2020-2021 - <Strong>RubensKj</Strong>.</Text>
         <UlList>
           <Li>
             <Redirect href="https://www.instagram.com/rubenskjr/">

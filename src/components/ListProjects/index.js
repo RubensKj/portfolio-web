@@ -10,7 +10,7 @@ export default function ListProjects({ list }) {
   return (
     <Container>
       <List>
-        {list.map(project => (
+        {list && list.map(project => (
           <ProjectCard key={project.id} info={project} />
         ))}
       </List>

@@ -14,8 +14,8 @@ import { ConsoleText } from '../CommandPrompt/styles';
 export default function ContactForm() {
   return (
     <Container>
-      <ConsoleText>CREATING FORM..</ConsoleText>
-      <ConsoleText>FORM CREATED.</ConsoleText>
+      <ConsoleText>CREATING CONTACT FORM..</ConsoleText>
+      <ConsoleText>CONTACT FORM CREATED.</ConsoleText>
       <ContactArea>
         <TitleTextPrompt text="CONTACT" />
         <ContactFormArea>

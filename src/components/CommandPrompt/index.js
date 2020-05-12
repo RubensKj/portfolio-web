@@ -35,7 +35,7 @@ export default function CommandPrompt({ command, marginBottom, children }) {
         </Header>
         <Content>
           <ConsoleText>RubensKj Portfolio [Version 10.0.38324.283]</ConsoleText>
-          <ConsoleText>(C) 2020 RubensKj. All rights reserved</ConsoleText>
+          <ConsoleText>2020 RubensKj.</ConsoleText>
           <BlankSpace />
           <ConsoleText>C:\Users\RubensKj>{command ? command : 'npm start'}</ConsoleText>
           {children}

@@ -30,7 +30,6 @@ export const Wrapper = styled.div`
 export const WrapperFloat = styled.div`
   position: relative;
   top: 80px;
-  z-index: 10;
   margin-left: -1245px;
 
   transition: 0.2s transform, position;

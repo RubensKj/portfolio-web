@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
+interface Props {
+  marginBottom: string;
+}
+
 export const Container = styled.div`
   width: 100%;
   padding: 0 15px;
 
-  margin-bottom: ${props => props.marginBottom ? props.marginBottom + 'px' : ''}
+  margin-bottom: ${(props: Props) => props.marginBottom ? props.marginBottom + 'px' : ''};
 `;
 
 export const Wrapper = styled.div`

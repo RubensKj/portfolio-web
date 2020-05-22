@@ -12,7 +12,13 @@ import {
   Button, Content, ConsoleText, BlankSpace
 } from './styles';
 
-export default function CommandPrompt({ command, marginBottom, children }) {
+interface Params {
+  command?: string;
+  marginBottom?: string;
+  children?: any;
+}
+
+const CommandPrompt: React.FC<Params> = ({ command, marginBottom = '0', children }) => {
   return (
     <Container marginBottom={marginBottom}>
       <Wrapper>
@@ -44,3 +50,5 @@ export default function CommandPrompt({ command, marginBottom, children }) {
     </Container>
   );
 }
+
+export default CommandPrompt;

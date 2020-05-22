@@ -9,7 +9,7 @@ import Header from './components/Header';
 // Styles
 import Global from './styles/global';
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <Header />

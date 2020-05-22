@@ -10,7 +10,13 @@ import { Container, NotFoundArea, Strong, JSONArea } from './styles';
 
 import { ConsoleText } from '../../components/CommandPrompt/styles';
 
-function NotFound({ location }) {
+interface Props {
+  location: {
+    pathname: string;
+  }
+}
+
+const NotFound: React.FC<Props> = ({ location }) => {
 
   const errorConsole = {
     timestamp: new Date(),
@@ -38,3 +44,4 @@ function NotFound({ location }) {
 }
 
 export default NotFound;
+

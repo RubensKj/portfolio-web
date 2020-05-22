@@ -11,8 +11,6 @@ export const LogoText = styled.div`
   font-size: 18px;
   font-family: 'Source Code Pro', monospace;
 
-  /* Style */
-
   /* Position */
   margin-left: 5px;
 `;

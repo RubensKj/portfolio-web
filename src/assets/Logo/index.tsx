@@ -6,7 +6,7 @@ import CodeIcon from '../CodeIcon';
 // Styles
 import { Container, LogoText } from './styles';
 
-export default function Logo() {
+const Logo: React.FC = () => {
   return (
     <Container>
       <CodeIcon size={18} />
@@ -14,3 +14,5 @@ export default function Logo() {
     </Container>
   );
 }
+
+export default Logo;

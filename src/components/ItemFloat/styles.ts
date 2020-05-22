@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+interface Props {
+  top: number;
+  bottom: number;
+  right: number;
+  left: number;
+  width: number;
+  height: number;
+  background: string;
+}
+
 export const Container = styled.div`
   position: absolute;
 
@@ -11,15 +21,15 @@ export const Container = styled.div`
   box-shadow: 0 30px 40px 0 rgba(31, 45, 61, 0.1);
   border-radius: 50%;
 
-  background: ${props => props.background ? props.background : "#FFF"};
+  background: ${(props: Props) => props.background ? props.background : "#FFF"};
 
-  top: ${props => props.top ? props.top + 'px' : null};
-  bottom: ${props => props.bottom ? props.bottom + 'px' : null};
-  left: ${props => props.left ? props.left + 'px' : null};
-  right: ${props => props.right ? props.right + 'px' : null};
+  top: ${(props: Props) => props.top ? props.top + 'px' : null};
+  bottom: ${(props: Props) => props.bottom ? props.bottom + 'px' : null};
+  left: ${(props: Props) => props.left ? props.left + 'px' : null};
+  right: ${(props: Props) => props.right ? props.right + 'px' : null};
 
-  width: ${props => props.width ? props.width + 'px' : null};
-  height: ${props => props.height ? props.height + 'px' : null};
+  width: ${(props: Props) => props.width ? props.width + 'px' : null};
+  height: ${(props: Props) => props.height ? props.height + 'px' : null};
 
   padding: 5px 15px;
   overflow: hidden;

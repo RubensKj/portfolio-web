@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface Props {
+  marginTop: number;
+}
+
 export const Container = styled.a`
   text-decoration: none;
   font-size: 13px;
@@ -10,6 +14,6 @@ export const Container = styled.a`
   background-color: #141729;
   padding: 5px 10px;
 
-  margin-top: ${props => props.marginTop ? props.marginTop + 'px' : '10px'};
+  margin-top: ${(props: Props) => props.marginTop ? props.marginTop + 'px' : '10px'};
   cursor: pointer;
 `;

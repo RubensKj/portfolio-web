@@ -7,7 +7,7 @@ import MenuIcon from '../../assets/MenuIcon';
 // Styles
 import { Container, Wrapper, Redirect, UlList, Link, Text, ButtonResponsiveArea } from './styles';
 
-export default function Header() {
+const Header: React.FC = () => {
   return (
     <Container>
       <Wrapper>
@@ -32,3 +32,5 @@ export default function Header() {
     </Container>
   );
 }
+
+export default Header;

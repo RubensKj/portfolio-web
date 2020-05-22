@@ -11,7 +11,7 @@ import { Container, ContactArea, ContactFormArea } from './styles';
 
 import { ConsoleText } from '../CommandPrompt/styles';
 
-export default function ContactForm() {
+const ContactForm: React.FC = () => {
   return (
     <Container>
       <ConsoleText>CREATING CONTACT FORM..</ConsoleText>
@@ -33,3 +33,5 @@ export default function ContactForm() {
     </Container>
   );
 }
+
+export default ContactForm;

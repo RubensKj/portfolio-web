@@ -14,7 +14,7 @@ import ItemFloat from '../ItemFloat';
 // Styles
 import { Container, Wrapper, WrapperFloat, Title, Description } from './styles';
 
-export default function DeveloperStuffsArea() {
+const DeveloperStuffsArea: React.FC = () => {
   return (
     <Container>
       <Wrapper>
@@ -32,3 +32,5 @@ export default function DeveloperStuffsArea() {
     </Container>
   );
 }
+
+export default DeveloperStuffsArea;

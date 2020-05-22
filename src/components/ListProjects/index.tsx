@@ -6,14 +6,22 @@ import ProjectCard from '../ProjectCard';
 // Styles
 import { Container, List } from './styles';
 
-export default function ListProjects({ list }) {
+import { Project } from '../ProjectCard';
+
+interface Props {
+  list: Project[];
+}
+
+const ListProjects: React.FC<Props> = ({ list }) => {
   return (
     <Container>
       <List>
-        {list && list.map(project => (
+        {list.map(project => (
           <ProjectCard key={project.id} info={project} />
         ))}
       </List>
     </Container>
   );
 }
+
+export default ListProjects;

@@ -2,7 +2,17 @@ import React from 'react';
 
 import { Container, ImageArea, Image, InformationArea, Title } from './styles';
 
-export default function CertificationCard({ info }) {
+export interface Certification {
+  id: number;
+  image: string;
+  title: string;
+}
+
+interface Props {
+  info: Certification;
+}
+
+const CertificationCard: React.FC<Props> = ({ info }) => {
   return (
     <Container href="/">
       {info.image ? (
@@ -16,3 +26,5 @@ export default function CertificationCard({ info }) {
     </Container>
   );
 }
+
+export default CertificationCard;

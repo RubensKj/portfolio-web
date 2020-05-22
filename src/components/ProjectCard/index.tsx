@@ -10,14 +10,19 @@ import Bar from '../../components/Bar';
 // Styles
 import { Container, LanguageArea, SVGArea, Information, Header, Title, FullPath, DescriptionArea, Description } from './styles';
 
-interface Info {
+export interface Project {
+  id: number;
   name: string;
   fullName: string;
   language: string;
   description?: string;
 }
 
-const ProjectCard: React.FC<Info> = (info) => {
+interface Props {
+  info: Project;
+}
+
+const ProjectCard: React.FC<Props> = ({ info }) => {
   return (
     <Container>
       <LanguageArea>

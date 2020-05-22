@@ -7,7 +7,7 @@ import GitHubIcon from '../../assets/GitHubIcon';
 // Styles
 import { Container, Wrapper, Text, Strong, UlList, Li, Redirect } from './styles';
 
-export default function Footer() {
+const Footer: React.FC = () => {
   return (
     <Container>
       <Wrapper>
@@ -28,3 +28,5 @@ export default function Footer() {
     </Container>
   );
 }
+
+export default Footer;

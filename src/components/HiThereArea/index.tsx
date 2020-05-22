@@ -5,7 +5,7 @@ import MainArrow from '../../assets/MainArrow';
 
 import { Container, Content, LowerText, CodeTextArea, CodeNameArea, HigherText } from './styles';
 
-export default function HiThereArea() {
+const HiThereArea: React.FC = () => {
   return (
     <Container>
       <Content>
@@ -20,3 +20,5 @@ export default function HiThereArea() {
     </Container>
   );
 }
+
+export default HiThereArea;

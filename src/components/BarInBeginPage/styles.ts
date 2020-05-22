@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Props } from './index';
+
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -9,8 +11,8 @@ export const Container = styled.div`
 `;
 
 export const Bar = styled.div`
-  width: ${props => props.width ? (props.width + 'px') : ('20px')};
+  width: ${(props: Props) =>props.width + 'px'};
   height: 6px;
-  background: ${props => props.color ? props.color : "#00cc74"};
+  background: ${(props: Props) => props.color ? props.color : "#00cc74"};
   border-radius: 5px;  
 `;

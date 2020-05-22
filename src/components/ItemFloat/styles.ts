@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 interface Props {
-  top: number;
-  bottom: number;
-  right: number;
-  left: number;
-  width: number;
-  height: number;
-  background: string;
+  top?: number;
+  bottom?: number;
+  right?: number;
+  left?: number;
+  width?: number;
+  height?: number;
+  background?: string;
 }
 
 export const Container = styled.div`

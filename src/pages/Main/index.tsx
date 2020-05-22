@@ -44,7 +44,7 @@ const Main: React.FC = () => {
       <TransitionText marginTop={105} title="Some of my projects" description="Here are some of my projects, they are in GitHub. This are my favorite ones" />
       <ListProjects list={projects} />
       <TransitionText marginTop={65} title="Certifications" description="These are my certifications that I got until now, more are coming (And projects are too :))" />
-      <ListCertifications list={null} />
+      <ListCertifications list={[]} />
       <TransitionText marginTop={65} title="Contact me" description="Hey contact me if you liked my work. Just fill the form below and send me, I am waiting for you :)" />
       <CommandPrompt command='npm create contact-form' marginBottom={50}>
         <ContactForm />

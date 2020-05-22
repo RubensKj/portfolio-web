@@ -10,10 +10,12 @@ export const Container = styled.a`
   border-radius: 8px;
   border: 1px solid #EFF2F7;
   width: 100%;
+  color: #3C4858;
 
   padding: 10px;
 
   overflow: hidden;
+  text-decoration: none;
 `;
 
 export const ImageArea = styled.div`

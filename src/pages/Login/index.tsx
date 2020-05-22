@@ -7,7 +7,7 @@ import LoginForm from '../../components/LoginForm';
 // Styles
 import { Container } from './styles';
 
-export default function Login() {
+const Login: React.FC = () => {
   return (
     <Container>
       <CommandPrompt command='npm start login'>
@@ -16,3 +16,5 @@ export default function Login() {
     </Container>
   );
 }
+
+export default Login;

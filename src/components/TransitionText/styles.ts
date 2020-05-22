@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
+interface Props {
+  marginTop?: number;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  margin-top: ${props => props.marginTop ? props.marginTop + 'px' : '65px'};
+  margin-top: ${(props: Props) => props.marginTop ? props.marginTop + 'px' : '65px'};
   margin-bottom: 50px;
 
   transition: 0.2s padding;

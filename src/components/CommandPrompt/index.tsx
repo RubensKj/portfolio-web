@@ -14,11 +14,11 @@ import {
 
 interface Params {
   command?: string;
-  marginBottom?: string;
+  marginBottom?: number;
   children?: any;
 }
 
-const CommandPrompt: React.FC<Params> = ({ command, marginBottom = '0', children }) => {
+const CommandPrompt: React.FC<Params> = ({ command, marginBottom = 0, children }) => {
   return (
     <Container marginBottom={marginBottom}>
       <Wrapper>

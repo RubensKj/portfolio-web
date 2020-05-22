@@ -18,8 +18,7 @@ import Footer from '../../components/Footer';
 // Styles
 import { Container, BeginPageArea } from './styles';
 
-export default function Main() {
-
+const Main: React.FC = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -54,3 +53,5 @@ export default function Main() {
     </Container>
   );
 }
+
+export default Main;

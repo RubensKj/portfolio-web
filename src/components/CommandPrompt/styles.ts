@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface Props {
-  marginBottom: string;
+  marginBottom: number;
 }
 
 export const Container = styled.div`

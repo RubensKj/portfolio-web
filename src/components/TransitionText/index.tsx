@@ -2,7 +2,14 @@ import React from 'react';
 
 import { Container, Title, Description } from './styles';
 
-export default function TransitionText({ id, title, description, marginTop }) {
+interface Props {
+  id?: string;
+  title: string;
+  description: string;
+  marginTop?: number;
+}
+
+const TransitionText: React.FC<Props> = ({ id, title, description, marginTop }) => {
   return (
     <Container id={id} marginTop={marginTop}>
       <Title>{title ? title : "Put some title here"}</Title>
@@ -10,3 +17,5 @@ export default function TransitionText({ id, title, description, marginTop }) {
     </Container>
   );
 }
+
+export default TransitionText;

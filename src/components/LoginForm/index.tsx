@@ -12,7 +12,7 @@ import {
 
 import { ConsoleText } from '../CommandPrompt/styles';
 
-export default function LoginForm() {
+const LoginForm: React.FC = () => {
   return (
     <Container>
       <ConsoleText>INITIALIZING LOGIN..</ConsoleText>
@@ -21,12 +21,14 @@ export default function LoginForm() {
         <TitleTextPrompt text="LOGIN" />
         <LoginFormArea>
           <ConsoleText>User</ConsoleText>
-          <InputPrompt type="text" autoComplete="true" />
+          <InputPrompt type="text" />
           <ConsoleText>Password</ConsoleText>
-          <InputPrompt type="password" autoComplete="true" />
+          <InputPrompt type="password" />
           <ButtonPrompt text='Login' />
         </LoginFormArea>
       </LoginArea>
     </Container>
   );
 }
+
+export default LoginForm;

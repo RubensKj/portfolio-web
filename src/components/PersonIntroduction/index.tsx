@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, IntroductionArea, ImageArea, Image, DescriptionArea, Description } from './styles';
 
-export default function PersonIntroduction() {
+const PersonIntroduction: React.FC = () => {
   return (
     <Container>
       <IntroductionArea>
@@ -18,3 +18,5 @@ export default function PersonIntroduction() {
     </Container>
   );
 }
+
+export default PersonIntroduction;

@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
-export const Input = styled.input`
-  max-width: ${props => props.maxWidth ? props.maxWidth + 'px' : '230px'}; 
-  width: 100%;
+export interface Props {
+  marginTop?: number;
+}
+
+export const Container = styled.button`
   font-size: 13px;
   color: #8492A6;
   font-family: 'Source Code Pro', monospace;
@@ -11,5 +13,6 @@ export const Input = styled.input`
   background-color: #141729;
   padding: 5px 10px;
 
-  margin-bottom: 6px;
+  margin-top: ${(props: Props) => props.marginTop ? props.marginTop + 'px' : '10px'};
+  cursor: pointer;
 `;

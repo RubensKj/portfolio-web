@@ -18,10 +18,10 @@ const Header: React.FC = () => {
           <Link href="#home">
             <Text>Home</Text>
           </Link>
-          <Link href="#projects">
+          <Link href="/projects">
             <Text>Projects</Text>
           </Link>
-          <Link href="#certifications">
+          <Link href="/certifications">
             <Text>Certifications</Text>
           </Link>
         </UlList>

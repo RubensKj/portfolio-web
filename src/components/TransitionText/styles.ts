@@ -10,7 +10,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin-top: ${(props: Props) => props.marginTop ? props.marginTop + 'px' : '65px'};
+  margin-top: ${(props: Props) => props.marginTop !== undefined ? props.marginTop + 'px' : '65px'};
   margin-bottom: 50px;
 
   transition: 0.2s padding;

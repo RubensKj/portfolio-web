@@ -30,6 +30,11 @@ export const ImageArea = styled.div`
 
   transition: 0.2s max-width;
 
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
   @media only screen and (max-width: 915px) and (min-width: 700px) {
     max-width: none;
   }
@@ -39,10 +44,6 @@ export const ImageArea = styled.div`
   }
 `;
 
-export const Image = styled.img`
-  width: 100%;
-  height: 100%;
-`;
 
 export const InformationArea = styled.div`
   display: flex;

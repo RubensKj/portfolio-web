@@ -1,6 +1,10 @@
 import React from 'react';
 
-const VSCodeIcon = ({ size = 20 }) => (
+interface Props {
+  size?: number;
+}
+
+const VSCodeIcon: React.FC<Props> = ({ size = 20 }) => (
   <svg
     width={size}
     height={size}
@@ -12,5 +16,4 @@ const VSCodeIcon = ({ size = 20 }) => (
     <path d="m697.1 976.2c17 17.4 37.6 11.7 37.6 11.7l228.1-112.4c29.2-19.9 25.1-44.6 25.1-44.6v-671.2c0-29.5-30.2-39.7-30.2-39.7l-197.7-95.3c-43.2-26.7-71.5 4.8-71.5 4.8s36.4-26.2 54.2 23.4v887.5c0 6.1-1.3 12.1-3.9 17.5-5.2 10.5-16.5 20.3-43.6 16.2z" fill="#3c99d4" />
   </svg>
 );
-
 export default VSCodeIcon;

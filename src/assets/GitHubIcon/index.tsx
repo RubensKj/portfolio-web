@@ -1,6 +1,11 @@
 import React from 'react';
 
-const GitHubIcon = ({ size = 20, stroke = '#8492A6' }) => (
+interface Props {
+  size?: number;
+  stroke?: string;
+}
+
+const GitHubIcon: React.FC<Props> = ({ size = 20, stroke = '#8492A6' }) => (
   <svg xmlns="http://www.w3.org/2000/svg"
     enableBackground="new 0 0 24 24"
     width={size}

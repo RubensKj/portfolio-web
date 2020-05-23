@@ -1,6 +1,11 @@
 import React from "react";
 
-const PromptIcon = ({ size = 24, color = "#3C4858" }) => (
+interface Props {
+  size?: number;
+  color?: string;
+}
+
+const PromptIcon: React.FC<Props> = ({ size = 24, color = "#3C4858" }) => (
   <svg xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}

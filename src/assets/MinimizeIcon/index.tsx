@@ -1,6 +1,11 @@
 import React from "react";
 
-const ChevronRight = ({ size = 82, color = "#00cc74" }) => (
+interface Props {
+  size?: number;
+  color?: string;
+}
+
+const MinimizeIcon: React.FC<Props> = ({ size = 24, color = "#3C4858" }) => (
   <svg xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}
@@ -10,8 +15,9 @@ const ChevronRight = ({ size = 82, color = "#00cc74" }) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round">
-    <path d="M9 18l6-6-6-6" />
+    <line x1="5" y1="12" x2="19" y2="12"></line>
   </svg>
 );
 
-export default ChevronRight;
+
+export default MinimizeIcon;

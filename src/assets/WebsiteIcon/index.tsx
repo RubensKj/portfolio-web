@@ -1,6 +1,11 @@
 import React from "react";
 
-const WebsiteIcon = ({ size = 20, color = "#00cc74" }) => (
+interface Props {
+  size?: number;
+  color?: string;
+}
+
+const WebsiteIcon: React.FC<Props> = ({ size = 20, color = "#00cc74" }) => (
   <svg xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}

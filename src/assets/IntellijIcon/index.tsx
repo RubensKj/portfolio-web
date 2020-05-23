@@ -1,7 +1,11 @@
 import React from "react";
 
-const IntellijIcon = ({ size = 20 }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"
+interface Props {
+  size?: number;
+}
+
+const IntellijIcon: React.FC<Props> = ({ size = 20 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg"
     version="1.1"
     id="Layer_1_1_"
     x="0px"

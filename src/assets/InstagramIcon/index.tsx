@@ -1,6 +1,11 @@
 import React from 'react';
 
-const InstragramIcon = ({ size = 20, stroke = '#8492A6' }) => (
+interface Props {
+  size?: number;
+  stroke?: string;
+}
+
+const InstagramIcon: React.FC<Props> = ({ size = 20, stroke = '#8492A6' }) => (
   <svg xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size} 
@@ -13,4 +18,4 @@ const InstragramIcon = ({ size = 20, stroke = '#8492A6' }) => (
   </svg>
 );
 
-export default InstragramIcon;
+export default InstagramIcon;

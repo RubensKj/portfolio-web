@@ -1,6 +1,11 @@
 import React from 'react';
 
-const MongoDBIcon = ({ width = 20, height = 20 }) => (
+interface Props {
+  width?: number;
+  height?: number;
+}
+
+const MongoDBIcon: React.FC<Props> = ({ width = 20, height = 20 }) => (
   <svg
     width={width}
     height={height}

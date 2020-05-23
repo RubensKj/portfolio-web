@@ -1,6 +1,10 @@
 import React from 'react';
 
-const SpringBootIcon = ({ size = 20 }) => (
+interface Props {
+  size?: number;
+}
+
+const SpringBootIcon: React.FC<Props> = ({ size = 20 }) => (
   <svg xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}

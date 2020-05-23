@@ -1,6 +1,11 @@
 import React from 'react';
 
-const ReactIcon = ({ width = 20, height = 20 }) => (
+interface Props {
+  width?: number;
+  height?: number;
+}
+
+const ReactIcon: React.FC<Props> = ({ width = 20, height = 20 }) => (
   <svg
     width={width}
     height={height}

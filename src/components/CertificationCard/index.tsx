@@ -1,10 +1,9 @@
 import React from 'react';
 
 import Image from 'react-shimmer';
-import Loader from 'react-loader-spinner'
 import NotContentImage from '../NotContentImage';
 
-import { Container, ImageArea, InformationArea, Title } from './styles';
+import { Container, ImageArea, LoadingWrapper, LoadingSpan, InformationArea, Title } from './styles';
 
 export interface Certification {
   id: number;
@@ -23,12 +22,9 @@ const CertificationCard: React.FC<Props> = ({ info }) => {
         <Image
           src={info.image}
           fallback={
-            <Loader
-              type="Grid"
-              color="#00cc74"
-              height={85}
-              width={85}
-            />
+            <LoadingWrapper>
+              <LoadingSpan>Loading..</LoadingSpan>
+            </LoadingWrapper>
           }
           errorFallback={() => <NotContentImage />}
         />

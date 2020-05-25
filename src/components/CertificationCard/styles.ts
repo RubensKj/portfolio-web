@@ -44,6 +44,27 @@ export const ImageArea = styled.div`
   }
 `;
 
+export const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  min-height: 185px;
+  height: 100%;
+  background-color: #fafafa;
+`;
+
+export const LoadingSpan = styled.span`
+  width: 100%;
+  height: 100%;
+
+  font-size: 18px;
+  color: #e2e2e2 !important;
+  text-transform: uppercase;
+`;
+
 
 export const InformationArea = styled.div`
   display: flex;

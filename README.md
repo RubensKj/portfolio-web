@@ -38,7 +38,7 @@
 
 # :rocket: About
 
-You can reach the application by accessing [RubensKj](rubenskj.com)
+You can reach the application by accessing [RubensKj](http://rubenskj.com/)
 
 # :closed_book: License
 

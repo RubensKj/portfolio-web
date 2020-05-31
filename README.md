@@ -12,7 +12,7 @@
 [![Contributors](https://img.shields.io/github/contributors/RubensKj/myportfolio?color=00cc74&style=flat-square)](https://github.com/RubensKj/myportfolio/graphs/contributors)
 
 
-> A cool portfolio
+> A cool portfolio ✌🏻
 
 <p>This is my portfolio made in reactjs with typescript and styled components</p>
 

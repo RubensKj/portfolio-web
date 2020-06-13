@@ -15,9 +15,6 @@ const Header: React.FC = () => {
           <Logo />
         </Redirect>
         <UlList>
-          <Link href="#home">
-            <Text>Home</Text>
-          </Link>
           <Link href="/projects">
             <Text>Projects</Text>
           </Link>

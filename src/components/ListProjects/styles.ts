@@ -23,6 +23,7 @@ export const List = styled.div`
 
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+  align-items: flex-start;
 
   padding: 5px 15px;
   gap: 15px;

@@ -1,13 +1,22 @@
 import React from 'react';
 
-import { Container, IntroductionArea, ImageArea, Image, DescriptionArea, Description } from './styles';
+import Image from 'react-shimmer';
+import NotContentImage from '../NotContentImage';
+
+import { Container, IntroductionArea, ImageArea, DescriptionArea, Description } from './styles';
 
 const PersonIntroduction: React.FC = () => {
   return (
     <Container>
       <IntroductionArea>
         <ImageArea>
-          <Image srcSet="https://instagram.fbnu4-1.fna.fbcdn.net/v/t51.2885-15/e35/47489450_965388186987389_6000681300519320808_n.jpg?_nc_ht=instagram.fbnu4-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=d_bF-jScEGsAX_xOhcJ&oh=b9ff0f1e7d9f4b1e4854d279a2e8cfa0&oe=5ED11E90" />
+          <Image
+            src="https://instagram.ffln2-2.fna.fbcdn.net/v/t51.2885-15/e35/47489450_965388186987389_6000681300519320808_n.jpg?_nc_ht=instagram.ffln2-2.fna.fbcdn.net&_nc_cat=105&_nc_ohc=6ktPeqaYP80AX-JQiOu&oh=90d9b037931accd3bc023cd6a73dc1fd&oe=5F106690"
+            fallback={
+              <Description />
+            }
+            errorFallback={() => <NotContentImage background="#fafbff" />}
+          />
         </ImageArea>
         <DescriptionArea>
           <Description>

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+interface Props {
+  background?: string;
+  color?: string;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,11 +14,11 @@ export const Container = styled.div`
   min-height: 185px;
   height: 100%;
 
-  background-color: #fafafa;
+  background-color: ${(props: Props) => props.background};
 `;
 
 export const Text = styled.h2`
-  color: #e2e2e2 !important;
+  color: ${(props: Props) => props.color} !important;
   text-transform: uppercase;
   font-size: 18px;
 

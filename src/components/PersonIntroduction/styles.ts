@@ -10,29 +10,26 @@ export const IntroductionArea = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-
-  /* margin-top: 100px; */
-  /* margin-bottom: 50px; */
 `;
 
 export const ImageArea = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
 
-export const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  max-width: 320px !important;
-  max-height: 315px !important;
+  img {
+    width: 100%;
+    height: 100%;
+    max-width: 320px !important;
+    max-height: 315px !important;
 
-  border: 2px solid #00cc74;
-  border-radius: 50%;
+    border: 2px solid #00cc74;
+    border-radius: 50%;
 
-  @media only screen and (max-width: 500px) {
-    max-width: 220px !important;
-    max-height: 215px !important;
+    @media only screen and (max-width: 500px) {
+      max-width: 220px !important;
+      max-height: 215px !important;
+    }
   }
 `;
 

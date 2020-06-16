@@ -16,9 +16,12 @@ interface Props {
       id: string;
     }
   };
+  history: {
+    push(uri: string): void
+  };
 }
 
-const ProjectDetail: React.FC<Props> = ({ match }) => {
+const ProjectDetail: React.FC<Props> = ({ match, history }) => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [project, setProject] = useState<Project>({} as Project);
@@ -26,15 +29,17 @@ const ProjectDetail: React.FC<Props> = ({ match }) => {
   useEffect(() => {
     setIsLoading(true);
     async function loadProject(): Promise<void> {
-      const response = await api.get(`/repos/RubensKj/${match.params.id}`);
+      await api.get(`/repos/RubensKj/${match.params.id}`).then(response => {
+        setProject(response.data);
 
-      setProject(response.data);
-
-      setIsLoading(false);
+        setIsLoading(false);
+      }).catch(error => {
+        history.push(`/projects/${match.params.id}/not-found`);
+      });
     }
 
     loadProject();
-  }, [match.params.id]);
+  }, [history, match.params.id]);
 
   return (
     <>

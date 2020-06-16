@@ -14,12 +14,12 @@ const Footer: React.FC = () => {
         <Text>2020-2021 - <Strong>RubensKj</Strong>.</Text>
         <UlList>
           <Li>
-            <Redirect href="https://www.instagram.com/rubenskjr/">
+            <Redirect target="_blank" href="https://www.instagram.com/rubenskjr/">
               <InstragramIcon size={15} />
             </Redirect>
           </Li>
           <Li>
-            <Redirect href="https://github.com/RubensKj">
+            <Redirect target="_blank" href="https://github.com/RubensKj">
               <GitHubIcon size={15} />
             </Redirect>
           </Li>

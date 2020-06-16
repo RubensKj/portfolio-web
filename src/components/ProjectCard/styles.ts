@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.a`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,6 +14,8 @@ export const Container = styled.div`
   padding: 5px 0;
 
   overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
 `;
 
 export const LanguageArea = styled.div`

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Routes
-import Routes from './routes';
+import Routes from './routes/routes';
 
 // Components
 import Header from './components/Header';

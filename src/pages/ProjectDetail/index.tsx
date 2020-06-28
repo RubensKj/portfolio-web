@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+// Assets
+import ArrowLeft from '../../assets/ArrowLeft';
+
 // Components
 import { Project } from '../../components/ProjectCard';
 import LoadingPage from '../../components/LoadingPage';
@@ -8,7 +11,7 @@ import LoadingPage from '../../components/LoadingPage';
 import api from '../../services/api';
 
 // Styles
-import { ColorHeader, Container, WrapperContent, Sidebar, ImageArea, Image } from './styles';
+import { ColorHeader, Container, WrapperContent, Sidebar, ImageArea, Image, BackArea, BackRedirect } from './styles';
 
 interface Props {
   match: {
@@ -50,7 +53,10 @@ const ProjectDetail: React.FC<Props> = ({ match, history }) => {
           <Container>
             <WrapperContent>
               <Sidebar>
-                {/* <p>Teste</p> */}
+                <BackArea href="/projects">
+                  <ArrowLeft size={20} />
+                  <BackRedirect>Voltar</BackRedirect>
+                </BackArea>
               </Sidebar>
               <ImageArea>
                 <Image url="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/main_page.gif" />

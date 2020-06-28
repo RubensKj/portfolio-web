@@ -48,3 +48,27 @@ export const Image = styled.div`
   background-repeat: no-repeat;
   background-size: 100% auto;
 `;
+
+export const BackArea = styled.a`
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  margin: 12px 0;
+  width: fit-content;
+  cursor: pointer;
+
+  text-decoration: none;
+
+  :hover {
+    span {
+      color: #00cc74;
+      transition: 0.2s color;
+    }
+  }
+`;
+
+export const BackRedirect = styled.span`
+  font: 16px 'Poppins',sans-serif;
+  color: #5a5e73;
+  text-decoration: none;
+`;

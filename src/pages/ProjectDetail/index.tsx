@@ -8,7 +8,7 @@ import LoadingPage from '../../components/LoadingPage';
 import api from '../../services/api';
 
 // Styles
-import { Container } from './styles';
+import { ColorHeader, Container, WrapperContent, Sidebar, ImageArea, Image } from './styles';
 
 interface Props {
   match: {
@@ -30,6 +30,7 @@ const ProjectDetail: React.FC<Props> = ({ match, history }) => {
     setIsLoading(true);
     async function loadProject(): Promise<void> {
       await api.get(`/repos/RubensKj/${match.params.id}`).then(response => {
+        console.log(response.data)
         setProject(response.data);
 
         setIsLoading(false);
@@ -44,9 +45,19 @@ const ProjectDetail: React.FC<Props> = ({ match, history }) => {
   return (
     <>
       {isLoading ? <LoadingPage /> : (
-        <Container>
-          {project.id}
-        </Container>
+        <>
+          <ColorHeader />
+          <Container>
+            <WrapperContent>
+              <Sidebar>
+                {/* <p>Teste</p> */}
+              </Sidebar>
+              <ImageArea>
+                <Image url="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/main_page.gif" />
+              </ImageArea>
+            </WrapperContent>
+          </Container>
+        </>
       )}
     </>
   );

@@ -55,7 +55,7 @@ const ProjectDetail: React.FC<Props> = ({ match, history }) => {
               <Sidebar>
                 <BackArea href="/projects">
                   <ArrowLeft size={20} />
-                  <BackRedirect>Voltar</BackRedirect>
+                  <BackRedirect>Go Back</BackRedirect>
                 </BackArea>
               </Sidebar>
               <ImageArea>

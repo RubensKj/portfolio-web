@@ -16,6 +16,14 @@ export interface Project {
   full_name: string;
   language: string;
   description?: string;
+  created_at?: Date;
+  updated_at?: Date;
+  license?: {
+    key: string;
+    name: string;
+    url: string;
+  }
+  html_url?: string;
 }
 
 interface Props {

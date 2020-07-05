@@ -36,7 +36,7 @@ const Modal: React.FC<IModalProps> = ({ children, width = '520px', height = '520
           background: cardBackground,
           borderRadius: '4px',
           maxWidth: width,
-          width: '100%',
+          width: '95%',
           maxHeight: height,
           overflowY: 'auto',
           border: 'none',

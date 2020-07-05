@@ -20,11 +20,12 @@ export interface Project {
 
 interface Props {
   info: Project;
+  onClickOpenModal: (project: Project) => void;
 }
 
-const ProjectCard: React.FC<Props> = ({ info }) => {
+const ProjectCard: React.FC<Props> = ({ info, onClickOpenModal }) => {
   return (
-    <Container href={`/projects/${info.name}`}>
+    <Container onClick={() => onClickOpenModal(info)}>
       <LanguageArea>
         <SVGArea>{info.language === 'JavaScript' ? <WebsiteIcon size={24} /> : <Folder size={24} />}</SVGArea>
         <Bar right={5} top={-15} width={32} background="rgba(90,94,115,0.09)" />

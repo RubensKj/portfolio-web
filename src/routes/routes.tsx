@@ -5,7 +5,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Main from '../pages/Main';
 import Login from '../pages/Login';
 import Projects from '../pages/Projects';
-import ProjectDetail from '../pages/ProjectDetail';
 import Certifications from '../pages/Certifications';
 
 // Utilities
@@ -17,7 +16,6 @@ const Routes: React.FC = () => (
       <Route exact path='/' component={Main} />
       <Route path='/login' component={Login} />
       <Route exact path='/projects' component={Projects} />
-      <Route exact path='/projects/:id' component={ProjectDetail} />
       <Route path='/certifications' component={Certifications} />
       <Route path='**' component={NotFound} />
     </Switch>

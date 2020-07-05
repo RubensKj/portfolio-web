@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Components
+import ModalProject from '../ModalProject';
 import ProjectCard from '../ProjectCard';
 
 // Styles
@@ -13,14 +14,31 @@ interface Props {
 }
 
 const ListProjects: React.FC<Props> = ({ list }) => {
+  const [projectSelected, setProjectSelected] = useState<Project>({} as Project);
+
+  const [modalProject, setModalProject] = useState<boolean>(false);
+
+  function toggleOpenModalProject(project: Project): void {
+    setModalProject(!modalProject);
+    setProjectSelected(project);
+  }
+
   return (
-    <Container>
-      <List>
-        {list.map(project => (
-          <ProjectCard key={project.id} info={project} />
-        ))}
-      </List>
-    </Container>
+    <>
+      <ModalProject
+        project={projectSelected}
+        isOpen={modalProject}
+        setIsOpen={() => toggleOpenModalProject(projectSelected)}
+      />
+
+      <Container>
+        <List>
+          {list.map(project => (
+            <ProjectCard key={project.id} info={project} onClickOpenModal={toggleOpenModalProject} />
+          ))}
+        </List>
+      </Container>
+    </>
   );
 }
 

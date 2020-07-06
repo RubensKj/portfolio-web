@@ -16,6 +16,12 @@ export const Container = styled.a`
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
+
+  transition: 0.2s transform;
+
+  :hover {
+    transform: translateY(-2px);
+  }
 `;
 
 export const LanguageArea = styled.div`

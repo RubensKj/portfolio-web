@@ -32,7 +32,7 @@ const ModalProject: React.FC<IModalProps> = ({ project, isOpen, setIsOpen }) => 
   }
 
   return (
-    <Modal width={!isFullscreen ? '684px' : '1024px'} height='720px' isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal width={!isFullscreen ? '684px' : '1280px'} height='720px' isOpen={isOpen} setIsOpen={setIsOpen}>
       <Header>
         <Dot onClick={setIsOpen} color="#fc615d" hoverColor="#d04f4c" />
         <Dot onClick={toggleFullscreen} color="#fdbc40" hoverColor="#ca9736" />

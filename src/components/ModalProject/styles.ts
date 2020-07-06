@@ -32,7 +32,32 @@ export const Container = styled.div`
 
   padding: 0 8px;
 
-  padding-bottom: 15px;
+  overflow-y: auto;
+
+  max-height: 610px !important;
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #2c2b35;
+    border-radius: 2px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #49e287;
+    border-radius: 8px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #40bb72;
+  }
 `;
 
 export const ImageArea = styled.div`
@@ -43,6 +68,9 @@ export const ImageArea = styled.div`
 export const Image = styled.img`
   width: 100%;
   border-radius: 8px;
+
+  max-height: 610px;
+  height: 100%;
 `;
 
 export const HeaderProject = styled.header`
@@ -87,11 +115,35 @@ export const CodeArea = styled.div`
   border: 1px solid rgba(47, 45, 58, 0.6);
 
   background: #2c2b35;
+  overflow: hidden;
 `;
 
 export const WrapperCodeLine = styled.div`
   width: 100%;
   overflow: auto;
+
+    /* width */
+    ::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #2c2b35;
+    border-radius: 2px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #49e287;
+    border-radius: 8px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #40bb72;
+  }
 `;
 
 export const CodeLine = styled.div`
@@ -138,6 +190,12 @@ export const StringWithoutSpace = styled.strong`
   font-weight: 400 !important;
 
   margin-right: 0 !important;
+`;
+
+export const Footer = styled.footer`
+  padding: 0 8px;
+
+  padding-bottom: 15px;
 `;
 
 export const Redirect = styled.a`

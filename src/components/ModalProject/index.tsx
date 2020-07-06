@@ -12,7 +12,7 @@ import { Project } from '../ProjectCard';
 import {
   Header, Dot, Container, ImageArea, Image, HeaderProject, Separator, Title, Description,
   CodeArea, WrapperCodeLine, CodeLine, Comentary, Word, Keyword, Variable,
-  StringWithoutSpace, Redirect
+  StringWithoutSpace, Footer, Redirect
 } from './styles';
 
 interface IModalProps {
@@ -69,12 +69,14 @@ const ModalProject: React.FC<IModalProps> = ({ project, isOpen, setIsOpen }) => 
             )}
           </WrapperCodeLine>
         </CodeArea>
+      </Container>
+      <Footer>
         <Separator />
         <Redirect target="_blank" href={project.html_url} >
           <GitHubIcon size={15} stroke="#5972A4" />
           <Comentary>Access on github</Comentary>
         </Redirect>
-      </Container>
+      </Footer>
     </Modal>
   );
 }

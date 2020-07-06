@@ -37,8 +37,6 @@ const Modal: React.FC<IModalProps> = ({ children, width = '520px', height = '520
           borderRadius: '4px',
           maxWidth: width,
           width: '95%',
-          maxHeight: height,
-          overflowY: 'auto',
           border: 'none',
           padding: '5px 15px',
           boxShadow: '0px 8px 19px 2px rgba(0,0,0,0.2)',

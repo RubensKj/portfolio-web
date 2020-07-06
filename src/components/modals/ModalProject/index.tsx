@@ -1,43 +1,32 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 
 // Assets
-import GitHubIcon from '../../assets/GitHubIcon';
+import GitHubIcon from '../../../assets/GitHubIcon';
 
 // Components
-import Modal from '../Modal';
+import ModalPrototype from '../ModalPrototype';
 
-// Interfaces
-import { Project } from '../ProjectCard';
+//Interfaces
+import { Project } from '../../ProjectCard';
 
 import {
-  Header, Dot, Container, ImageArea, Image, HeaderProject, Separator, Title, Description,
+  Container, ImageArea, Image, HeaderProject, Separator, Title, Description,
   CodeArea, WrapperCodeLine, CodeLine, Comentary, Word, Keyword, Variable,
   StringWithoutSpace, Footer, Redirect
 } from './styles';
 
-interface IModalProps {
+interface IModalProjectProps {
   project: Project;
   isOpen: boolean;
   setIsOpen: () => void;
-};
+}
 
-const ModalProject: React.FC<IModalProps> = ({ project, isOpen, setIsOpen }) => {
-
-  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+const ModalProject: React.FC<IModalProjectProps> = ({ project, isOpen, setIsOpen }) => {
 
   const title = useMemo(() => project.name !== undefined ? project.name.toUpperCase() : '', [project.name]);
 
-  function toggleFullscreen() {
-    setIsFullscreen(!isFullscreen);
-  }
-
   return (
-    <Modal width={!isFullscreen ? '684px' : '1280px'} height='725px' isOpen={isOpen} setIsOpen={setIsOpen}>
-      <Header>
-        <Dot onClick={setIsOpen} color="#fc615d" hoverColor="#d04f4c" />
-        <Dot onClick={toggleFullscreen} color="#fdbc40" hoverColor="#ca9736" />
-        <Dot color="#35c749" hoverColor="#2d9e3d" />
-      </Header>
+    <ModalPrototype isOpen={isOpen} setIsOpen={setIsOpen} >
       <Container>
         <ImageArea>
           <Image src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/main_page.gif" alt="Project Image" />
@@ -77,7 +66,7 @@ const ModalProject: React.FC<IModalProps> = ({ project, isOpen, setIsOpen }) => 
           <Comentary>Access on github</Comentary>
         </Redirect>
       </Footer>
-    </Modal>
+    </ModalPrototype>
   );
 }
 

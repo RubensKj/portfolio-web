@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Components
-import ModalProject from '../ModalProject';
+import ModalProject from '../modals/ModalProject';
 import ProjectCard from '../ProjectCard';
 
 // Styles

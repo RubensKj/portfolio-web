@@ -9,15 +9,18 @@ export interface Certification {
   id: number;
   image: string;
   title: string;
+  description?: string;
+  certification_url: string;
 }
 
 interface Props {
   info: Certification;
+  onClickOpenModal: (project: Certification) => void;
 }
 
-const CertificationCard: React.FC<Props> = ({ info }) => {
+const CertificationCard: React.FC<Props> = ({ info, onClickOpenModal }) => {
   return (
-    <Container href="/">
+    <Container onClick={() => onClickOpenModal(info)}>
       <ImageArea>
         <Image
           src={info.image}

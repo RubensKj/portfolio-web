@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.a`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +15,6 @@ export const Container = styled.a`
   padding: 10px;
 
   overflow: hidden;
-  text-decoration: none;
 
   transition: 0.2s transform;
 

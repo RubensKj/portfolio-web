@@ -5,14 +5,13 @@ import ReactModal from 'react-modal';
 interface IModalProps {
   children: any;
   width?: string;
-  height?: string;
   cardBackground?: string;
   backgroundColor?: string;
   isOpen: boolean;
   setIsOpen: () => void;
 }
 
-const Modal: React.FC<IModalProps> = ({ children, width = '520px', height = '520px', cardBackground = '#23212b', backgroundColor = 'rgba(18, 18, 20, 0.1)', isOpen, setIsOpen }) => {
+const Modal: React.FC<IModalProps> = ({ children, width = '520px', cardBackground = '#23212b', backgroundColor = 'rgba(18, 18, 20, 0.1)', isOpen, setIsOpen }) => {
   const [modalStatus, setModalStatus] = useState(isOpen);
 
   useEffect(() => {

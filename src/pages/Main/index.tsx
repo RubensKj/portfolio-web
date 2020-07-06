@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // Services
+import apiGithub from '../../services/apiGithub';
 import api from '../../services/api';
 
 // Components
@@ -23,15 +24,18 @@ import { Project } from '../../components/ProjectCard';
 
 // Styles
 import { Container, BeginPageArea } from './styles';
+import { Certification } from '../../components/CertificationCard';
 
 const Main: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [projects, setProjects] = useState<Project[]>([]);
 
+  const [certifications, setCertifications] = useState<Certification[]>([]);
+
   useEffect(() => {
     setIsLoading(true);
-    async function getProjects() {
-      await api.get('/users/RubensKj/repos')
+    async function getProjects(): Promise<void> {
+      await apiGithub.get('/users/RubensKj/repos')
         .then(data => {
           setProjects(data.data)
           setIsLoading(false);
@@ -40,7 +44,14 @@ const Main: React.FC = () => {
           console.log(error);
         });
     }
+    async function getCertifications(): Promise<void> {
+      const response = await api.get('certifications');
+
+      setCertifications(response.data);
+    }
+
     getProjects();
+    getCertifications();
   }, []);
 
   return (
@@ -57,7 +68,7 @@ const Main: React.FC = () => {
           <TransitionText marginTop={105} title="Some of my projects" description="Here are some of my projects, they are in GitHub. This are my favorite ones" />
           <ListProjects list={projects} />
           <TransitionText marginTop={65} title="Certifications" description="These are my certifications that I got until now, more are coming (And projects are too :))" />
-          <ListCertifications list={[]} />
+          <ListCertifications list={certifications} />
           <TransitionText marginTop={65} title="Contact me" description="Hey contact me if you liked my work. Just fill the form below and send me, I am waiting for you :)" />
           <CommandPrompt command='npm create contact-form' marginBottom={50}>
             <ContactForm />

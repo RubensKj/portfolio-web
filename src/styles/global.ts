@@ -10,6 +10,27 @@ export default createGlobalStyle`
 
   html, body, #root {
     height: 100%;
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #141729;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #49e287;
+      border-radius: 8px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #40bb72;
+    }
   }
 
   body {

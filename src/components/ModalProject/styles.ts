@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const Header = styled.div`
   display: flex;
-  padding: 8px 8px;
-
-  margin-bottom: 15px;
+  padding: 8px 2px;
+  
+  margin-bottom: 8px;
 `;
 
 interface Color {
@@ -35,6 +35,16 @@ export const Container = styled.div`
   padding-bottom: 15px;
 `;
 
+export const ImageArea = styled.div`
+  width: 100%;
+  border-radius: 8px;
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  border-radius: 8px;
+`;
+
 export const HeaderProject = styled.header`
   display: flex;
   flex-direction: column;
@@ -62,7 +72,7 @@ export const Title = styled.span`
 export const Description = styled.span`
   color: #FFFFFF;
   font-family: 'Fira Code', monospace;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
 
   margin-top: 10px;
@@ -98,13 +108,15 @@ export const CodeLine = styled.div`
   }
 `;
 
-export const Comentary = styled.strong`
+export const Comentary = styled.span`
   color: #5972A4;
 
   font-family: 'Fira Code', monospace;
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
+
+  transition: 0.2s color;
 
   margin-right: 8px;
 `;
@@ -126,4 +138,26 @@ export const StringWithoutSpace = styled.strong`
   font-weight: 400 !important;
 
   margin-right: 0 !important;
+`;
+
+export const Redirect = styled.a`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+
+  width: fit-content;
+
+  cursor: pointer;
+
+  :hover {
+    span {
+      color: #4f6590 !important;
+    }
+  }
+
+  span {
+    font-size: 14px !important;
+
+    margin-left: 8px;
+  }
 `;

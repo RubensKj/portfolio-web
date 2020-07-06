@@ -41,7 +41,8 @@ const Modal: React.FC<IModalProps> = ({ children, width = '520px', height = '520
           overflowY: 'auto',
           border: 'none',
           padding: '5px 15px',
-          boxShadow: '0px 8px 19px 2px rgba(0,0,0,0.1)'
+          boxShadow: '0px 8px 19px 2px rgba(0,0,0,0.2)',
+          transition: '0.2s max-width'
         },
         overlay: {
           backgroundColor: backgroundColor,

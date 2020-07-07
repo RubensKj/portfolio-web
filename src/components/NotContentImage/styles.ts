@@ -11,7 +11,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  min-height: 185px;
+  min-height: 180px;
   height: 100%;
 
   background-color: ${(props: Props) => props.background};

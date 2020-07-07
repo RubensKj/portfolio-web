@@ -65,7 +65,7 @@ const Main: React.FC = () => {
           <TransitionText title="About me" description="This section shows a little about me and how I started to code" />
           <PersonIntroduction />
           <DeveloperStuffsArea />
-          <TransitionText marginTop={105} title="Some of my projects" description="Here are some of my projects, they are in GitHub. This are my favorite ones" />
+          <TransitionText marginTop={105} title="Some of my projects" description="Here are some of my projects, they are in GitHub. These are my favorite ones" />
           <ListProjects list={projects} />
           <TransitionText marginTop={65} title="Certifications" description="These are my certifications that I got until now, more are coming (And projects are too :))" />
           <ListCertifications list={certifications} />

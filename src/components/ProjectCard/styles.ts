@@ -1,21 +1,29 @@
 import styled from 'styled-components';
 
+interface Props {
+  svg?: string;
+}
+
 export const Container = styled.a`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 
-  background-color: #FFF;
+  background-color: #23212b;
+  background: url(${(props: Props) => props.svg}) bottom center;
+  background-size: 100%;
+
   border-radius: 8px;
-  border: 1px solid #EFF2F7;
+  border: 1px solid #2c2b35;
   width: 100%;
+  height: 100%;
 
   padding: 5px 0;
 
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 19px 2px;
 
   transition: 0.2s transform;
 
@@ -37,7 +45,7 @@ export const SVGArea = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(90,94,115,0.06);
+  background: #2c2b35;
 
   padding: 15px;
   border-radius: 10px;
@@ -69,7 +77,10 @@ export const Header = styled.div`
 export const Title = styled.h2`
   font-size: 18px;
   text-transform: uppercase;
-  color: #3C4858;
+  color: #FFF;
+
+  /* font-family: 'Fira Code',monospace; */
+  font-weight: 500;
 
   /* No break lines */
   width: 100%;
@@ -100,6 +111,14 @@ export const DescriptionArea = styled.div`
 export const Description = styled.span`
   font-size: 15px;
   color: #8492A6 !important;
+  flex: 1;
+
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 

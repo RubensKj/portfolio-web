@@ -1,18 +1,28 @@
 import styled from 'styled-components';
 
+interface Props {
+  svg?: string;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  background-color: #FFF;
+  background: url(${(props: Props) => props.svg}) bottom center;
+  background-color: #23212b;
+  background-size: 100%;
+  background-repeat: no-repeat;
+
   border-radius: 8px;
-  border: 1px solid #EFF2F7;
+  border: 1px solid #2c2b35;
   width: 100%;
   color: #3C4858;
 
   padding: 10px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 19px 2px;
 
   overflow: hidden;
 
@@ -58,7 +68,7 @@ export const LoadingWrapper = styled.div`
 
   min-height: 185px;
   height: 100%;
-  background-color: #fafafa;
+  background-color: rgba(44, 43, 53, 0.55);
 `;
 
 export const LoadingSpan = styled.span`
@@ -85,7 +95,7 @@ export const Title = styled.span`
   color: #8492A6 !important;
   width: 100%;
 
-  /* white-space: nowrap;
+  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; */
+  text-overflow: ellipsis;
 `;

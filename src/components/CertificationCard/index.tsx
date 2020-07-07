@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Mask from '../../assets/BackgroundProject/Mask.png';
 import Image from 'react-shimmer';
 import NotContentImage from '../NotContentImage';
 
@@ -20,7 +21,7 @@ interface Props {
 
 const CertificationCard: React.FC<Props> = ({ info, onClickOpenModal }) => {
   return (
-    <Container onClick={() => onClickOpenModal(info)}>
+    <Container onClick={() => onClickOpenModal(info)} svg={Mask}>
       <ImageArea>
         <Image
           src={info.image}

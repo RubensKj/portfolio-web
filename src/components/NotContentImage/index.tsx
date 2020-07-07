@@ -10,7 +10,7 @@ interface Props {
   background?: string;
 }
 
-const NotContentImage: React.FC<Props> = ({ size = 58, color = "#e2e2e2", background = "#fafafa" }) => {
+const NotContentImage: React.FC<Props> = ({ size = 58, color = "#ffffff", background = "rgba(44, 43, 53, 0.55)" }) => {
   return (
     <Container background={background}>
       <XIcon size={size} color={color} />

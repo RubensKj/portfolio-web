@@ -65,9 +65,6 @@ export const Title = styled.span`
   font-size: 20px;
 
   width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 export const Description = styled.span`

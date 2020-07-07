@@ -29,7 +29,9 @@ const ModalCertification: React.FC<IModalProps> = ({ certification, isOpen, setI
         <Separator />
         <HeaderProject>
           <Title>"{certification.title}"</Title>
-          <Description>{certification.description}</Description>
+          {certification.description && (
+            <Description>{certification.description}</Description>
+          )}
         </HeaderProject>
       </Container>
       <Footer>

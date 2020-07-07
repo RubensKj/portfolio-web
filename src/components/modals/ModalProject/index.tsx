@@ -34,7 +34,9 @@ const ModalProject: React.FC<IModalProjectProps> = ({ project, isOpen, setIsOpen
         <Separator />
         <HeaderProject>
           <Title>"{title}"</Title>
-          <Description>{project.description}</Description>
+          {project.description && (
+            <Description>{project.description}</Description>
+          )}
         </HeaderProject>
         <Separator />
         <CodeArea>

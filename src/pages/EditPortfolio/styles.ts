@@ -43,14 +43,6 @@ export const ImageArea = styled.div`
   }
 `;
 
-export const Description = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  max-width: 665px;
-`;
-
 export const ContentForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -98,6 +90,21 @@ export const Input = styled.input`
   color: #555;
 
   font: 16px 'Poppins', sans-serif;
+`;
+
+export const Label = styled.label`
+  padding: 5px 15px;
+  width: 100%;
+  text-align: center;
+
+  background: transparent;
+  border: none;
+
+  color: #555;
+
+  font: 15px 'Poppins', sans-serif;
+
+  margin-bottom: 5px;
 `;
 
 export const TextareaArea = styled.div`
@@ -162,4 +169,41 @@ export const Button = styled.button`
   :hover {
     transform: translateY(-1px);
   }
+`;
+
+export const WrapperContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 5px 15px;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 585px;
+  
+  margin-top: 15px;
+`;
+
+export const Title = styled.span`
+  padding: 5px 15px;
+  width: 100%;
+
+  background: transparent;
+  border: none;
+
+  color: #555;
+
+  font: 18px 'Poppins', sans-serif;
+`;
+
+export const Description = styled.span`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  max-width: 665px;
+  width: 100%;
+
+  color: #555;
 `;

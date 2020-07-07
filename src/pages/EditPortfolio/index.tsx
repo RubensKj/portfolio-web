@@ -7,8 +7,8 @@ import NotContentImage from '../../components/NotContentImage';
 
 import {
   Container, BarSection, Bar, ImageArea, Description,
-  ContentForm, Text, InputArea, Input, ButtonArea, Button,
-  TextareaArea, TextareaInput
+  ContentForm, Text, InputArea, Input, Label, ButtonArea,
+  Button, TextareaArea, TextareaInput, WrapperContent, Title
 } from './styles';
 
 const EditPortfolio: React.FC = () => {
@@ -18,6 +18,10 @@ const EditPortfolio: React.FC = () => {
       <BarSection>
         <Bar />
       </BarSection>
+      <WrapperContent>
+        <Title>Person Infomartion</Title>
+        <Description>In case you want to change the main things that is shown to user.</Description>
+      </WrapperContent>
       <ContentForm>
         <ImageArea>
           <Image
@@ -28,6 +32,7 @@ const EditPortfolio: React.FC = () => {
             errorFallback={() => <NotContentImage background="#fafbff" />}
           />
         </ImageArea>
+        <Label>label_to_arquivo_selected.png</Label>
         <Text>Displayed name</Text>
         <InputArea>
           <Input placeholder="Ex. Rubens Kleinschmidt Jr" />
@@ -43,6 +48,10 @@ const EditPortfolio: React.FC = () => {
       <BarSection>
         <Bar />
       </BarSection>
+      <WrapperContent>
+        <Title>Adding repositories</Title>
+        <Description>Here you can add the repositories from Github</Description>
+      </WrapperContent>
     </Container>
   );
 }

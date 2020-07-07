@@ -9,17 +9,35 @@ import TransitionText from '../../components/TransitionText';
 import NotContentImage from '../../components/NotContentImage';
 
 import {
-  Container, BarSection, Bar, ImageArea, Description,
-  ContentForm, Text, Strong, InputArea, Input, Label,
-  ButtonArea, Button, TextareaArea, TextareaInput, WrapperContent,
-  Title, CardReposArea, CardAddRepo, Header, ContainerCard, Footer
+  Container, Redirection, Redirect, BarSection, Bar,
+  ImageArea, Description, ContentForm, Text, Strong, InputArea, 
+  Input, Label, ButtonArea, Button, TextareaArea, TextareaInput, 
+  WrapperContent, Title, CardReposArea, CardAddRepo, Header,
+  ContainerCard, Footer
 } from './styles';
 
 const EditPortfolio: React.FC = () => {
   return (
     <Container>
       <TransitionText title="Editting Portfolio" description="Here you can change all the things that is shown to user on the main page and the secondary pages." marginTop={0} paddingTop={115} />
-      <BarSection>
+      <Redirection>
+        <Redirect href="#person">
+          <Text>Person</Text>
+        </Redirect>
+        <Redirect href="#git-import">
+          <Text>Git Imports</Text>
+        </Redirect>
+        <Redirect href="#project-edit">
+          <Text>Edit Projects</Text>
+        </Redirect>
+        <Redirect href="#adding-certs">
+          <Text>Add Certification</Text>
+        </Redirect>
+        <Redirect href="#editting-certs">
+          <Text>Edit Certification</Text>
+        </Redirect>
+      </Redirection>
+      <BarSection id="person">
         <Bar />
       </BarSection>
       <WrapperContent>
@@ -49,7 +67,7 @@ const EditPortfolio: React.FC = () => {
           <Button>Save</Button>
         </ButtonArea>
       </ContentForm>
-      <BarSection>
+      <BarSection id="git-import">
         <Bar />
       </BarSection>
       <WrapperContent>
@@ -77,11 +95,11 @@ const EditPortfolio: React.FC = () => {
           </form>
         </CardAddRepo>
       </CardReposArea>
-      <WrapperContent>
+      <WrapperContent id="project-edit">
         <Title>Editting projects</Title>
         <Description>In case you need to change some fields of projects and etc..</Description>
       </WrapperContent>
-      <BarSection>
+      <BarSection id="adding-certs">
         <Bar />
       </BarSection>
       <WrapperContent>
@@ -105,7 +123,7 @@ const EditPortfolio: React.FC = () => {
           <Button>Add</Button>
         </ButtonArea>
       </ContentForm>
-      <WrapperContent>
+      <WrapperContent id="editting-certs">
         <Title>Editting certifications</Title>
         <Description>In case you need to change some fields of certifications and etc..</Description>
       </WrapperContent>

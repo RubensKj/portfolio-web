@@ -5,6 +5,32 @@ export const Container = styled.div`
   height: 100%;
 `;
 
+export const Redirection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow-x: auto;
+
+  width: 100%;
+`;
+
+export const Redirect = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+
+  color: #555;
+
+  transition: 0.2s color;
+
+  :hover {
+    color: #424242;
+  }
+`;
+
 export const BarSection = styled.div`
   display: flex;
   justify-content: center;

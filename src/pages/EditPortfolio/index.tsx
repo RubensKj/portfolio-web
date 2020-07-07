@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 
 // Assets
 import GitHubIcon from '../../assets/GitHubIcon';
@@ -26,7 +26,16 @@ import {
   ContainerCard, Footer, EditProjectCard, Bottom
 } from './styles';
 
+interface Person {
+  displayedName: string;
+  description?: string;
+  file?: File | undefined;
+}
+
 const EditPortfolio: React.FC = () => {
+  const [person, setPerson] = useState<Person>({} as Person);
+  const [textImage, setTextImage] = useState<string>('Any file has been selected');
+
   const [projects, setProjects] = useState<Project[]>([]);
   const [certifications, setCertifications] = useState<Certification[]>([]);
 
@@ -46,6 +55,19 @@ const EditPortfolio: React.FC = () => {
     getProjects();
     getCertifications();
   }, []);
+
+  function handleImage(event: ChangeEvent<HTMLInputElement>): void {
+    event.preventDefault();
+
+    let file: File | null | undefined = event.target.files?.item(0);
+
+    if (!file) {
+      return;
+    }
+
+    setPerson({ ...person, file: file });
+    setTextImage(file.name);
+  }
 
   return (
     <Container>
@@ -75,7 +97,7 @@ const EditPortfolio: React.FC = () => {
         <Description>In case you want to change the main things that is shown to user.</Description>
       </WrapperContent>
       <ContentForm>
-        <ImageArea>
+        <ImageArea htmlFor="file-image-input">
           <Image
             src="https://instagram.ffln2-2.fna.fbcdn.net/v/t51.2885-15/e35/47489450_965388186987389_6000681300519320808_n.jpg?_nc_ht=instagram.ffln2-2.fna.fbcdn.net&_nc_cat=105&_nc_ohc=6ktPeqaYP80AX-JQiOu&oh=90d9b037931accd3bc023cd6a73dc1fd&oe=5F106690"
             fallback={
@@ -84,7 +106,8 @@ const EditPortfolio: React.FC = () => {
             errorFallback={() => <NotContentImage background="#fafbff" />}
           />
         </ImageArea>
-        <Label>label_to_arquivo_selected.png</Label>
+        <input id="file-image-input" type="file" style={{ display: 'none' }} onChange={handleImage} />
+        <Label>{textImage}</Label>
         <Text>Displayed name</Text>
         <InputArea>
           <Input type="text" placeholder="Ex. Rubens Kleinschmidt Jr" />
@@ -157,6 +180,10 @@ const EditPortfolio: React.FC = () => {
         <TextareaArea>
           <TextareaInput placeholder="Description" />
         </TextareaArea>
+        <Text>Certification Url</Text>
+        <InputArea>
+          <Input type="text" placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" />
+        </InputArea>
         <ButtonArea>
           <Button>Add</Button>
         </ButtonArea>

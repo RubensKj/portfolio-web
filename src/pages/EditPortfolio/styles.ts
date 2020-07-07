@@ -50,7 +50,7 @@ export const Bar = styled.div`
   border-bottom: 1px solid #e8eaeb;
 `;
 
-export const ImageArea = styled.div`
+export const ImageArea = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,6 +70,14 @@ export const ImageArea = styled.div`
       max-width: 220px !important;
       max-height: 215px !important;
     }
+  }
+
+  transition: 0.2s filter;
+
+  cursor: pointer;
+
+  :hover {
+    filter: contrast(75%);
   }
 `;
 

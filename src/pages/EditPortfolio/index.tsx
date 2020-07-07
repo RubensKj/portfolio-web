@@ -1,22 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Assets
 import GitHubIcon from '../../assets/GitHubIcon';
+import WebsiteIcon from '../../assets/WebsiteIcon';
+import CertificationIcon from '../../assets/CertificationIcon';
+
+// Services
+import api from '../../services/api';
 
 // Components
 import Image from 'react-shimmer';
 import TransitionText from '../../components/TransitionText';
 import NotContentImage from '../../components/NotContentImage';
+import BoxItems from '../../components/BoxItems';
+
+// Interfaces
+import { Project } from '../../components/ProjectCard';
+import { Certification } from '../../components/CertificationCard';
 
 import {
   Container, Redirection, Redirect, BarSection, Bar,
-  ImageArea, Description, ContentForm, Text, Strong, InputArea, 
-  Input, Label, ButtonArea, Button, TextareaArea, TextareaInput, 
+  ImageArea, Description, ContentForm, Text, Strong, InputArea,
+  Input, Label, ButtonArea, Button, TextareaArea, TextareaInput,
   WrapperContent, Title, CardReposArea, CardAddRepo, Header,
-  ContainerCard, Footer
+  ContainerCard, Footer, EditProjectCard, Bottom
 } from './styles';
 
 const EditPortfolio: React.FC = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [certifications, setCertifications] = useState<Certification[]>([]);
+
+  useEffect(() => {
+    async function getProjects() {
+      const response = await api.get('projects');
+
+      setProjects(response.data);
+    }
+
+    async function getCertifications() {
+      const response = await api.get('certifications');
+
+      setCertifications(response.data);
+    }
+
+    getProjects();
+    getCertifications();
+  }, []);
+
   return (
     <Container>
       <TransitionText title="Editting Portfolio" description="Here you can change all the things that is shown to user on the main page and the secondary pages." marginTop={0} paddingTop={115} />
@@ -99,6 +129,14 @@ const EditPortfolio: React.FC = () => {
         <Title>Editting projects</Title>
         <Description>In case you need to change some fields of projects and etc..</Description>
       </WrapperContent>
+      <BoxItems title="Edit a Project" icon={<WebsiteIcon size={32} color="#8492a6" />}>
+        {projects.map(project => (
+          <EditProjectCard>
+            <Title>{project.name}</Title>
+            <Description>{project.description}</Description>
+          </EditProjectCard>
+        ))}
+      </BoxItems>
       <BarSection id="adding-certs">
         <Bar />
       </BarSection>
@@ -127,6 +165,15 @@ const EditPortfolio: React.FC = () => {
         <Title>Editting certifications</Title>
         <Description>In case you need to change some fields of certifications and etc..</Description>
       </WrapperContent>
+      <BoxItems title="Edit a certificate" icon={<CertificationIcon size={32} fill="#8492a6" />}>
+        {certifications.map(certification => (
+          <EditProjectCard>
+            <Title>{certification.title}</Title>
+            <Description>{certification.description}</Description>
+          </EditProjectCard>
+        ))}
+      </BoxItems>
+      <Bottom />
     </Container>
   );
 }

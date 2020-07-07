@@ -21,6 +21,8 @@ const ListProjects: React.FC<Props> = ({ list }) => {
   function toggleOpenModalProject(project: Project): void {
     setModalProject(!modalProject);
     setProjectSelected(project);
+
+    console.log(JSON.stringify(list))
   }
 
   return (

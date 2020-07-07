@@ -311,3 +311,53 @@ export const Footer = styled.footer`
   background: #f5f5f5;
   border-top: 1px solid #e8eaeb;
 `;
+
+export const EditProjectCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+
+  padding: 10px 15px;
+
+  border-top: 1px solid #e8eaeb;
+  border-bottom: 1px solid #e8eaeb;
+
+  cursor: pointer;
+
+  h1 {
+    padding: 0;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  span {
+    font-size: 15px;
+    color: #8492A6 !important;
+    flex: 1;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  transition: 0.2s background;
+
+  :hover {
+    background: #f5f5f5; 
+  }
+`;
+
+export const Bottom = styled.div`
+  padding: 15px 0;
+`;

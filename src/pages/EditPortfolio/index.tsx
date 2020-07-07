@@ -39,7 +39,7 @@ const EditPortfolio: React.FC = () => {
         <Label>label_to_arquivo_selected.png</Label>
         <Text>Displayed name</Text>
         <InputArea>
-          <Input placeholder="Ex. Rubens Kleinschmidt Jr" />
+          <Input type="text" placeholder="Ex. Rubens Kleinschmidt Jr" />
         </InputArea>
         <Text>Description</Text>
         <TextareaArea>
@@ -66,7 +66,7 @@ const EditPortfolio: React.FC = () => {
             <ContainerCard>
               <Text>Enter the <Strong>URL of a Git repository</Strong> to add it:</Text>
               <InputArea>
-                <Input placeholder="https://my-provider.com/my-organization/my-project" />
+                <Input type="text" placeholder="https://my-provider.com/my-organization/my-project" />
               </InputArea>
             </ContainerCard>
             <Footer>
@@ -77,12 +77,37 @@ const EditPortfolio: React.FC = () => {
           </form>
         </CardAddRepo>
       </CardReposArea>
+      <WrapperContent>
+        <Title>Editting projects</Title>
+        <Description>In case you need to change some fields of projects and etc..</Description>
+      </WrapperContent>
       <BarSection>
         <Bar />
       </BarSection>
       <WrapperContent>
         <Title>Adding certifications</Title>
-        <Description>In case you need to change some certifications and etc..</Description>
+        <Description>In case you want to add more certification to your list..</Description>
+      </WrapperContent>
+      <ContentForm>
+        <Text>Certificate File Image</Text>
+        <InputArea>
+          <Input type="file" />
+        </InputArea>
+        <Text>Certification Name</Text>
+        <InputArea>
+          <Input type="text" placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." />
+        </InputArea>
+        <Text>Description</Text>
+        <TextareaArea>
+          <TextareaInput placeholder="Description" />
+        </TextareaArea>
+        <ButtonArea>
+          <Button>Add</Button>
+        </ButtonArea>
+      </ContentForm>
+      <WrapperContent>
+        <Title>Editting certifications</Title>
+        <Description>In case you need to change some fields of certifications and etc..</Description>
       </WrapperContent>
     </Container>
   );

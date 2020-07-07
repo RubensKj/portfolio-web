@@ -156,4 +156,10 @@ export const Button = styled.button`
   cursor: pointer;
 
   font: 16px 'Poppins', sans-serif;
+
+  transition: 0.2s transform;
+
+  :hover {
+    transform: translateY(-1px);
+  }
 `;

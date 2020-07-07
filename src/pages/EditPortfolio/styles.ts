@@ -13,6 +13,10 @@ export const Redirection = styled.div`
   overflow-x: auto;
 
   width: 100%;
+
+  @media only screen and (max-width: 670px) {
+    flex-direction: column;
+  }
 `;
 
 export const Redirect = styled.a`

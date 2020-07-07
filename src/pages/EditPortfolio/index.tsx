@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Assets
+import GitHubIcon from '../../assets/GitHubIcon';
+
 // Components
 import Image from 'react-shimmer';
 import TransitionText from '../../components/TransitionText';
@@ -7,8 +10,9 @@ import NotContentImage from '../../components/NotContentImage';
 
 import {
   Container, BarSection, Bar, ImageArea, Description,
-  ContentForm, Text, InputArea, Input, Label, ButtonArea,
-  Button, TextareaArea, TextareaInput, WrapperContent, Title
+  ContentForm, Text, Strong, InputArea, Input, Label,
+  ButtonArea, Button, TextareaArea, TextareaInput, WrapperContent,
+  Title, CardReposArea, CardAddRepo, Header, ContainerCard, Footer
 } from './styles';
 
 const EditPortfolio: React.FC = () => {
@@ -51,6 +55,34 @@ const EditPortfolio: React.FC = () => {
       <WrapperContent>
         <Title>Adding repositories</Title>
         <Description>Here you can add the repositories from Github</Description>
+      </WrapperContent>
+      <CardReposArea>
+        <CardAddRepo>
+          <Header>
+            <Title>Import a Git Repository</Title>
+            <GitHubIcon size={32} />
+          </Header>
+          <form style={{ width: '100%' }}>
+            <ContainerCard>
+              <Text>Enter the <Strong>URL of a Git repository</Strong> to add it:</Text>
+              <InputArea>
+                <Input placeholder="https://my-provider.com/my-organization/my-project" />
+              </InputArea>
+            </ContainerCard>
+            <Footer>
+              <ButtonArea>
+                <Button>Continue</Button>
+              </ButtonArea>
+            </Footer>
+          </form>
+        </CardAddRepo>
+      </CardReposArea>
+      <BarSection>
+        <Bar />
+      </BarSection>
+      <WrapperContent>
+        <Title>Adding certifications</Title>
+        <Description>In case you need to change some certifications and etc..</Description>
       </WrapperContent>
     </Container>
   );

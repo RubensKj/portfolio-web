@@ -72,5 +72,11 @@ export const Redirect = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition: 0.2s transform;
+
+  :hover {
+    transform: translateY(-1px);
+  }
 `;
 

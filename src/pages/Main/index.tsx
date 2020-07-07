@@ -7,7 +7,7 @@ import api from '../../services/api';
 // Components
 import HiThereArea from '../../components/HiThereArea';
 import BarInBeginPage from '../../components/BarInBeginPage';
-import PersonIntroduction from '../../components/PersonIntroduction';
+import PersonIntroduction, { Person } from '../../components/PersonIntroduction';
 import TransitionText from '../../components/TransitionText';
 import DeveloperStuffsArea from '../../components/DeveloperStuffsArea';
 import ListProjects from '../../components/ListProjects';
@@ -21,28 +21,30 @@ import LoadingPage from '../../components/LoadingPage';
 
 // Interface
 import { Project } from '../../components/ProjectCard';
+import { Certification } from '../../components/CertificationCard';
 
 // Styles
 import { Container, BeginPageArea } from './styles';
-import { Certification } from '../../components/CertificationCard';
 
 const Main: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [person, setPerson] = useState<Person>({} as Person);
   const [projects, setProjects] = useState<Project[]>([]);
 
   const [certifications, setCertifications] = useState<Certification[]>([]);
 
   useEffect(() => {
     setIsLoading(true);
+    async function getPerson(): Promise<void> {
+      const response = await api.get('person');
+
+      setPerson(response.data);
+      setIsLoading(false);
+    }
+
     async function getProjects(): Promise<void> {
-      await apiGithub.get('/users/RubensKj/repos')
-        .then(data => {
-          setProjects(data.data)
-          setIsLoading(false);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      const response = await apiGithub.get('/users/RubensKj/repos');
+      setProjects(response.data)
     }
     async function getCertifications(): Promise<void> {
       const response = await api.get('certifications');
@@ -52,6 +54,7 @@ const Main: React.FC = () => {
 
     getProjects();
     getCertifications();
+    getPerson();
   }, []);
 
   return (
@@ -59,11 +62,11 @@ const Main: React.FC = () => {
       {isLoading ? <LoadingPage /> : (
         <Container>
           <BeginPageArea id="home">
-            <HiThereArea />
+            <HiThereArea displayedName={person.displayedName ? person.displayedName : 'Rubens Kleinschmidt Jr'} />
             <BarInBeginPage width={72} color="#5a5e73" />
           </BeginPageArea>
           <TransitionText title="About me" description="This section shows a little about me and how I started to code" />
-          <PersonIntroduction />
+          <PersonIntroduction person={person} />
           <DeveloperStuffsArea />
           <TransitionText marginTop={105} title="Some of my projects" description="Here are some of my projects, they are in GitHub. These are my favorite ones" />
           <ListProjects list={projects} />

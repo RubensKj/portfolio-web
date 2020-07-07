@@ -50,7 +50,7 @@ export const Bar = styled.div`
   border-bottom: 1px solid #e8eaeb;
 `;
 
-export const ImageArea = styled.label`
+export const ImageArea = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

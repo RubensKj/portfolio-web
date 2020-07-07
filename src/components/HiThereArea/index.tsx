@@ -5,7 +5,11 @@ import MainArrow from '../../assets/MainArrow';
 
 import { Container, Content, LowerText, CodeTextArea, CodeNameArea, HigherText } from './styles';
 
-const HiThereArea: React.FC = () => {
+interface Props {
+  displayedName: string;
+}
+
+const HiThereArea: React.FC<Props> = ({ displayedName }) => {
   return (
     <Container>
       <Content>
@@ -13,7 +17,7 @@ const HiThereArea: React.FC = () => {
         <CodeTextArea>
           <MainArrow />
           <CodeNameArea>
-            <HigherText>Rubens Kleinschmidt Jr</HigherText>
+            <HigherText>{displayedName}</HigherText>
           </CodeNameArea>
         </CodeTextArea>
       </Content>

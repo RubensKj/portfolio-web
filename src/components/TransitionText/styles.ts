@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface Props {
   marginTop?: number;
+  paddingTop?: number;
 }
 
 export const Container = styled.div`
@@ -11,6 +12,7 @@ export const Container = styled.div`
   align-items: center;
 
   margin-top: ${(props: Props) => props.marginTop !== undefined ? props.marginTop + 'px' : '65px'};
+  padding-top: ${(props: Props) => props.paddingTop !== undefined ? props.paddingTop + 'px' : '65px'} !important;
   margin-bottom: 50px;
 
   transition: 0.2s padding;

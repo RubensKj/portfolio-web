@@ -91,3 +91,64 @@ export const ButtonResponsiveArea = styled.div`
     }
   }
 `;
+
+export const ContainerBar = styled.div`
+  z-index: 998;
+
+  position: fixed;
+  padding-top: 45px;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 23, 41, 0.97);
+
+  transition: 0.2s background;
+`;
+
+export const ListOptions = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+
+  padding: 10px 0;
+
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+`;
+
+export const DivisionText = styled.span`
+  width: 100%;
+  color: #00cc74 !important;
+  padding: 10px 25px;
+  font-size: 18px;
+
+  border-bottom: 1px solid #111321;
+`;
+
+export const RedirectSubmenu = styled.a`
+  width: 100%;
+  margin-bottom: 5px;
+  text-decoration: none;
+
+  color: #8492A6 !important;
+
+  transition: 0.2s background;
+
+  :hover {
+    color: #00cc74 !important;
+    background: rgba(20, 23, 41, 0.98);
+  }
+`;
+
+export const LiItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  list-style: none;
+
+  padding: 10px 20px;
+
+  width: 100%;
+  height: 100%;
+`;

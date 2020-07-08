@@ -109,6 +109,10 @@ export const Strong = styled.strong`
   font-weight: bold;
 `;
 
+interface Border {
+  borderColor?: string;
+}
+
 export const InputArea = styled.div`
   display: flex;
   justify-content: center;
@@ -118,7 +122,7 @@ export const InputArea = styled.div`
   margin: 0 auto;
 
   border-radius: 2px;
-  border: 2px solid #e8eaeb;
+  border: 2px solid ${(props: Border) => props.borderColor ? props.borderColor : '#e8eaeb'};
 
   margin-bottom: 8px;
 `;
@@ -159,7 +163,7 @@ export const TextareaArea = styled.div`
   margin: 0 auto;
 
   border-radius: 2px;
-  border: 2px solid #e8eaeb;
+  border: 2px solid ${(props: Border) => props.borderColor ? props.borderColor : '#e8eaeb'};
 
   margin-bottom: 8px;
 `;

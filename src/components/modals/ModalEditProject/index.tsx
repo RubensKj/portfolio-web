@@ -4,7 +4,10 @@ import React from 'react';
 import ModalPrototype from '../ModalPrototype';
 
 import { Container } from './styles';
-import { Title, ContentForm, Text, InputArea, Input, TextareaArea, TextareaInput, ButtonArea, Button } from '../../../pages/EditPortfolio/styles';
+import {
+  Title, ContentForm, Text, InputArea, Input,
+  TextareaArea, TextareaInput, ButtonArea, Button
+} from '../../../pages/EditPortfolio/styles';
 
 // Interfaces
 import { Project } from '../../ProjectCard';
@@ -21,21 +24,29 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, isOpen, setIsOpen })
       <Container>
         <Title>Editting Project</Title>
         <ContentForm>
-          <Text>Certificate File Image</Text>
-          <InputArea>
+          <Text>Project Images</Text>
+          <InputArea borderColor="rgba(47,45,58,0.6)">
             <Input type="file" />
           </InputArea>
-          <Text>Certification Name</Text>
-          <InputArea>
-            <Input type="text" placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." />
+          <Text>Project Name</Text>
+          <InputArea borderColor="rgba(47,45,58,0.6)">
+            <Input type="text" defaultValue={project.name} placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." />
+          </InputArea>
+          <Text>Language</Text>
+          <InputArea borderColor="rgba(47,45,58,0.6)">
+            <Input type="text" defaultValue={project.language} placeholder="Ex. Java" />
           </InputArea>
           <Text>Description</Text>
-          <TextareaArea>
-            <TextareaInput placeholder="Description" />
+          <TextareaArea borderColor="rgba(47,45,58,0.6)">
+            <TextareaInput defaultValue={project.description} placeholder="Description" />
           </TextareaArea>
-          <Text>Certification Url</Text>
-          <InputArea>
-            <Input type="text" placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" />
+          <Text>Project Url</Text>
+          <InputArea borderColor="rgba(47,45,58,0.6)">
+            <Input type="text" placeholder="Ex. https://rubenskj.com/" />
+          </InputArea>
+          <Text>Github Url</Text>
+          <InputArea borderColor="rgba(47,45,58,0.6)">
+            <Input type="text" defaultValue={project.html_url} placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" />
           </InputArea>
           <ButtonArea>
             <Button>Add</Button>

@@ -30,7 +30,7 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, isOpen, setIsOpen })
           </InputArea>
           <Text>Project Name</Text>
           <InputArea borderColor="rgba(47,45,58,0.6)">
-            <Input type="text" defaultValue={project.name} placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." />
+            <Input type="text" defaultValue={project.name} placeholder="Ex. Petcare API" />
           </InputArea>
           <Text>Language</Text>
           <InputArea borderColor="rgba(47,45,58,0.6)">

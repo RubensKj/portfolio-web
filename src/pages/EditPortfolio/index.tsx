@@ -15,6 +15,10 @@ import TransitionText from '../../components/TransitionText';
 import NotContentImage from '../../components/NotContentImage';
 import BoxItems from '../../components/BoxItems';
 
+// Modals
+import ModalEditProject from '../../components/modals/ModalEditProject';
+import ModalEditCertification from '../../components/modals/ModalEditCertification';
+
 // Interfaces
 import { Person } from '../../components/PersonIntroduction';
 import { Project } from '../../components/ProjectCard';
@@ -27,7 +31,6 @@ import {
   WrapperContent, Title, CardReposArea, CardAddRepo, Header,
   ContainerCard, Footer, EditProjectCard, Bottom
 } from './styles';
-import ModalEditProject from '../../components/modals/ModalEditProject';
 
 interface PersonDTO {
   displayedName: string;
@@ -48,6 +51,10 @@ const EditPortfolio: React.FC = () => {
   // Project Edit
   const [projectSelected, setProjectSelected] = useState<Project>({} as Project);
   const [isOpenProjectModal, setIsOpenProjectModal] = useState<boolean>(false);
+
+  // Certification
+  const [certificationSelected, setCertificationSelected] = useState<Certification>({} as Certification);
+  const [isOpenCertificationModal, setIsOpenCertificationModal] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -93,12 +100,23 @@ const EditPortfolio: React.FC = () => {
     setProjectSelected(project);
   }
 
+  function toggleCertificationModal(certification: Certification): void {
+    setIsOpenCertificationModal(!isOpenCertificationModal);
+    setCertificationSelected(certification);
+  }
+
   return (
     <>
       <ModalEditProject
         project={projectSelected}
         isOpen={isOpenProjectModal}
         setIsOpen={() => toggleProjectModal(projectSelected)}
+      />
+
+      <ModalEditCertification
+        certification={certificationSelected}
+        isOpen={isOpenCertificationModal}
+        setIsOpen={() => toggleCertificationModal(certificationSelected)}
       />
 
       {isLoading ? <LoadingPage /> : (
@@ -230,7 +248,7 @@ const EditPortfolio: React.FC = () => {
           </WrapperContent>
           <BoxItems title="Edit a certificate" icon={<CertificationIcon size={32} fill="#8492a6" />}>
             {certifications.map(certification => (
-              <EditProjectCard key={certification.id}>
+              <EditProjectCard key={certification.id} onClick={() => toggleCertificationModal(certification)}>
                 <Title>{certification.title}</Title>
                 <Description>{certification.description}</Description>
               </EditProjectCard>

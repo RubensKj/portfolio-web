@@ -196,7 +196,7 @@ export const Button = styled.button`
   align-items: center;
 
   border-radius: 4px;
-  border: 1px solid #eff0f1;
+  border: none;
   color: #FFF;
 
   padding: 5px 15px;

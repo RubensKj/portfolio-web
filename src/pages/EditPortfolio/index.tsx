@@ -27,6 +27,7 @@ import {
   WrapperContent, Title, CardReposArea, CardAddRepo, Header,
   ContainerCard, Footer, EditProjectCard, Bottom
 } from './styles';
+import ModalEditProject from '../../components/modals/ModalEditProject';
 
 interface PersonDTO {
   displayedName: string;
@@ -43,6 +44,10 @@ const EditPortfolio: React.FC = () => {
 
   const [projects, setProjects] = useState<Project[]>([]);
   const [certifications, setCertifications] = useState<Certification[]>([]);
+
+  // Project Edit
+  const [projectSelected, setProjectSelected] = useState<Project>({} as Project);
+  const [isOpenProjectModal, setIsOpenProjectModal] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -83,8 +88,19 @@ const EditPortfolio: React.FC = () => {
     setTextImage(file.name);
   }
 
+  function toggleProjectModal(project: Project): void {
+    setIsOpenProjectModal(!isOpenProjectModal);
+    setProjectSelected(project);
+  }
+
   return (
     <>
+      <ModalEditProject
+        project={projectSelected}
+        isOpen={isOpenProjectModal}
+        setIsOpen={() => toggleProjectModal(projectSelected)}
+      />
+
       {isLoading ? <LoadingPage /> : (
         <Container>
           <TransitionText title="Editting Portfolio" description="Here you can change all the things that is shown to user on the main page and the secondary pages." marginTop={0} paddingTop={115} />
@@ -174,7 +190,7 @@ const EditPortfolio: React.FC = () => {
           </WrapperContent>
           <BoxItems title="Edit a Project" icon={<WebsiteIcon size={32} color="#8492a6" />}>
             {projects.map(project => (
-              <EditProjectCard key={project.id}>
+              <EditProjectCard key={project.id} onClick={() => toggleProjectModal(project)}>
                 <Title>{project.name}</Title>
                 <Description>{project.description}</Description>
               </EditProjectCard>

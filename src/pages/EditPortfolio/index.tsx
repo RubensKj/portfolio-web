@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 
 // Assets
 import GitHubIcon from '../../assets/GitHubIcon';
@@ -105,6 +105,10 @@ const EditPortfolio: React.FC = () => {
     setCertificationSelected(certification);
   }
 
+  function handleSubmitPerson(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+  }
+
   return (
     <>
       <ModalEditProject
@@ -146,7 +150,7 @@ const EditPortfolio: React.FC = () => {
             <Title>Person Infomartion</Title>
             <Description>In case you want to change the main things that is shown to user.</Description>
           </WrapperContent>
-          <ContentForm>
+          <ContentForm onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmitPerson(event)}>
             <label htmlFor="file-image-input">
               <ImageArea>
                 {person.image && (

@@ -7,6 +7,7 @@ import CertificationIcon from '../../assets/CertificationIcon';
 
 // Services
 import api from '../../services/api';
+import 'dotenv';
 
 // Components
 import LoadingPage from '../../components/LoadingPage';
@@ -32,17 +33,12 @@ import {
   ContainerCard, Footer, EditProjectCard, Bottom
 } from './styles';
 
-interface PersonDTO {
-  displayedName: string;
-  description?: string;
-  file?: File | undefined;
-}
-
 const EditPortfolio: React.FC = () => {
+  const DEFAULT_ID = '5f0792138794ee453ee0bd04';
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [person, setPerson] = useState<Person>({} as Person);
-  const [updatedPerson, setUpdatedPerson] = useState<PersonDTO>({} as PersonDTO);
   const [textImage, setTextImage] = useState<string>('Any file has been selected');
 
   const [projects, setProjects] = useState<Project[]>([]);
@@ -59,7 +55,7 @@ const EditPortfolio: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
     async function getPerson(): Promise<void> {
-      const response = await api.get('person');
+      const response = await api.get(`/person/${DEFAULT_ID}`);
 
       setPerson(response.data);
       setIsLoading(false);
@@ -91,7 +87,7 @@ const EditPortfolio: React.FC = () => {
       return;
     }
 
-    setUpdatedPerson({ ...updatedPerson, file: file });
+    setPerson({ ...person, file: file });
     setTextImage(file.name);
   }
 
@@ -107,6 +103,21 @@ const EditPortfolio: React.FC = () => {
 
   function handleSubmitPerson(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    let data = new FormData();
+    data.append('displayedName', person.displayedName ? person.displayedName : '');
+    data.append('description', person.description ? person.description : '');
+
+    if (person.file) {
+      data.append('avatarFile', person.file);
+    }
+
+    api.put(`/person/${DEFAULT_ID}`, data).then(response => {
+      console.log(response.data)
+      setPerson(response.data);
+    }).catch(error => {
+      console.log(error)
+    });
   }
 
   return (
@@ -152,27 +163,27 @@ const EditPortfolio: React.FC = () => {
           </WrapperContent>
           <ContentForm onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmitPerson(event)}>
             <label htmlFor="file-image-input">
-              <ImageArea>
-                {person.image && (
+              {person.avatar ? (
+                <ImageArea>
                   <Image
-                    src={person.image ? person.image : ''}
+                    src={person.avatar ? person.avatar : ''}
                     fallback={
                       <Description />
                     }
                     errorFallback={() => <NotContentImage background="#fafbff" />}
                   />
-                )}
-              </ImageArea>
+                </ImageArea>
+              ) : (<NotContentImage background="#fafbff" />)}
             </label>
             <input id="file-image-input" type="file" style={{ display: 'none' }} onChange={handleImage} />
             <Label>{textImage}</Label>
             <Text>Displayed name</Text>
             <InputArea>
-              <Input type="text" defaultValue={person.displayedName ? person.displayedName : ''} placeholder="Ex. Rubens Kleinschmidt Jr" />
+              <Input type="text" defaultValue={person.displayedName ? person.displayedName : ''} onChange={e => setPerson({ ...person, displayedName: e.target.value })} placeholder="Ex. Rubens Kleinschmidt Jr" />
             </InputArea>
             <Text>Description</Text>
             <TextareaArea>
-              <TextareaInput defaultValue={person.description} placeholder="Description" />
+              <TextareaInput defaultValue={person.description} onChange={e => setPerson({ ...person, description: e.target.value })} placeholder="Description" />
             </TextareaArea>
             <ButtonArea>
               <Button>Save</Button>

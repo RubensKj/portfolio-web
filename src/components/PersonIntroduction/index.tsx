@@ -8,7 +8,8 @@ import { Container, IntroductionArea, ImageArea, DescriptionArea, Description } 
 export interface Person {
   displayedName?: string;
   description?: string;
-  image?: string;
+  avatar?: string;
+  file?: File;
 }
 
 interface Props {
@@ -20,9 +21,9 @@ const PersonIntroduction: React.FC<Props> = ({ person }) => {
     <Container>
       <IntroductionArea>
         <ImageArea>
-          {person.image && (
+          {person.avatar && (
             <Image
-              src={person.image ? person.image : ''}
+              src={person.avatar ? person.avatar : ''}
               fallback={
                 <Description />
               }

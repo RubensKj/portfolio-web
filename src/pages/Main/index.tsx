@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 // Services
 import { DEFAULT_ID } from '../../services/env';
-import apiGithub from '../../services/apiGithub';
 import api from '../../services/api';
 
 // Components

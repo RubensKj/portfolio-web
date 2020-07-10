@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+// Env
+import { DEFAULT_ID } from '../../services/env';
+
 // Services
-import apiGithub from '../../services/apiGithub';
+import api from '../../services/api';
 
 // Components
 import LoadingPage from '../../components/LoadingPage';
@@ -20,7 +23,7 @@ const Projects: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
     async function getProjects(): Promise<void> {
-      await apiGithub.get('/users/RubensKj/repos')
+      await api.get(`/project/${DEFAULT_ID}`)
         .then(data => {
           setProjects(data.data)
           setIsLoading(false);

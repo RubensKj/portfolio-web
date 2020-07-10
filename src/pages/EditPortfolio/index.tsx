@@ -67,28 +67,16 @@ const EditPortfolio: React.FC = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    async function getPerson(): Promise<void> {
-      const response = await api.get(`/person/${DEFAULT_ID}`);
+    async function getInformation(): Promise<void> {
+      const response = await api.get(`/information/${DEFAULT_ID}`);
 
-      setPerson(response.data);
+      setPerson(response.data.personDTO);
+      setProjects(response.data.projectsDTO);
+      setCertifications(response.data.certifications);
       setIsLoading(false);
     }
 
-    async function getProjects() {
-      const response = await api.get(`/project/${DEFAULT_ID}`);
-
-      setProjects(response.data);
-    }
-
-    async function getCertifications() {
-      const response = await api.get('certifications');
-
-      setCertifications(response.data);
-    }
-
-    getPerson();
-    getProjects();
-    getCertifications();
+    getInformation();
   }, []);
 
   function toggleProjectModal(project: Project): void {
@@ -156,9 +144,7 @@ const EditPortfolio: React.FC = () => {
     api.post(`/project/provider/${DEFAULT_ID}`, data).then(response => {
       let project: Project = response.data;
 
-      projects.push(project);
-
-      setProjects(projects);
+      setProjects([...projects, project]);
     }).catch(error => {
       console.log(error);
     });
@@ -168,6 +154,7 @@ const EditPortfolio: React.FC = () => {
     <>
       <ModalEditProject
         project={projectSelected}
+        setProject={setProjectSelected}
         isOpen={isOpenProjectModal}
         setIsOpen={() => toggleProjectModal(projectSelected)}
       />

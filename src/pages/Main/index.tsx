@@ -36,26 +36,16 @@ const Main: React.FC = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    async function getPerson(): Promise<void> {
-      const response = await api.get(`/person/${DEFAULT_ID}`);
+    async function getInformation(): Promise<void> {
+      const response = await api.get(`/information/${DEFAULT_ID}`);
 
-      setPerson(response.data);
+      setPerson(response.data.personDTO);
+      setProjects(response.data.projectsDTO);
+      setCertifications(response.data.certifications);
       setIsLoading(false);
     }
 
-    async function getProjects(): Promise<void> {
-      const response = await apiGithub.get('/users/RubensKj/repos');
-      setProjects(response.data)
-    }
-    async function getCertifications(): Promise<void> {
-      const response = await api.get('certifications');
-
-      setCertifications(response.data);
-    }
-
-    getProjects();
-    getCertifications();
-    getPerson();
+    getInformation();
   }, []);
 
   return (

@@ -14,17 +14,19 @@ import { Container, LanguageArea, SVGArea, Information, Header, Title, FullPath,
 export interface Project {
   id: number;
   name: string;
-  full_name: string;
+  fullName: string;
   language: string;
   description?: string;
-  created_at?: Date;
-  updated_at?: Date;
   license?: {
     key: string;
     name: string;
     url: string;
   }
-  html_url?: string;
+  projectUrl?: string;
+  githubUrl?: string;
+
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 interface Props {
@@ -42,7 +44,7 @@ const ProjectCard: React.FC<Props> = ({ info, onClickOpenModal }) => {
       <Information>
         <Header>
           <Title>{info.name}</Title>
-          <FullPath>{info.full_name}</FullPath>
+          <FullPath>{info.fullName}</FullPath>
         </Header>
         <DescriptionArea>
           <Description>{info.description !== null ? info.description : 'This project might have not description.'}</Description>

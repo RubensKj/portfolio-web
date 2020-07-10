@@ -21,5 +21,7 @@ export const Container = styled.div`
   textarea {
     color: #e8eaeb;
     background: #2c2b35;
+
+    max-height: 190px;
   }
 `;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // Services
+import { DEFAULT_ID } from '../../services/env';
 import apiGithub from '../../services/apiGithub';
 import api from '../../services/api';
 
@@ -36,7 +37,7 @@ const Main: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
     async function getPerson(): Promise<void> {
-      const response = await api.get('person');
+      const response = await api.get(`/person/${DEFAULT_ID}`);
 
       setPerson(response.data);
       setIsLoading(false);

@@ -104,6 +104,16 @@ export const Text = styled.span`
   font: 16px 'Poppins', sans-serif;
 `;
 
+export const Error = styled.span`
+  padding: 2px 15px;
+
+  width: 100%;
+
+  color: #d63a46;
+
+  font: 15px 'Poppins', sans-serif;
+`;
+
 export const Strong = styled.strong`
   color: #101319;
   font-weight: bold;

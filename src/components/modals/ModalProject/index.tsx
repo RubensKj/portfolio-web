@@ -63,7 +63,7 @@ const ModalProject: React.FC<IModalProjectProps> = ({ project, isOpen, setIsOpen
       </Container>
       <Footer>
         <Separator />
-        <Redirect target="_blank" href={project.html_url} >
+        <Redirect target="_blank" href={project.githubUrl} >
           <GitHubIcon size={15} stroke="#5972A4" />
           <Comentary>Access on github</Comentary>
         </Redirect>

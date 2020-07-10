@@ -46,7 +46,7 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, isOpen, setIsOpen })
           </InputArea>
           <Text>Github Url</Text>
           <InputArea borderColor="rgba(47,45,58,0.6)">
-            <Input type="text" defaultValue={project.html_url} placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" />
+            <Input type="text" defaultValue={project.githubUrl} placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" />
           </InputArea>
           <ButtonArea>
             <Button>Add</Button>

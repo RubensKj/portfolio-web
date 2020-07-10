@@ -6,8 +6,8 @@ import WebsiteIcon from '../../assets/WebsiteIcon';
 import CertificationIcon from '../../assets/CertificationIcon';
 
 // Services
+import { DEFAULT_ID } from '../../services/env';
 import api from '../../services/api';
-import 'dotenv';
 
 // Components
 import LoadingPage from '../../components/LoadingPage';
@@ -30,17 +30,30 @@ import {
   ImageArea, Description, ContentForm, Text, Strong, InputArea,
   Input, Label, ButtonArea, Button, TextareaArea, TextareaInput,
   WrapperContent, Title, CardReposArea, CardAddRepo, Header,
-  ContainerCard, Footer, EditProjectCard, Bottom
+  ContainerCard, Footer, EditProjectCard, Bottom, Error
 } from './styles';
 
-const EditPortfolio: React.FC = () => {
-  const DEFAULT_ID = '5f0792138794ee453ee0bd04';
+interface Provider {
+  url: string;
+  nameProvider: string;
+  user: string;
+  repoName: string;
+}
 
+const EditPortfolio: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  // Error
+  const [error, setError] = useState<string>('');
+
+  // Person
   const [person, setPerson] = useState<Person>({} as Person);
   const [textImage, setTextImage] = useState<string>('Any file has been selected');
 
+  // Project Provider
+  const [provider, setProvider] = useState<Provider>({} as Provider);
+
+  // Projects List
   const [projects, setProjects] = useState<Project[]>([]);
   const [certifications, setCertifications] = useState<Certification[]>([]);
 
@@ -62,7 +75,7 @@ const EditPortfolio: React.FC = () => {
     }
 
     async function getProjects() {
-      const response = await api.get('projects');
+      const response = await api.get(`/project/${DEFAULT_ID}`);
 
       setProjects(response.data);
     }
@@ -77,19 +90,6 @@ const EditPortfolio: React.FC = () => {
     getProjects();
     getCertifications();
   }, []);
-
-  function handleImage(event: ChangeEvent<HTMLInputElement>): void {
-    event.preventDefault();
-
-    let file: File | null | undefined = event.target.files?.item(0);
-
-    if (!file) {
-      return;
-    }
-
-    setPerson({ ...person, file: file });
-    setTextImage(file.name);
-  }
 
   function toggleProjectModal(project: Project): void {
     setIsOpenProjectModal(!isOpenProjectModal);
@@ -113,10 +113,54 @@ const EditPortfolio: React.FC = () => {
     }
 
     api.put(`/person/${DEFAULT_ID}`, data).then(response => {
-      console.log(response.data)
       setPerson(response.data);
     }).catch(error => {
-      console.log(error)
+      console.log(error);
+    });
+  }
+
+  function handleImage(event: ChangeEvent<HTMLInputElement>): void {
+    event.preventDefault();
+
+    let file: File | null | undefined = event.target.files?.item(0);
+
+    if (!file) {
+      return;
+    }
+
+    setPerson({ ...person, file: file });
+    setTextImage(file.name);
+  }
+
+  function submitProjectByProvider(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (!provider.url) {
+      return setError('Url must be provided');
+    }
+
+    if (!provider.url.includes('/')) {
+      return;
+    }
+
+    let url = new URL(provider.url);
+
+    let params = url.pathname.split('/');
+
+    let data = {
+      nameProvider: url.hostname.replace('.com', '').toUpperCase(),
+      user: params[1],
+      repoName: params[2]
+    }
+
+    api.post(`/project/provider/${DEFAULT_ID}`, data).then(response => {
+      let project: Project = response.data;
+
+      projects.push(project);
+
+      setProjects(projects);
+    }).catch(error => {
+      console.log(error);
     });
   }
 
@@ -166,7 +210,7 @@ const EditPortfolio: React.FC = () => {
               {person.avatar ? (
                 <ImageArea>
                   <Image
-                    src={person.avatar ? person.avatar : ''}
+                    src={person.avatar}
                     fallback={
                       <Description />
                     }
@@ -202,11 +246,14 @@ const EditPortfolio: React.FC = () => {
                 <Title>Import a Git Repository</Title>
                 <GitHubIcon size={32} />
               </Header>
-              <form style={{ width: '100%' }}>
+              <form style={{ width: '100%' }} onSubmit={submitProjectByProvider}>
                 <ContainerCard>
                   <Text>Enter the <Strong>URL of a Git repository</Strong> to add it:</Text>
+                  {error && (
+                    <Error>{error}</Error>
+                  )}
                   <InputArea>
-                    <Input type="text" placeholder="https://my-provider.com/my-organization/my-project" />
+                    <Input type="text" onChange={e => setProvider({ ...provider, url: e.target.value })} placeholder="https://my-provider.com/my-organization/my-project" />
                   </InputArea>
                 </ContainerCard>
                 <Footer>

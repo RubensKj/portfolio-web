@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form as Unform } from '@unform/web';
 
 export const Container = styled.div`
   width: 100%;
@@ -81,20 +82,25 @@ export const ImageArea = styled.div`
   }
 `;
 
-export const ContentForm = styled.form`
+interface IPropsStyles {
+  padding?: string;
+  paddingbottom?: string;
+}
+
+export const ContentForm = styled(Unform) <IPropsStyles>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  padding: 5px 15px;
+  padding: ${props => props.padding ? props.padding : '5px 15px'};
   width: 100%;
   margin: 0 auto;
   max-width: 585px;
   
   margin-top: 25px;
 
-  padding-bottom: 25px;
+  padding-bottom: ${props => props.paddingbottom ? props.paddingbottom : '25px'};
 `;
 
 export const Text = styled.span`
@@ -123,32 +129,6 @@ interface Border {
   borderColor?: string;
 }
 
-export const InputArea = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-  margin: 0 auto;
-
-  border-radius: 2px;
-  border: 2px solid ${(props: Border) => props.borderColor ? props.borderColor : '#e8eaeb'};
-
-  margin-bottom: 8px;
-`;
-
-export const Input = styled.input`
-  padding: 5px 15px;
-  width: 100%;
-
-  background: transparent;
-  border: none;
-
-  color: #555;
-
-  font: 16px 'Poppins', sans-serif;
-`;
-
 export const Label = styled.label`
   padding: 5px 15px;
   width: 100%;
@@ -162,37 +142,6 @@ export const Label = styled.label`
   font: 15px 'Poppins', sans-serif;
 
   margin-bottom: 5px;
-`;
-
-export const TextareaArea = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-  margin: 0 auto;
-
-  border-radius: 2px;
-  border: 2px solid ${(props: Border) => props.borderColor ? props.borderColor : '#e8eaeb'};
-
-  margin-bottom: 8px;
-`;
-
-export const TextareaInput = styled.textarea`
-  padding: 5px 15px;
-
-  min-width: 100%;
-  width: 100%;
-
-  min-height: 60px;
-  max-height: 450px;
-
-  background: transparent;
-  border: none;
-
-  color: #555;
-
-  font: 16px 'Poppins', sans-serif;
 `;
 
 export const ButtonArea = styled.div`

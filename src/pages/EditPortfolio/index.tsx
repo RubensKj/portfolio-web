@@ -1,4 +1,5 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import React, { useRef, useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import { FormHandles, SubmitHandler } from '@unform/core';
 
 // Assets
 import GitHubIcon from '../../assets/GitHubIcon';
@@ -15,6 +16,7 @@ import Image from 'react-shimmer';
 import TransitionText from '../../components/TransitionText';
 import NotContentImage from '../../components/NotContentImage';
 import BoxItems from '../../components/BoxItems';
+import TextArea from '../../components/TextArea';
 
 // Modals
 import ModalEditProject from '../../components/modals/ModalEditProject';
@@ -25,10 +27,13 @@ import { Person } from '../../components/PersonIntroduction';
 import { Project } from '../../components/ProjectCard';
 import { Certification } from '../../components/CertificationCard';
 
+import Input from '../../components/Input';
+import InputFile from '../../components/InputFile';
+
 import {
   Container, Redirection, Redirect, BarSection, Bar,
-  ImageArea, Description, ContentForm, Text, Strong, InputArea,
-  Input, Label, ButtonArea, Button, TextareaArea, TextareaInput,
+  ImageArea, Description, ContentForm, Text, Strong,
+  Label, ButtonArea, Button,
   WrapperContent, Title, CardReposArea, CardAddRepo, Header,
   ContainerCard, Footer, EditProjectCard, Bottom, Error
 } from './styles';
@@ -41,6 +46,8 @@ interface Provider {
 }
 
 const EditPortfolio: React.FC = () => {
+  const formCertRef = useRef<FormHandles>(null);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Error
@@ -87,6 +94,10 @@ const EditPortfolio: React.FC = () => {
   function toggleCertificationModal(certification: Certification): void {
     setIsOpenCertificationModal(!isOpenCertificationModal);
     setCertificationSelected(certification);
+  }
+
+  function updateProjectDataAfterRequest(data: Project) {
+    setProjects([data, ...projects.filter(project => project.id !== data.id)])
   }
 
   function handleSubmitPerson(e: FormEvent<HTMLFormElement>) {
@@ -150,11 +161,20 @@ const EditPortfolio: React.FC = () => {
     });
   }
 
+  const handleSubmitCertification: SubmitHandler<FormData> = (data) => {
+    console.log(data);
+    api.post(`/certification/${DEFAULT_ID}`, data).then(response => {
+      setCertifications([...certifications, response.data]);
+    }).catch(error => {
+      console.log(error);
+    });
+  };
+
   return (
     <>
       <ModalEditProject
         project={projectSelected}
-        setProject={setProjectSelected}
+        setProject={updateProjectDataAfterRequest}
         isOpen={isOpenProjectModal}
         setIsOpen={() => toggleProjectModal(projectSelected)}
       />
@@ -192,7 +212,7 @@ const EditPortfolio: React.FC = () => {
             <Title>Person Infomartion</Title>
             <Description>In case you want to change the main things that is shown to user.</Description>
           </WrapperContent>
-          <ContentForm onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmitPerson(event)}>
+          <ContentForm onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmitPerson(event)} initialData={person}>
             <label htmlFor="file-image-input">
               {person.avatar ? (
                 <ImageArea>
@@ -209,13 +229,9 @@ const EditPortfolio: React.FC = () => {
             <input id="file-image-input" type="file" style={{ display: 'none' }} onChange={handleImage} />
             <Label>{textImage}</Label>
             <Text>Displayed name</Text>
-            <InputArea>
-              <Input type="text" defaultValue={person.displayedName ? person.displayedName : ''} onChange={e => setPerson({ ...person, displayedName: e.target.value })} placeholder="Ex. Rubens Kleinschmidt Jr" />
-            </InputArea>
+            <Input type="text" name="displayedName" placeholder="Ex. Rubens Kleinschmidt Jr" />
             <Text>Description</Text>
-            <TextareaArea>
-              <TextareaInput defaultValue={person.description} onChange={e => setPerson({ ...person, description: e.target.value })} placeholder="Description" />
-            </TextareaArea>
+            <TextArea name="description" placeholder="Description" />
             <ButtonArea>
               <Button>Save</Button>
             </ButtonArea>
@@ -233,22 +249,20 @@ const EditPortfolio: React.FC = () => {
                 <Title>Import a Git Repository</Title>
                 <GitHubIcon size={32} />
               </Header>
-              <form style={{ width: '100%' }} onSubmit={submitProjectByProvider}>
+              <ContentForm onSubmit={submitProjectByProvider} padding="0" paddingbottom="0">
                 <ContainerCard>
                   <Text>Enter the <Strong>URL of a Git repository</Strong> to add it:</Text>
                   {error && (
                     <Error>{error}</Error>
                   )}
-                  <InputArea>
-                    <Input type="text" onChange={e => setProvider({ ...provider, url: e.target.value })} placeholder="https://my-provider.com/my-organization/my-project" />
-                  </InputArea>
+                  <Input type="text" name="url" onChange={e => setProvider({ ...provider, url: e.target.value })} placeholder="https://my-provider.com/my-organization/my-project" />
                 </ContainerCard>
                 <Footer>
                   <ButtonArea>
                     <Button>Continue</Button>
                   </ButtonArea>
                 </Footer>
-              </form>
+              </ContentForm>
             </CardAddRepo>
           </CardReposArea>
           <WrapperContent id="project-edit">
@@ -270,23 +284,15 @@ const EditPortfolio: React.FC = () => {
             <Title>Adding certifications</Title>
             <Description>In case you want to add more certification to your list..</Description>
           </WrapperContent>
-          <ContentForm>
+          <ContentForm ref={formCertRef} onSubmit={handleSubmitCertification}>
             <Text>Certificate File Image</Text>
-            <InputArea>
-              <Input type="file" />
-            </InputArea>
+            <InputFile type="file" name="imageFile" />
             <Text>Certification Name</Text>
-            <InputArea>
-              <Input type="text" placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." />
-            </InputArea>
+            <Input type="text" name="name" placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." />
             <Text>Description</Text>
-            <TextareaArea>
-              <TextareaInput placeholder="Description" />
-            </TextareaArea>
+            <TextArea name="description" placeholder="Description" />
             <Text>Certification Url</Text>
-            <InputArea>
-              <Input type="text" placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" />
-            </InputArea>
+            <Input type="text" name="certificationUrl" placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" />
             <ButtonArea>
               <Button>Add</Button>
             </ButtonArea>

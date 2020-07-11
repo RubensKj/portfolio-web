@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useMemo, RefObject } from 'react';
+import React, { useRef, useState, useMemo, RefObject } from 'react';
 
 // Assets
 import GitHubIcon from '../../../assets/GitHubIcon';

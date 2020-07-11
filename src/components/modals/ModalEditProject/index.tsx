@@ -1,4 +1,5 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useRef } from 'react';
+import { SubmitHandler, FormHandles } from '@unform/core';
 
 // Components
 import ModalPrototype from '../ModalPrototype';
@@ -6,10 +7,12 @@ import ModalPrototype from '../ModalPrototype';
 // Services
 import api from '../../../services/api';
 
+import Input from '../../Input';
+import TextArea from '../../TextArea';
+
 import { Container } from './styles';
 import {
-  Title, ContentForm, Text, InputArea, Input,
-  TextareaArea, TextareaInput, ButtonArea, Button
+  Title, ContentForm, Text, ButtonArea, Button
 } from '../../../pages/EditPortfolio/styles';
 
 // Interfaces
@@ -23,98 +26,35 @@ interface IModalProps {
 }
 
 const ModalEditProject: React.FC<IModalProps> = ({ project, setProject, isOpen, setIsOpen }) => {
-  const [projectForm, setProjectForm] = useState<Project>(project);
+  const formRef = useRef<FormHandles>(null);
 
-  const [imagesProject, setImagesProject] = useState<FileList>({} as FileList);
-
-  function handleSubmitProject(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    if (!projectForm.description && projectForm.name === '') {
-      return;
-    }
-
-    if (!projectForm.description && projectForm.description === '') {
-      return;
-    }
-
-    let data = new FormData();
-
-    if (imagesProject) {
-      for (var i = 0; i < imagesProject.length; i++) {
-        data.append('images', imagesProject[i]);
-      }
-    }
-    data.append('name', projectForm.name);
-    data.append('fullName', projectForm.fullName);
-    data.append('language', projectForm.language);
-    if (projectForm.description) {
-      data.append('description', projectForm.description);
-    }
-
-    if (projectForm.license?.key && projectForm.license?.name && projectForm.license?.url) {
-      data.append('key', projectForm.license?.key);
-      data.append('name', projectForm.license?.name);
-      data.append('url', projectForm.license?.url);
-    }
-
-    if (projectForm.projectUrl) {
-      data.append('projectUrl', projectForm.projectUrl);
-    }
-
-    if (projectForm.githubUrl) {
-      data.append('githubUrl', projectForm.githubUrl);
-    }
-
+  const handleSubmit: SubmitHandler<FormData> = (data) => {
     api.put(`/project/${project.id}`, data).then(response => {
-      setProjectForm(response.data);
       setProject(response.data);
 
       setIsOpen();
     }).catch(error => {
       console.log(error);
     });
-  }
-
-  function handleImage(event: ChangeEvent<HTMLInputElement>): void {
-    event.preventDefault();
-
-    if (!event.target.files) {
-      return;
-    }
-
-    setImagesProject(event.target.files);
-  }
+  };
 
   return (
     <ModalPrototype isOpen={isOpen} setIsOpen={setIsOpen}>
       <Container>
         <Title>Editting Project</Title>
-        <ContentForm onSubmit={handleSubmitProject}>
-          <Text>Project Images</Text>
-          <InputArea borderColor="rgba(47,45,58,0.6)">
-            <Input type="file" onChange={handleImage} multiple />
-          </InputArea>
+        <ContentForm ref={formRef} onSubmit={handleSubmit} initialData={project}>
           <Text>Project Name</Text>
-          <InputArea borderColor="rgba(47,45,58,0.6)">
-            <Input type="text" name="name" onChange={e => setProjectForm({ ...projectForm, name: e.target.value })} placeholder="Ex. Petcare API" />
-          </InputArea>
+          <Input type="text" name="name" placeholder="Ex. Petcare API" borderColor="rgba(47,45,58,0.6)" />
+          <Text>Full Name</Text>
+          <Input type="text" name="fullName" placeholder="Ex. User/repoName" borderColor="rgba(47,45,58,0.6)" />
           <Text>Language</Text>
-          <InputArea borderColor="rgba(47,45,58,0.6)">
-            <Input type="text" name="language" onChange={e => setProjectForm({ ...projectForm, language: e.target.value })} placeholder="Ex. Java" />
-          </InputArea>
+          <Input type="text" name="language" placeholder="Ex. Java" borderColor="rgba(47,45,58,0.6)" />
           <Text>Description</Text>
-          <TextareaArea borderColor="rgba(47,45,58,0.6)">
-            <TextareaInput value={project.description} onChange={e => setProjectForm({ ...projectForm, description: e.target.value })} placeholder="Description" />
-          </TextareaArea>
+          <TextArea name="description" placeholder="Description" borderColor="rgba(47,45,58,0.6)" />
           <Text>Project Url</Text>
-          <InputArea borderColor="rgba(47,45,58,0.6)">
-            <Input type="text" value={project.projectUrl} onChange={e => setProjectForm({ ...projectForm, projectUrl: e.target.value })} placeholder="Ex. https://rubenskj.com/" />
-          </InputArea>
+          <Input type="text" name="projectUrl" placeholder="Ex. https://rubenskj.com/" borderColor="rgba(47,45,58,0.6)" />
           <Text>Github Url</Text>
-          <InputArea borderColor="rgba(47,45,58,0.6)">
-            <Input type="text" value={project.githubUrl} onChange={e => setProjectForm({ ...projectForm, githubUrl: e.target.value })} placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" />
-          </InputArea>
+          <Input type="text" name="githubUrl" placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" borderColor="rgba(47,45,58,0.6)" />
           <ButtonArea>
             <Button type="submit">Update</Button>
           </ButtonArea>

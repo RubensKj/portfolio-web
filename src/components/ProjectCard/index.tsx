@@ -13,6 +13,7 @@ import { Container, LanguageArea, SVGArea, Information, Header, Title, FullPath,
 
 export interface Project {
   id: number;
+  images: string[] | undefined;
   name: string;
   fullName: string;
   language: string;

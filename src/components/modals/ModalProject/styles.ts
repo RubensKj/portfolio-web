@@ -5,6 +5,7 @@ export const Container = styled.div`
 
   padding: 0 8px;
 
+  overflow-x: hidden;
   overflow-y: auto;
 
   max-height: 610px !important;
@@ -33,8 +34,24 @@ export const Container = styled.div`
   }
 `;
 
+interface Props {
+  translateNumber?: number;
+  direction?: string;
+  activeImage?: number;
+}
+
+export const SliderArea = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const ImageArea = styled.div`
+  display: flex;
+  transform: ${(props: Props) => `translateX(-${props.translateNumber}px);`};
+  transition: transform ease-out 0.45s;
   width: 100%;
+  height: 100%;
   border-radius: 8px;
 `;
 
@@ -44,6 +61,36 @@ export const Image = styled.img`
 
   max-height: 610px;
   height: 100%;
+
+  margin-right: 8px;
+`;
+
+export const ChangeIcon = styled.div`
+  ${(props: Props) => {
+    if (props.activeImage && props.activeImage === 0) {
+      return 'display: none;';
+    } else {
+      return 'display: flex;';
+    }
+  }}
+  position: absolute;
+  ${(props: Props) => props.direction === 'right' ? 'right: 40px' : 'left: 40px'};
+  height: 35px;
+  width: 35px;
+
+  justify-content: center;
+  align-items: center;
+
+  background: #2c2b35;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform ease-in 0.1s;
+  box-shadow: rgba(0,0,0,0.2) 0px 2px 10px 2px;
+
+  :hover {
+    transform: scale(1.1);
+  }
+  
 `;
 
 export const HeaderProject = styled.header`

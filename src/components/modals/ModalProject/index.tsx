@@ -1,7 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useRef, useEffect, useState, useMemo, RefObject } from 'react';
 
 // Assets
 import GitHubIcon from '../../../assets/GitHubIcon';
+import ArrowLeft from '../../../assets/ArrowLeft';
+import ArrowRight from '../../../assets/ArrowRight';
 
 // Components
 import ModalPrototype from '../ModalPrototype';
@@ -10,7 +12,7 @@ import ModalPrototype from '../ModalPrototype';
 import { Project } from '../../ProjectCard';
 
 import {
-  Container, ImageArea, Image, HeaderProject, Separator, Title, Description,
+  Container, SliderArea, ImageArea, Image, ChangeIcon, HeaderProject, Separator, Title, Description,
   CodeArea, WrapperCodeLine, CodeLine, Comentary, Word, Keyword, Variable,
   StringWithoutSpace, Footer, Redirect
 } from './styles';
@@ -22,15 +24,68 @@ interface IModalProjectProps {
 }
 
 const ModalProject: React.FC<IModalProjectProps> = ({ project, isOpen, setIsOpen }) => {
+  const imageRef = useRef<HTMLImageElement>(null);
+  const [activeImage, setActiveImage] = useState<number>(0);
+  const [translate, setTranslate] = useState<number>(0);
 
   const title = useMemo(() => project.name !== undefined ? project.name.toUpperCase() : '', [project.name]);
+
+  function prevImage(activeImg: number, imageRef: RefObject<HTMLImageElement>) {
+    let width = imageRef.current?.width;
+
+    if (!width) {
+      return;
+    }
+
+    if (activeImg <= 0) {
+      return;
+    }
+
+    let incremented = activeImg - 1;
+
+    setActiveImage(incremented);
+    setTranslate(incremented * (width + 8));
+  }
+
+  function nextImage(activeImg: number, imageRef: RefObject<HTMLImageElement>) {
+    let width = imageRef.current?.width;
+
+    if (!width) {
+      return;
+    }
+
+    let actual = activeImg;
+
+    if (project.images && (actual + 1) >= project.images.length) {
+      return;
+    }
+
+    let incremented = activeImg + 1;
+
+    setActiveImage(incremented);
+    setTranslate(incremented * (width + 8));
+  }
 
   return (
     <ModalPrototype isOpen={isOpen} setIsOpen={setIsOpen} >
       <Container>
-        <ImageArea>
-          <Image src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/main_page.gif" alt="Project Image" />
-        </ImageArea>
+        <SliderArea>
+          <ImageArea translateNumber={translate}>
+            {project.images?.map((image, index) => (
+              <Image ref={imageRef} key={index} src={image} alt="Project Image" />
+            ))}
+          </ImageArea>
+          {activeImage >= 1 && (
+              <ChangeIcon activeImage={activeImage} direction="left" onClick={() => prevImage(activeImage, imageRef)}>
+                <ArrowLeft size={28} />
+              </ChangeIcon>
+          )}
+          {project.images && project.images.length > (activeImage + 1) && (
+            <ChangeIcon direction="right" onClick={() => nextImage(activeImage, imageRef)}>
+              <ArrowRight size={28} />
+            </ChangeIcon>
+          )}
+        </SliderArea>
         <Separator />
         <HeaderProject>
           <Title>"{title}"</Title>

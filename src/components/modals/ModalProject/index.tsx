@@ -69,24 +69,28 @@ const ModalProject: React.FC<IModalProjectProps> = ({ project, isOpen, setIsOpen
   return (
     <ModalPrototype isOpen={isOpen} setIsOpen={setIsOpen} >
       <Container>
-        <SliderArea>
-          <ImageArea translateNumber={translate}>
-            {project.images?.map((image, index) => (
-              <Image ref={imageRef} key={index} src={image} alt="Project Image" />
-            ))}
-          </ImageArea>
-          {activeImage >= 1 && (
-              <ChangeIcon activeImage={activeImage} direction="left" onClick={() => prevImage(activeImage, imageRef)}>
-                <ArrowLeft size={28} />
-              </ChangeIcon>
-          )}
-          {project.images && project.images.length > (activeImage + 1) && (
-            <ChangeIcon direction="right" onClick={() => nextImage(activeImage, imageRef)}>
-              <ArrowRight size={28} />
-            </ChangeIcon>
-          )}
-        </SliderArea>
-        <Separator />
+        {project.images && (
+          <>
+            <SliderArea>
+              <ImageArea translateNumber={translate}>
+                {project.images?.map((image, index) => (
+                  <Image ref={imageRef} key={index} src={image} alt="Project Image" />
+                ))}
+              </ImageArea>
+              {activeImage >= 1 && (
+                  <ChangeIcon activeImage={activeImage} direction="left" onClick={() => prevImage(activeImage, imageRef)}>
+                    <ArrowLeft size={28} />
+                  </ChangeIcon>
+              )}
+              {project.images.length > (activeImage + 1) && (
+                <ChangeIcon direction="right" onClick={() => nextImage(activeImage, imageRef)}>
+                  <ArrowRight size={28} />
+                </ChangeIcon>
+              )}
+            </SliderArea>
+            <Separator />
+          </>
+        )}
         <HeaderProject>
           <Title>"{title}"</Title>
           {project.description && (

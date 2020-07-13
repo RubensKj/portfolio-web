@@ -11,7 +11,7 @@ export interface Certification {
   image: string;
   title: string;
   description?: string;
-  certification_url: string;
+  certificationUrl: string;
 }
 
 interface Props {

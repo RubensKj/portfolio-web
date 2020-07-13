@@ -36,7 +36,7 @@ const ModalCertification: React.FC<IModalProps> = ({ certification, isOpen, setI
       </Container>
       <Footer>
         <Separator />
-        <Redirect target="_blank" href={certification.certification_url} >
+        <Redirect target="_blank" href={certification.certificationUrl} >
           <CertificationIcon size={15} fill="#5972A4" />
           <Comentary>Access certicate url</Comentary>
         </Redirect>

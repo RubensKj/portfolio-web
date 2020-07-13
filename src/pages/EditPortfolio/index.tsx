@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import React, { useRef, useState, useEffect, ChangeEvent, FormEvent, useCallback } from 'react';
 import { FormHandles, SubmitHandler } from '@unform/core';
 
 // Assets
@@ -9,6 +9,7 @@ import CertificationIcon from '../../assets/CertificationIcon';
 // Services
 import { DEFAULT_ID } from '../../services/env';
 import api from '../../services/api';
+import { parseToCertification } from '../../services/FormDataParser';
 
 // Components
 import LoadingPage from '../../components/LoadingPage';
@@ -161,14 +162,29 @@ const EditPortfolio: React.FC = () => {
     });
   }
 
-  const handleSubmitCertification: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-    api.post(`/certification/${DEFAULT_ID}`, data).then(response => {
-      setCertifications([...certifications, response.data]);
-    }).catch(error => {
-      console.log(error);
-    });
-  };
+  // const handleSubmitCertification: SubmitHandler<FormData> = (data) => {
+
+  //   api.post(`/certification/${DEFAULT_ID}`, data, {
+  //     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
+  //   }).then(response => {
+  //     setCertifications([...certifications, response.data]);
+  //   }).catch(error => {
+  //     console.log(error);
+  //   });
+  // };
+
+  const handleSubmitCertification = useCallback(
+    async (data: Certification) => {
+      let certForm = parseToCertification(data);
+
+      api.post(`/certification/${DEFAULT_ID}`, certForm).then(response => {
+        setCertifications([...certifications, response.data]);
+      }).catch(error => {
+        console.log(error);
+      });
+    },
+    [certifications],
+  );
 
   return (
     <>
@@ -284,11 +300,11 @@ const EditPortfolio: React.FC = () => {
             <Title>Adding certifications</Title>
             <Description>In case you want to add more certification to your list..</Description>
           </WrapperContent>
-          <ContentForm ref={formCertRef} onSubmit={handleSubmitCertification}>
+          <ContentForm ref={formCertRef} onSubmit={handleSubmitCertification} encType="multipart/form-data">
             <Text>Certificate File Image</Text>
-            <InputFile type="file" name="imageFile" />
+            <InputFile name="imageFile" />
             <Text>Certification Name</Text>
-            <Input type="text" name="name" placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." />
+            <Input type="text" name="title" placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." />
             <Text>Description</Text>
             <TextArea name="description" placeholder="Description" />
             <Text>Certification Url</Text>

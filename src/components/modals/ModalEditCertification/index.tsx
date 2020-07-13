@@ -41,7 +41,7 @@ const ModalEditCertification: React.FC<IModalProps> = ({ certification, isOpen, 
           <Text>Description</Text>
           <TextArea name="description" placeholder="Description" />
           <Text>Certification Url</Text>
-          <Input type="text" name="certificationUrl" defaultValue={certification.certification_url} placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" />
+          <Input type="text" name="certificationUrl" defaultValue={certification.certificationUrl} placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" />
           <ButtonArea>
             <Button>Add</Button>
           </ButtonArea>

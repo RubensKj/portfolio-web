@@ -15,7 +15,8 @@
     "react-scripts": "3.4.1",
     "react-shimmer": "^3.0.2",
     "styled-components": "^5.1.0",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "yup": "^0.29.1"
   },
   "scripts": {
     "start": "react-scripts start",

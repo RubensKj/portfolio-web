@@ -1,20 +1,15 @@
-import { Certification } from "../components/CertificationCard"
-
-export const parseToCertification = (data: Certification): FormData => {
+export const parseToCertification = (data: Map<string, (string | Blob)>): FormData => {
   let formData = new FormData();
 
-  formData.append("title", data.title);
-  formData.append("imageFile", data.image);
-  parseString("description", data.description, formData);
-  formData.append("certificationUrl", data.certificationUrl);
+  data.forEach((value, key) => {
+
+    console.log(value, key)
+    if (!value) {
+      formData.append(key, 'rteuy');
+    }
+
+    formData.append(key, value);
+  });
 
   return formData;
-}
-
-const parseString = (name: string, text: string | undefined, formData: FormData) => {
-  if (!text) {
-    return formData.append(name, '');
-  }
-
-  return formData.append(name, text);
-}
+};

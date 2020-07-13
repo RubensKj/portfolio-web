@@ -175,15 +175,18 @@ const EditPortfolio: React.FC = () => {
 
   const handleSubmitCertification = useCallback(
     async (data: Certification) => {
-      let certForm = parseToCertification(data);
+      let certForm = parseToCertification(new Map(Object.entries(data)));
 
-      api.post(`/certification/${DEFAULT_ID}`, certForm).then(response => {
-        setCertifications([...certifications, response.data]);
-      }).catch(error => {
-        console.log(error);
-      });
+      console.log(certForm);
+      console.log(new Map(Object.entries(data)).get("title"));
+
+      // api.post(`/certification/${DEFAULT_ID}`, certForm).then(response => {
+      //   setCertifications([...certifications, response.data]);
+      // }).catch(error => {
+      //   console.log(error);
+      // });
     },
-    [certifications],
+    [],
   );
 
   return (

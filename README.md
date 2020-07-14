@@ -2,7 +2,7 @@
    <img src="https://raw.githubusercontent.com/RubensKj/myportfolio/master/.github/code.png" width="100"/>
 </p>
 
-# Portfolio
+# Portfolio Web
 
 [![Author](https://img.shields.io/badge/author-RubensKj-00cc74?style=flat-square)](https://github.com/RubensKj)
 [![Languages](https://img.shields.io/github/languages/count/RubensKj/myportfolio?color=00cc74&style=flat-square)](#)

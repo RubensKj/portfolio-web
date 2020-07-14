@@ -5,7 +5,7 @@ export const parseToCertification = (data: Map<string, (string | Blob)>): FormDa
 
     console.log(value, key)
     if (!value) {
-      formData.append(key, 'rteuy');
+      formData.append(key, '');
     }
 
     formData.append(key, value);

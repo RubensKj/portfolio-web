@@ -35,13 +35,13 @@ const ModalEditCertification: React.FC<IModalProps> = ({ certification, isOpen, 
         <Title>Editting Certification</Title>
         <ContentForm ref={formRef} onSubmit={handleSubmit}>
           <Text>Certification Image</Text>
-          <InputFile type="file" name="image" />
+          <InputFile type="file" name="image" background="#2c2b35" borderColor="rgba(47,45,58,0.6)" />
           <Text>Certification Name</Text>
-          <Input type="text" name="title" defaultValue={certification.title} placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." />
+          <Input type="text" name="title" defaultValue={certification.title} placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." borderColor="rgba(47,45,58,0.6)" />
           <Text>Description</Text>
-          <TextArea name="description" defaultValue={certification.description} placeholder="Description" />
+          <TextArea name="description" defaultValue={certification.description} placeholder="Description" borderColor="rgba(47,45,58,0.6)" />
           <Text>Certification Url</Text>
-          <Input type="text" name="certificationUrl" defaultValue={certification.certificationUrl} placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" />
+          <Input type="text" name="certificationUrl" defaultValue={certification.certificationUrl} placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" borderColor="rgba(47,45,58,0.6)" />
           <ButtonArea>
             <Button>Add</Button>
           </ButtonArea>

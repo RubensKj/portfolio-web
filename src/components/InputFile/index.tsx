@@ -7,11 +7,12 @@ interface Props {
   name: string;
   borderColor?: string;
   background?: string;
+  styleContainer?: object;
 }
 
 type InputProps = JSX.IntrinsicElements['input'] & Props;
 
-const InputFile: React.FC<InputProps> = ({ name, borderColor, background, ...rest }) => {
+const InputFile: React.FC<InputProps> = ({ name, borderColor, background, styleContainer, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { fieldName, registerField, defaultValue } = useField(name);
@@ -44,7 +45,7 @@ const InputFile: React.FC<InputProps> = ({ name, borderColor, background, ...res
   }, [fieldName, registerField]);
 
   return (
-    <Container borderColor={borderColor} background={background}>
+    <Container borderColor={borderColor} background={background} style={styleContainer}>
 
       {preview && <img src={preview} alt="Preview" width="100" />}
       <input

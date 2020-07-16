@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect, ChangeEvent, FormEvent, useCallback } from 'react';
-import { FormHandles, SubmitHandler } from '@unform/core';
+import React, { useRef, useState, useEffect, FormEvent, useCallback } from 'react';
+import { FormHandles } from '@unform/core';
 
 // Assets
 import GitHubIcon from '../../assets/GitHubIcon';
@@ -13,9 +13,7 @@ import { parseToCertification } from '../../services/FormDataParser';
 
 // Components
 import LoadingPage from '../../components/LoadingPage';
-import Image from 'react-shimmer';
 import TransitionText from '../../components/TransitionText';
-import NotContentImage from '../../components/NotContentImage';
 import BoxItems from '../../components/BoxItems';
 import TextArea from '../../components/TextArea';
 
@@ -33,10 +31,9 @@ import InputFile from '../../components/InputFile';
 
 import {
   Container, Redirection, Redirect, BarSection, Bar,
-  ImageArea, Description, ContentForm, Text, Strong,
-  Label, ButtonArea, Button,
-  WrapperContent, Title, CardReposArea, CardAddRepo, Header,
-  ContainerCard, Footer, EditProjectCard, Bottom, Error
+  Description, ContentForm, Text, Strong, ButtonArea,
+  Button, WrapperContent, Title, CardReposArea, CardAddRepo,
+  Header, ContainerCard, Footer, EditProjectCard, Bottom, Error
 } from './styles';
 
 interface Provider {
@@ -56,7 +53,6 @@ const EditPortfolio: React.FC = () => {
 
   // Person
   const [person, setPerson] = useState<Person>({} as Person);
-  const [textImage, setTextImage] = useState<string>('Any file has been selected');
 
   // Project Provider
   const [provider, setProvider] = useState<Provider>({} as Provider);
@@ -101,36 +97,18 @@ const EditPortfolio: React.FC = () => {
     setProjects([data, ...projects.filter(project => project.id !== data.id)])
   }
 
-  function handleSubmitPerson(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const handleSubmitPerson = useCallback(
+    async (data: Person) => {
+      let certForm = parseToCertification(new Map(Object.entries(data)));
 
-    let data = new FormData();
-    data.append('displayedName', person.displayedName ? person.displayedName : '');
-    data.append('description', person.description ? person.description : '');
-
-    if (person.file) {
-      data.append('avatarFile', person.file);
-    }
-
-    api.put(`/person/${DEFAULT_ID}`, data).then(response => {
-      setPerson(response.data);
-    }).catch(error => {
-      console.log(error);
-    });
-  }
-
-  function handleImage(event: ChangeEvent<HTMLInputElement>): void {
-    event.preventDefault();
-
-    let file: File | null | undefined = event.target.files?.item(0);
-
-    if (!file) {
-      return;
-    }
-
-    setPerson({ ...person, file: file });
-    setTextImage(file.name);
-  }
+      api.put(`/person/${DEFAULT_ID}`, certForm).then(response => {
+        setPerson(response.data);
+      }).catch(error => {
+        console.log(error);
+      });
+    },
+    [],
+  );
 
   function submitProjectByProvider(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -162,31 +140,17 @@ const EditPortfolio: React.FC = () => {
     });
   }
 
-  // const handleSubmitCertification: SubmitHandler<FormData> = (data) => {
-
-  //   api.post(`/certification/${DEFAULT_ID}`, data, {
-  //     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
-  //   }).then(response => {
-  //     setCertifications([...certifications, response.data]);
-  //   }).catch(error => {
-  //     console.log(error);
-  //   });
-  // };
-
   const handleSubmitCertification = useCallback(
     async (data: Certification) => {
       let certForm = parseToCertification(new Map(Object.entries(data)));
 
-      console.log(certForm);
-      console.log(new Map(Object.entries(data)).get("title"));
-
-      // api.post(`/certification/${DEFAULT_ID}`, certForm).then(response => {
-      //   setCertifications([...certifications, response.data]);
-      // }).catch(error => {
-      //   console.log(error);
-      // });
+      api.post(`/certifications/${DEFAULT_ID}`, certForm).then(response => {
+        setCertifications([...certifications, response.data]);
+      }).catch(error => {
+        console.log(error);
+      });
     },
-    [],
+    [certifications],
   );
 
   return (
@@ -231,22 +195,8 @@ const EditPortfolio: React.FC = () => {
             <Title>Person Infomartion</Title>
             <Description>In case you want to change the main things that is shown to user.</Description>
           </WrapperContent>
-          <ContentForm onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmitPerson(event)} initialData={person}>
-            <label htmlFor="file-image-input">
-              {person.avatar ? (
-                <ImageArea>
-                  <Image
-                    src={person.avatar}
-                    fallback={
-                      <Description />
-                    }
-                    errorFallback={() => <NotContentImage background="#fafbff" />}
-                  />
-                </ImageArea>
-              ) : (<NotContentImage background="#fafbff" />)}
-            </label>
-            <input id="file-image-input" type="file" style={{ display: 'none' }} onChange={handleImage} />
-            <Label>{textImage}</Label>
+          <ContentForm onSubmit={handleSubmitPerson} initialData={person}>
+            <InputFile id="file-image-input" type="file" name="avatar" />
             <Text>Displayed name</Text>
             <Input type="text" name="displayedName" placeholder="Ex. Rubens Kleinschmidt Jr" />
             <Text>Description</Text>

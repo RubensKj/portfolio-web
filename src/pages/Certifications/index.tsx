@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 // Services
 import api from '../../services/api';
+import { DEFAULT_ID } from '../../services/env';
 
 // Components
 import LoadingPage from '../../components/LoadingPage';
@@ -20,7 +21,7 @@ const Certifications: React.FC = () => {
   useEffect(() => {
     setIsLoading(true);
     async function getCertifications(): Promise<void> {
-      const response = await api.get('certifications');
+      const response = await api.get(`/certifications/${DEFAULT_ID}`);
 
       setCertifications(response.data);
       setIsLoading(false);

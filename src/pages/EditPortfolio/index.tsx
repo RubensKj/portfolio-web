@@ -44,6 +44,7 @@ interface Provider {
 }
 
 const EditPortfolio: React.FC = () => {
+  const fromProviderRef = useRef<FormHandles>(null);
   const formCertRef = useRef<FormHandles>(null);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -97,6 +98,10 @@ const EditPortfolio: React.FC = () => {
     setProjects([data, ...projects.filter(project => project.id !== data.id)])
   }
 
+  function deleteProjectDataAfterRequest(projectId: Number) {
+    setProjects([...projects.filter(project => project.id !== projectId)])
+  }
+
   const handleSubmitPerson = useCallback(
     async (data: Person) => {
       let certForm = parseToCertification(new Map(Object.entries(data)));
@@ -110,35 +115,38 @@ const EditPortfolio: React.FC = () => {
     [],
   );
 
-  function submitProjectByProvider(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const submitProjectByProvider = useCallback(
+    async (data: Provider) => {
+      if (!data.url) {
+        return setError('Url must be provided');
+      }
 
-    if (!provider.url) {
-      return setError('Url must be provided');
-    }
+      if (!data.url.includes('/')) {
+        return;
+      }
 
-    if (!provider.url.includes('/')) {
-      return;
-    }
+      let url = new URL(data.url);
 
-    let url = new URL(provider.url);
+      let params = url.pathname.split('/');
 
-    let params = url.pathname.split('/');
+      let dataToAPI = {
+        nameProvider: url.hostname.replace('.com', '').toUpperCase(),
+        user: params[1],
+        repoName: params[2]
+      }
 
-    let data = {
-      nameProvider: url.hostname.replace('.com', '').toUpperCase(),
-      user: params[1],
-      repoName: params[2]
-    }
+      api.post(`/project/provider/${DEFAULT_ID}`, dataToAPI).then(response => {
+        let project: Project = response.data;
 
-    api.post(`/project/provider/${DEFAULT_ID}`, data).then(response => {
-      let project: Project = response.data;
+        setProjects([...projects, project]);
 
-      setProjects([...projects, project]);
-    }).catch(error => {
-      console.log(error);
-    });
-  }
+        fromProviderRef.current?.reset();
+      }).catch(error => {
+        console.log(error);
+      });
+    },
+    [projects],
+  );
 
   const handleSubmitCertification = useCallback(
     async (data: Certification) => {
@@ -146,6 +154,8 @@ const EditPortfolio: React.FC = () => {
 
       api.post(`/certifications/${DEFAULT_ID}`, certForm).then(response => {
         setCertifications([...certifications, response.data]);
+
+        formCertRef.current?.reset();
       }).catch(error => {
         console.log(error);
       });
@@ -158,6 +168,7 @@ const EditPortfolio: React.FC = () => {
       <ModalEditProject
         project={projectSelected}
         setProject={updateProjectDataAfterRequest}
+        deleteProject={deleteProjectDataAfterRequest}
         isOpen={isOpenProjectModal}
         setIsOpen={() => toggleProjectModal(projectSelected)}
       />
@@ -218,7 +229,7 @@ const EditPortfolio: React.FC = () => {
                 <Title>Import a Git Repository</Title>
                 <GitHubIcon size={32} />
               </Header>
-              <ContentForm onSubmit={submitProjectByProvider} padding="0" paddingbottom="0">
+              <ContentForm ref={fromProviderRef} onSubmit={submitProjectByProvider} padding="0" paddingbottom="0">
                 <ContainerCard>
                   <Text>Enter the <Strong>URL of a Git repository</Strong> to add it:</Text>
                   {error && (

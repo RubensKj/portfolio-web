@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { Form as Unform } from '@unform/web';
 
+interface ButtonProps {
+  background?: string;
+}
+
 export const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -125,23 +129,14 @@ export const Strong = styled.strong`
   font-weight: bold;
 `;
 
-interface Border {
-  borderColor?: string;
-}
-
-export const Label = styled.label`
-  padding: 5px 15px;
+export const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  text-align: center;
 
-  background: transparent;
-  border: none;
-
-  color: #555;
-
-  font: 15px 'Poppins', sans-serif;
-
-  margin-bottom: 5px;
+  padding: 10px 5px;
+  margin-top: 8px;
 `;
 
 export const ButtonArea = styled.div`
@@ -153,7 +148,7 @@ export const ButtonArea = styled.div`
   padding: 10px 5px;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -164,7 +159,7 @@ export const Button = styled.button`
 
   padding: 5px 15px;
   
-  background: #00cc74;
+  background: ${props => props.background ? props.background : '#00cc74'};
 
   cursor: pointer;
 

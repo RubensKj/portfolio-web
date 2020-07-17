@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
-import { Props } from './index';
+interface IPropsStyles {
+  placeHolder?: string;
+  maxWidth?: number;
+}
 
-export const Input = styled.input`
-  max-width: ${(props: Props) => props.maxWidth ? props.maxWidth + 'px' : '230px'}; 
+export const Input = styled.input<IPropsStyles>`
+  max-width: ${props => props.maxWidth ? props.maxWidth + 'px' : '230px'}; 
   width: 100%;
   font-size: 13px;
   color: #8492A6;

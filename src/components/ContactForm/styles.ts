@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form as Unform } from '@unform/web';
 
 export const Container = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ export const ContactArea = styled.div`
   margin-top: 20px;
 `;
 
-export const ContactFormArea = styled.form`
+export const ContactFormArea = styled(Unform)`
   display: flex;
   flex-direction: column;
   justify-content: center;

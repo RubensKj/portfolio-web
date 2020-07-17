@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form as Unform } from '@unform/web';
 
 export const Container = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ export const LoginTitle = styled.h2`
   text-align: center;
 `;
 
-export const LoginFormArea = styled.form`
+export const LoginFormArea = styled(Unform)`
   display: flex;
   flex-direction: column;
   justify-content: center;

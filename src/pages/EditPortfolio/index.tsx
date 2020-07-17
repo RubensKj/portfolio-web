@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, FormEvent, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { FormHandles } from '@unform/core';
 
 // Assets
@@ -47,7 +47,7 @@ const EditPortfolio: React.FC = () => {
   const fromProviderRef = useRef<FormHandles>(null);
   const formCertRef = useRef<FormHandles>(null);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Error
   const [error, setError] = useState<string>('');
@@ -71,7 +71,6 @@ const EditPortfolio: React.FC = () => {
   const [isOpenCertificationModal, setIsOpenCertificationModal] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsLoading(true);
     async function getInformation(): Promise<void> {
       const response = await api.get(`/information/${DEFAULT_ID}`);
 
@@ -100,6 +99,14 @@ const EditPortfolio: React.FC = () => {
 
   function deleteProjectDataAfterRequest(projectId: Number) {
     setProjects([...projects.filter(project => project.id !== projectId)])
+  }
+
+  function updateCertificationDataAfterRequest(data: Certification) {
+    setCertifications([data, ...certifications.filter(certification => certification.id !== data.id)])
+  }
+
+  function deleteCertificationDataAfterRequest(certificationId: Number) {
+    setCertifications([...certifications.filter(certification => certification.id !== certificationId)])
   }
 
   const handleSubmitPerson = useCallback(
@@ -175,6 +182,8 @@ const EditPortfolio: React.FC = () => {
 
       <ModalEditCertification
         certification={certificationSelected}
+        setCertification={updateCertificationDataAfterRequest}
+        deleteCertification={deleteCertificationDataAfterRequest}
         isOpen={isOpenCertificationModal}
         setIsOpen={() => toggleCertificationModal(certificationSelected)}
       />
@@ -207,7 +216,7 @@ const EditPortfolio: React.FC = () => {
             <Description>In case you want to change the main things that is shown to user.</Description>
           </WrapperContent>
           <ContentForm onSubmit={handleSubmitPerson} initialData={person}>
-            <InputFile id="file-image-input" type="file" name="avatar" />
+            <InputFile id="file-image-input" type="file" name="avatar" accept="image/png, image/jpeg, image/gif, image/jpg" />
             <Text>Displayed name</Text>
             <Input type="text" name="displayedName" placeholder="Ex. Rubens Kleinschmidt Jr" />
             <Text>Description</Text>
@@ -266,7 +275,7 @@ const EditPortfolio: React.FC = () => {
           </WrapperContent>
           <ContentForm ref={formCertRef} onSubmit={handleSubmitCertification} encType="multipart/form-data">
             <Text>Certificate File Image</Text>
-            <InputFile name="imageFile" />
+            <InputFile name="imageFile" accept="image/png, image/jpeg, image/gif, image/jpg" />
             <Text>Certification Name</Text>
             <Input type="text" name="title" placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." />
             <Text>Description</Text>

@@ -1,7 +1,10 @@
 import React from 'react';
 
+// Context
+import { AuthProvider } from './contexts/auth';
+
 // Routes
-import Routes from './routes/routes';
+import Routes from './routes';
 
 // Components
 import Header from './components/Header';
@@ -13,7 +16,9 @@ const App: React.FC = () => {
   return (
     <>
       <Header />
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
       <Global />
     </>
   );

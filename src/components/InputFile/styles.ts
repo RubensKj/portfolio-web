@@ -14,6 +14,7 @@ export const Container = styled.div<IContainerProps>`
   margin: 0 auto;
 
   border-radius: 2px;
+  background: ${props => props.background ? props.background : 'transparent !important'};
   border: 2px solid ${props => props.borderColor ? props.borderColor : '#e8eaeb'};
 
   margin-bottom: 8px;
@@ -25,7 +26,7 @@ export const Container = styled.div<IContainerProps>`
     padding: 5px 15px;
     width: 100%;
 
-    background: ${props => props.background ? props.background : 'transparent !important'};
+    background: transparent !important;
     border: none;
 
     color: #555;

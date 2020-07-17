@@ -3,7 +3,7 @@ export const parseToCertification = (data: Map<string, (string | Blob)>): FormDa
 
   data.forEach((value, key) => {
     if (!value) {
-      formData.append(key, '');
+      return;
     }
 
     formData.append(key, value);

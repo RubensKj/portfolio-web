@@ -13,6 +13,7 @@ import { parseToCertification } from '../../services/FormDataParser';
 
 // Contexts
 import { useLoading } from '../../contexts/loading';
+import { useToast } from '../../hooks/toast';
 
 // Components
 import LoadingPage from '../../components/LoadingPage';
@@ -38,7 +39,6 @@ import {
   Button, WrapperContent, Title, CardReposArea, CardAddRepo,
   Header, ContainerCard, Footer, EditProjectCard, Bottom, Error
 } from './styles';
-import { useToast } from '../../hooks/toast';
 
 interface Provider {
   url: string;

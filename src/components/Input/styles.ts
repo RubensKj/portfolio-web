@@ -8,6 +8,7 @@ interface IContainerProps {
 
 export const Container = styled.div<IContainerProps>`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -45,5 +46,15 @@ export const Container = styled.div<IContainerProps>`
   }
   svg {
     margin-right: 16px;
+  }
+`;
+
+export const ErrorArea = styled.div`
+  width: 100%;
+  padding: 0 15px;
+
+  span {
+    font: 16px 'Poppins', sans-serif;
+    color: #d84945;
   }
 `;

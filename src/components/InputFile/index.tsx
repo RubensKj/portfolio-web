@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useRef, useEffect, useCallback, useState } from 'react';
 import { useField } from '@unform/core';
 
+import { ErrorArea } from '../Input/styles';
 import { Container } from './styles';
 
 interface Props {
@@ -15,7 +16,7 @@ type InputProps = JSX.IntrinsicElements['input'] & Props;
 const InputFile: React.FC<InputProps> = ({ name, borderColor, background, styleContainer, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { fieldName, registerField, defaultValue } = useField(name);
+  const { fieldName, registerField, defaultValue, error } = useField(name);
   const [preview, setPreview] = useState(defaultValue);
 
   const handlePreview = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -45,16 +46,19 @@ const InputFile: React.FC<InputProps> = ({ name, borderColor, background, styleC
   }, [fieldName, registerField]);
 
   return (
-    <Container borderColor={borderColor} background={background} style={styleContainer}>
+    <>
+      {error && <ErrorArea><span>{error}</span></ErrorArea>}
+      <Container borderColor={borderColor} background={background} style={styleContainer}>
 
-      {preview && <img src={preview} alt="Preview" width="100" />}
-      <input
-        type="file"
-        ref={inputRef}
-        onChange={handlePreview}
-        {...rest}
-      />
-    </Container>
+        {preview && <img src={preview} alt="Preview" width="100" />}
+        <input
+          type="file"
+          ref={inputRef}
+          onChange={handlePreview}
+          {...rest}
+        />
+      </Container>
+    </>
   );
 };
 

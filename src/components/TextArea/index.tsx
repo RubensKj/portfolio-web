@@ -9,6 +9,7 @@ import React, {
 import { IconBaseProps } from 'react-icons';
 import { useField } from '@unform/core';
 
+import { ErrorArea } from '../Input/styles';
 import { Container } from './styles';
 
 interface IInputProps extends InputHTMLAttributes<HTMLTextAreaElement> {
@@ -23,7 +24,7 @@ const TextArea: React.FC<IInputProps> = ({ name, borderColor, icon: Icon, ...res
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
-  const { fieldName, defaultValue, registerField } = useField(name);
+  const { fieldName, defaultValue, registerField, error } = useField(name);
 
   const handleInputFocus = useCallback(() => {
     setIsFocused(true);
@@ -44,17 +45,20 @@ const TextArea: React.FC<IInputProps> = ({ name, borderColor, icon: Icon, ...res
   }, [fieldName, registerField]);
 
   return (
-    <Container isFilled={isFilled} isFocused={isFocused} borderColor={borderColor}>
-      {Icon && <Icon size={20} />}
+    <>
+      {error && <ErrorArea><span>{error}</span></ErrorArea>}
+      <Container isFilled={isFilled} isFocused={isFocused} borderColor={borderColor}>
+        {Icon && <Icon size={20} />}
 
-      <textarea
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        defaultValue={defaultValue}
-        ref={inputRef}
-        {...rest}
-      />
-    </Container>
+        <textarea
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          defaultValue={defaultValue}
+          ref={inputRef}
+          {...rest}
+        />
+      </Container>
+    </>
   );
 };
 

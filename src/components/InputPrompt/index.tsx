@@ -1,6 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import { useField } from '@unform/core';
 
+// Components
+import { ConsoleText } from '../CommandPrompt/styles';
+
 import { Input } from './styles';
 
 export interface Props {
@@ -13,7 +16,7 @@ export interface Props {
 const InputPrompt: React.FC<Props> = ({ name, type, placeHolder, maxWidth }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { fieldName, defaultValue, registerField } = useField(name);
+  const { fieldName, defaultValue, registerField, error } = useField(name);
 
   useEffect(() => {
     registerField({
@@ -24,13 +27,17 @@ const InputPrompt: React.FC<Props> = ({ name, type, placeHolder, maxWidth }) => 
   }, [fieldName, registerField]);
 
   return (
-    <Input
-      ref={inputRef}
-      type={type}
-      placeholder={placeHolder}
-      maxWidth={maxWidth}
-      defaultValue={defaultValue}
-    />
+    <>
+      <Input
+        ref={inputRef}
+        type={type}
+        placeholder={placeHolder}
+        maxWidth={maxWidth}
+        defaultValue={defaultValue}
+      />
+
+      {error && <ConsoleText>{error}</ConsoleText>}
+    </>
   );
 }
 

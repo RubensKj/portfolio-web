@@ -54,6 +54,7 @@
     "@types/react-modal": "^3.10.6",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.0",
+    "@types/yup": "^0.29.3",
     "dotenv": "^8.2.0"
   }
 }

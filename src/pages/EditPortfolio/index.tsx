@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
 
 // Assets
 import GitHubIcon from '../../assets/GitHubIcon';
@@ -48,14 +49,12 @@ interface Provider {
 }
 
 const EditPortfolio: React.FC = () => {
-  const fromProviderRef = useRef<FormHandles>(null);
+  const formPersonRef = useRef<FormHandles>(null);
+  const formProviderRef = useRef<FormHandles>(null);
   const formCertRef = useRef<FormHandles>(null);
 
   const { isLoading, setIsLoading } = useLoading();
   const { addToast } = useToast();
-
-  // Error
-  const [error, setError] = useState<string>('');
 
   // Person
   const [person, setPerson] = useState<Person>({} as Person);
@@ -116,6 +115,31 @@ const EditPortfolio: React.FC = () => {
 
   const handleSubmitPerson = useCallback(
     async (data: Person) => {
+      try {
+        const schema = Yup.object().shape({
+          displayedName: Yup.string()
+            .required('Displayed name is required.'),
+          description: Yup.string().required('Description is required.'),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+      } catch (error) {
+        const errorMessages = {};
+
+        if (error instanceof Yup.ValidationError) {
+
+          error.inner.forEach(err => {
+            errorMessages[err.path] = err.message;
+          });
+
+          return formPersonRef.current?.setErrors(errorMessages);
+        }
+      }
+
+      formPersonRef.current?.setErrors({});
+
       let certForm = parseToCertification(new Map(Object.entries(data)));
 
       api.put(`/person/${DEFAULT_ID}`, certForm).then(response => {
@@ -139,13 +163,33 @@ const EditPortfolio: React.FC = () => {
 
   const submitProjectByProvider = useCallback(
     async (data: Provider) => {
-      if (!data.url) {
-        return setError('Url must be provided');
+      try {
+        const schema = Yup.object().shape({
+          url: Yup.string()
+            .matches(
+              /^((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+              'Url from provider is invalid'
+            )
+            .required('Url from provider is required.'),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+      } catch (error) {
+        const errorMessages = {};
+
+        if (error instanceof Yup.ValidationError) {
+
+          error.inner.forEach(err => {
+            errorMessages[err.path] = err.message;
+          });
+
+          return formProviderRef.current?.setErrors(errorMessages);
+        }
       }
 
-      if (!data.url.includes('/')) {
-        return;
-      }
+      formProviderRef.current?.setErrors({});
 
       let url = new URL(data.url);
 
@@ -162,7 +206,7 @@ const EditPortfolio: React.FC = () => {
 
         setProjects([...projects, project]);
 
-        fromProviderRef.current?.reset();
+        formProviderRef.current?.reset();
 
         addToast({
           type: 'success',
@@ -182,6 +226,36 @@ const EditPortfolio: React.FC = () => {
 
   const handleSubmitCertification = useCallback(
     async (data: Certification) => {
+      try {
+        const schema = Yup.object().shape({
+          imageFile: Yup.object()
+            .required('Certification Image required'),
+          title: Yup.string()
+            .required('Title is required.'),
+          certificationUrl: Yup.string()
+            .matches(
+              /^((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+              'Url from certification is invalid'
+            )
+            .required('Certification URL is required.'),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+      } catch (error) {
+        const errorMessages = {};
+
+        if (error instanceof Yup.ValidationError) {
+
+          error.inner.forEach(err => {
+            errorMessages[err.path] = err.message;
+          });
+
+          return formCertRef.current?.setErrors(errorMessages);
+        }
+      }
+
       let certForm = parseToCertification(new Map(Object.entries(data)));
 
       api.post(`/certifications/${DEFAULT_ID}`, certForm).then(response => {
@@ -250,7 +324,7 @@ const EditPortfolio: React.FC = () => {
             <Title>Person Infomartion</Title>
             <Description>In case you want to change the main things that is shown to user.</Description>
           </WrapperContent>
-          <ContentForm onSubmit={handleSubmitPerson} initialData={person}>
+          <ContentForm ref={formPersonRef} onSubmit={handleSubmitPerson} initialData={person}>
             <InputFile id="file-image-input" type="file" name="avatar" accept="image/png, image/jpeg, image/gif, image/jpg" />
             <Text>Displayed name</Text>
             <Input type="text" name="displayedName" placeholder="Ex. Rubens Kleinschmidt Jr" />
@@ -273,12 +347,9 @@ const EditPortfolio: React.FC = () => {
                 <Title>Import a Git Repository</Title>
                 <GitHubIcon size={32} />
               </Header>
-              <ContentForm ref={fromProviderRef} onSubmit={submitProjectByProvider} padding="0" paddingbottom="0">
+              <ContentForm ref={formProviderRef} onSubmit={submitProjectByProvider} padding="0" paddingbottom="0">
                 <ContainerCard>
                   <Text>Enter the <Strong>URL of a Git repository</Strong> to add it:</Text>
-                  {error && (
-                    <Error>{error}</Error>
-                  )}
                   <Input type="text" name="url" onChange={e => setProvider({ ...provider, url: e.target.value })} placeholder="https://my-provider.com/my-organization/my-project" />
                 </ContainerCard>
                 <Footer>

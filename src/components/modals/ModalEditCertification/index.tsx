@@ -84,6 +84,14 @@ const ModalEditCertification: React.FC<IModalProps> = ({ certification, setCerti
           description: 'Certification have been updated sucessfully!!'
         });
       }).catch(error => {
+        if (error.response && error.response.data && error.response.data.message) {
+          return addToast({
+            type: 'error',
+            title: 'Error',
+            description: error.response.data.message
+          });
+        }
+
         addToast({
           type: 'error',
           title: 'Error',

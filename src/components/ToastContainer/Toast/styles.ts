@@ -31,6 +31,9 @@ export const Container = styled(animated.div) <ContainerProps>`
   position: relative;
 
   width: 360px;
+  max-height: 250px;
+  overflow: auto;
+
   padding: 10px 15px;
   border-radius: 4px;
 
@@ -56,6 +59,8 @@ export const Container = styled(animated.div) <ContainerProps>`
       font-size: 14px;
       opacity: 0.8;
       line-height: 20px;
+
+      max-width: 100%; 
     }
   }
 

@@ -219,8 +219,6 @@ const EditPortfolio: React.FC = () => {
         });
       }).catch(error => {
         if (error.response && error.response.data && error.response.data.message) {
-          console.log(error.response)
-
           return addToast({
             type: 'error',
             title: 'Error',

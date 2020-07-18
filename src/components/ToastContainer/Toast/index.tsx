@@ -37,9 +37,9 @@ const Toast: React.FC<ToastProps> = ({ message, style }) => {
     >
       {icons[message.type || 'info']}
 
-      <div>
+      <div style={{ maxWidth: '295px', maxHeight: '230px', overflow: 'auto', height: '100%', }}>
         <strong>{message.title}</strong>
-        {message.description && <p>{message.description}</p>}
+        {message.description && <p style={{ maxWidth: '295px' }}>{message.description}</p>}
       </div>
 
       <button onClick={() => removeToast(message.id)} type="button">

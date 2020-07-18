@@ -9,8 +9,8 @@ export const Container = styled.a`
   flex-direction: column;
   align-items: center;
 
-  background-color: #23212b;
   background: url(${(props: Props) => props.svg}) bottom center;
+  background-color: #23212b;
   background-size: 100%;
 
   border-radius: 8px;

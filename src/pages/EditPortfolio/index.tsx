@@ -116,6 +116,8 @@ const EditPortfolio: React.FC = () => {
   const handleSubmitPerson = useCallback(
     async (data: Person) => {
       try {
+        formPersonRef.current?.setErrors({});
+
         const schema = Yup.object().shape({
           displayedName: Yup.string()
             .required('Displayed name is required.'),
@@ -164,6 +166,8 @@ const EditPortfolio: React.FC = () => {
   const submitProjectByProvider = useCallback(
     async (data: Provider) => {
       try {
+        formProviderRef.current?.setErrors({});
+
         const schema = Yup.object().shape({
           url: Yup.string()
             .matches(
@@ -237,6 +241,8 @@ const EditPortfolio: React.FC = () => {
   const handleSubmitCertification = useCallback(
     async (data: Certification) => {
       try {
+        formCertRef.current?.setErrors({});
+
         const schema = Yup.object().shape({
           imageFile: Yup.object()
             .required('Certification Image required'),

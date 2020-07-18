@@ -39,9 +39,13 @@ const InputFile: React.FC<InputProps> = ({ name, borderColor, background, styleC
         if (firstImage) {
           return setPreview(firstImage);
         }
+
+        return setPreview(null);
       }
 
-      return setPreview(null);
+      if (defaultValue) {
+        return setPreview(defaultValue);
+      }
     }
 
     handleDefaultPreview();

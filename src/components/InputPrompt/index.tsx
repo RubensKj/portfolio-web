@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, InputHTMLAttributes } from 'react';
 import { useField } from '@unform/core';
 
 // Components
@@ -6,14 +6,14 @@ import { ConsoleText } from '../CommandPrompt/styles';
 
 import { Input } from './styles';
 
-export interface Props {
+export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   type: string;
   placeHolder?: string;
   maxWidth?: number;
 }
 
-const InputPrompt: React.FC<Props> = ({ name, type, placeHolder, maxWidth }) => {
+const InputPrompt: React.FC<Props> = ({ name, type, placeHolder, maxWidth, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { fieldName, defaultValue, registerField, error } = useField(name);
@@ -34,9 +34,11 @@ const InputPrompt: React.FC<Props> = ({ name, type, placeHolder, maxWidth }) => 
         placeholder={placeHolder}
         maxWidth={maxWidth}
         defaultValue={defaultValue}
+        {...rest}
       />
 
       {error && <ConsoleText>{error}</ConsoleText>}
+      <div style={{ marginBottom: '8px' }} />
     </>
   );
 }

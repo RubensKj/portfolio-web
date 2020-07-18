@@ -40,6 +40,8 @@ const ModalEditCertification: React.FC<IModalProps> = ({ certification, setCerti
   const handleSubmit = useCallback(
     async (data: Certification) => {
       try {
+        formRef.current?.setErrors({});
+
         const schema = Yup.object().shape({
           title: Yup.string()
             .required('Title is required.'),

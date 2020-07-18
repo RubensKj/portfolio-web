@@ -1,8 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
+import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
 
 // Components
 import TitleTextPrompt from '../TitleTextPrompt';
 import InputPrompt from '../InputPrompt';
+import InputFilePrompt from '../InputFilePrompt';
 import TextAreaPrompt from '../TextAreaPrompt';
 import ButtonPrompt from '../ButtonPrompt';
 
@@ -15,13 +18,43 @@ interface Contact {
   completeName: string;
   email: string;
   description: string;
-  file: string | Blob;
+  files: string | Blob;
 }
 
 const ContactForm: React.FC = () => {
+  const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback(
     async (data: Contact) => {
+      try {
+        formRef.current?.setErrors({});
+
+        const schema = Yup.object().shape({
+          completeName: Yup.string()
+            .required('Complete Name is required.'),
+          email: Yup.string()
+            .email('E-mail is invalid')
+            .required('E-mail  is required.'),
+          description: Yup.string()
+            .required('Description is required.'),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+      } catch (error) {
+        const errorMessages = {};
+
+        if (error instanceof Yup.ValidationError) {
+
+          error.inner.forEach(err => {
+            errorMessages[err.path] = err.message;
+          });
+
+          return formRef.current?.setErrors(errorMessages);
+        }
+      }
+
       console.log(data);
     },
     [],
@@ -33,15 +66,16 @@ const ContactForm: React.FC = () => {
       <ConsoleText>CONTACT FORM CREATED.</ConsoleText>
       <ContactArea>
         <TitleTextPrompt text="CONTACT" />
-        <ContactFormArea onSubmit={handleSubmit}>
+        <ContactFormArea ref={formRef} onSubmit={handleSubmit}>
           <ConsoleText>Complete Name</ConsoleText>
           <InputPrompt type="text" name="completeName" maxWidth={320} />
           <ConsoleText>Email</ConsoleText>
           <InputPrompt type="text" name="email" maxWidth={320} />
           <ConsoleText>Description</ConsoleText>
-          <TextAreaPrompt maxWidth={320} />
+          <TextAreaPrompt name="description" maxWidth={320} />
+          <div style={{ marginTop: '8px' }} />
           <ConsoleText>Attachment</ConsoleText>
-          <InputPrompt type="file" name="file" maxWidth={320} />
+          <InputFilePrompt type="file" name="files" maxWidth={320} multiple />
           <ButtonPrompt text="Send me" marginTop={35} />
         </ContactFormArea>
       </ContactArea>

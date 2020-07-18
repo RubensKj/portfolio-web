@@ -40,6 +40,8 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, setProject, deletePr
   const handleSubmit = useCallback(
     async (data: Project) => {
       try {
+        formRef.current?.setErrors({});
+
         const schema = Yup.object().shape({
           name: Yup.string()
             .required('Project name is required.'),

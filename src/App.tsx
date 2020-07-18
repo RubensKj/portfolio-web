@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Context
-import { AuthProvider } from './contexts/auth';
 import { LoadingProvider } from './contexts/loading';
+import { AuthProvider } from './contexts/auth';
 
 // Routes
 import Routes from './routes';

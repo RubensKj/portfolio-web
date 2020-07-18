@@ -11,7 +11,6 @@ export interface ILoginForm {
 export interface IAuthContext {
   signed: boolean;
   user: object | null;
-  loading: boolean;
   login(data: ILoginForm): Promise<void>;
   logout(): void;
 }
@@ -19,19 +18,15 @@ export interface IAuthContext {
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export const AuthProvider: React.FC = ({ children }) => {
+  const userStorage = localStorage.getItem('user');
 
-  const [user, setUser] = useState<object | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [user, setUser] = useState<object | null>(userStorage ? JSON.parse(userStorage) : null);
 
   useEffect(() => {
-    async function loadStorageData() {
-      const storageUser = await localStorage.getItem('user');
-      const storagedToken = await localStorage.getItem('token');
+    function loadStorageData() {
+      const storagedToken = localStorage.getItem('token');
 
-      if (storageUser && storagedToken) {
-        setUser(JSON.parse(storageUser));
-      }
-      setLoading(false);
+      api.defaults.headers['Authorization'] = storagedToken;
     }
 
     loadStorageData();
@@ -54,7 +49,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ signed: !!user, user: user, loading: loading, login, logout }}>
+    <AuthContext.Provider value={{ signed: !!user, user: user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

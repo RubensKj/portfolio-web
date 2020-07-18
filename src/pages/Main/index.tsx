@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { DEFAULT_ID } from '../../services/env';
 import api from '../../services/api';
 
+// Contexts
+import { useLoading } from '../../contexts/loading';
+
 // Components
 import HiThereArea from '../../components/HiThereArea';
 import BarInBeginPage from '../../components/BarInBeginPage';
@@ -27,14 +30,14 @@ import { Certification } from '../../components/CertificationCard';
 import { Container, BeginPageArea } from './styles';
 
 const Main: React.FC = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { isLoading, setIsLoading } = useLoading();
+
   const [person, setPerson] = useState<Person>({} as Person);
   const [projects, setProjects] = useState<Project[]>([]);
 
   const [certifications, setCertifications] = useState<Certification[]>([]);
 
   useEffect(() => {
-    setIsLoading(true);
     async function getInformation(): Promise<void> {
       const response = await api.get(`/information/${DEFAULT_ID}`);
 
@@ -45,7 +48,7 @@ const Main: React.FC = () => {
     }
 
     getInformation();
-  }, []);
+  }, [setIsLoading]);
 
   return (
     <>

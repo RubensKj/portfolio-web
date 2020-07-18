@@ -2,6 +2,7 @@ import React from 'react';
 
 // Context
 import { AuthProvider } from './contexts/auth';
+import { LoadingProvider } from './contexts/loading';
 
 // Routes
 import Routes from './routes';
@@ -14,13 +15,13 @@ import Global from './styles/global';
 
 const App: React.FC = () => {
   return (
-    <>
-      <Header />
+    <LoadingProvider>
       <AuthProvider>
+        <Header />
         <Routes />
+        <Global />
       </AuthProvider>
-      <Global />
-    </>
+    </LoadingProvider>
   );
 }
 

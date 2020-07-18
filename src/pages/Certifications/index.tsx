@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import { DEFAULT_ID } from '../../services/env';
 
+// Contexts
+import { useLoading } from '../../contexts/loading';
+
 // Components
 import LoadingPage from '../../components/LoadingPage';
 import TransitionText from '../../components/TransitionText';
@@ -15,11 +18,11 @@ import { Certification } from '../../components/CertificationCard';
 import { Container } from './styles';
 
 const Certifications: React.FC = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { isLoading, setIsLoading } = useLoading();
+
   const [certifications, setCertifications] = useState<Certification[]>([]);
 
   useEffect(() => {
-    setIsLoading(true);
     async function getCertifications(): Promise<void> {
       const response = await api.get(`/certifications/${DEFAULT_ID}`);
 
@@ -28,7 +31,7 @@ const Certifications: React.FC = () => {
     }
 
     getCertifications();
-  }, []);
+  }, [setIsLoading]);
 
   return (
     <>

@@ -6,6 +6,9 @@ import { DEFAULT_ID } from '../../services/env';
 // Services
 import api from '../../services/api';
 
+// Contexts
+import { useLoading } from '../../contexts/loading';
+
 // Components
 import LoadingPage from '../../components/LoadingPage';
 import TransitionText from '../../components/TransitionText';
@@ -17,11 +20,12 @@ import { Project } from '../../components/ProjectCard';
 import { Container } from './styles';
 
 const Projects: React.FC = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { isLoading, setIsLoading } = useLoading();
+
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    setIsLoading(true);
     async function getProjects(): Promise<void> {
       await api.get(`/project/${DEFAULT_ID}`)
         .then(data => {
@@ -34,7 +38,7 @@ const Projects: React.FC = () => {
     }
 
     getProjects();
-  }, []);
+  }, [setIsLoading]);
 
   return (
     <>

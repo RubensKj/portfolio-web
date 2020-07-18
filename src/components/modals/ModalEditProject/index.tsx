@@ -8,6 +8,9 @@ import ModalPrototype from '../ModalPrototype';
 import api from '../../../services/api';
 import { parseToCertification } from '../../../services/FormDataParser';
 
+// Contexts
+import { useToast } from '../../../hooks/toast';
+
 import Input from '../../Input';
 import TextArea from '../../TextArea';
 
@@ -31,6 +34,8 @@ interface IModalProps {
 const ModalEditProject: React.FC<IModalProps> = ({ project, setProject, deleteProject, isOpen, setIsOpen }) => {
   const formRef = useRef<FormHandles>(null);
 
+  const { addToast } = useToast();
+
   const handleSubmit = useCallback(
     async (data: Project) => {
       let certForm = parseToCertification(new Map(Object.entries(data)));
@@ -39,11 +44,21 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, setProject, deletePr
         setProject(response.data);
 
         setIsOpen();
+
+        addToast({
+          type: 'success',
+          title: 'Project updated',
+          description: 'Project have been updated sucessfully!!'
+        });
       }).catch(error => {
-        console.log(error);
+        addToast({
+          type: 'error',
+          title: 'Error',
+          description: error.message
+        });
       });
     },
-    [project.id, setIsOpen, setProject],
+    [addToast, project.id, setIsOpen, setProject],
   );
 
   const handleDelete = useCallback(
@@ -52,11 +67,21 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, setProject, deletePr
         deleteProject(project.id);
 
         setIsOpen();
+
+        addToast({
+          type: 'success',
+          title: 'Project deleted',
+          description: 'Project have been deleted sucessfully!!'
+        });
       }).catch(error => {
-        console.log(error);
+        addToast({
+          type: 'error',
+          title: 'Error',
+          description: error.message
+        });
       });
     },
-    [project.id, deleteProject, setIsOpen],
+    [project.id, deleteProject, setIsOpen, addToast],
   );
 
   return (

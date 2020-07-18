@@ -40,4 +40,9 @@ export default createGlobalStyle`
     color: #3C4858;
     -webkit-font-smoothing: antialiased !important;
   }
+
+  button {
+    font: 16px 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased !important;
+  }
 `;

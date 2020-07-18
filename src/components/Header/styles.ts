@@ -152,3 +152,41 @@ export const LiItem = styled.li`
   width: 100%;
   height: 100%;
 `;
+
+// Auth Buttons
+
+export const ButtonArea = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 0 15px;
+`;
+
+export const AuthButton = styled.a`
+  margin-top: 8px;
+  margin-bottom: 5px;
+  text-decoration: none;
+
+  padding: 3px 15px;
+  border-radius: 4px;
+
+  background: #00cc74;
+  color: #FFF !important;
+
+  border: none;
+  border-bottom: 2px solid #017945;
+
+  transition: 0.2s background;
+
+  li {
+    padding: 5px 15px !important;
+  }
+
+  :hover {
+    background: #0ca562;
+    border-bottom: 2px solid #0ca562;
+  }
+`;

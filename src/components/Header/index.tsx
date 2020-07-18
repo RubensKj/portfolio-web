@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// Contexts
+import { useAuth } from '../../contexts/auth';
+
 // Assets
 import Logo from '../../assets/Logo';
 import MenuIcon from '../../assets/MenuIcon';
@@ -8,10 +11,12 @@ import MenuIcon from '../../assets/MenuIcon';
 import {
   Container, Wrapper, Redirect, UlList, Link, Text,
   ButtonResponsiveArea, ContainerBar, ListOptions, DivisionText,
-  RedirectSubmenu, LiItem
+  RedirectSubmenu, LiItem, ButtonArea, AuthButton
 } from './styles';
 
 const Header: React.FC = () => {
+  const { signed, login, logout } = useAuth();
+
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
   function toggleIsClicked(): void {
@@ -52,6 +57,31 @@ const Header: React.FC = () => {
                 <Text>Certifications</Text>
               </LiItem>
             </RedirectSubmenu>
+            {signed && (
+              <RedirectSubmenu href="/edit">
+                <LiItem>
+                  <Text>Edit Portfolio</Text>
+                </LiItem>
+              </RedirectSubmenu>
+            )}
+            <DivisionText>Authentication</DivisionText>
+            {signed ? (
+              <ButtonArea>
+                <AuthButton onClick={logout}>
+                  <LiItem>
+                    <Text>Logout</Text>
+                  </LiItem>
+                </AuthButton>
+              </ButtonArea>
+            ) : (
+                <ButtonArea>
+                  <AuthButton href="/login">
+                    <LiItem>
+                      <Text>Login</Text>
+                    </LiItem>
+                  </AuthButton>
+                </ButtonArea>
+              )}
           </ListOptions>
         </ContainerBar>
       )}

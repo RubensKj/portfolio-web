@@ -6,10 +6,6 @@ export default createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-  }
-
-  html, body, #root {
-    height: 100%;
 
     /* width */
     ::-webkit-scrollbar {
@@ -32,6 +28,10 @@ export default createGlobalStyle`
     ::-webkit-scrollbar-thumb:hover {
       background: #40bb72;
     }
+  }
+
+  html, body, #root {
+    height: 100%;
   }
 
   body {

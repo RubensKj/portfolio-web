@@ -167,7 +167,7 @@ const EditPortfolio: React.FC = () => {
         const schema = Yup.object().shape({
           url: Yup.string()
             .matches(
-              /^((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+              /^((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}/,
               'Url from provider is invalid'
             )
             .required('Url from provider is required.'),
@@ -214,6 +214,16 @@ const EditPortfolio: React.FC = () => {
           description: 'Project have been created sucessfully!!'
         });
       }).catch(error => {
+        if (error.response && error.response.data && error.response.data.message) {
+          console.log(error.response)
+
+          return addToast({
+            type: 'error',
+            title: 'Error',
+            description: error.response.data.message
+          });
+        }
+
         addToast({
           type: 'error',
           title: 'Error',

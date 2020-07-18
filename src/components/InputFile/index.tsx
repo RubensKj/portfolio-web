@@ -17,6 +17,7 @@ const InputFile: React.FC<InputProps> = ({ name, borderColor, background, styleC
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { fieldName, registerField, defaultValue, error } = useField(name);
+
   const [preview, setPreview] = useState(defaultValue);
 
   const handlePreview = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +30,22 @@ const InputFile: React.FC<InputProps> = ({ name, borderColor, background, styleC
     let previewURL = URL.createObjectURL(file);
     setPreview(previewURL);
   }, []);
+
+  useEffect(() => {
+    function handleDefaultPreview() {
+      if (defaultValue && defaultValue instanceof Array) {
+        const firstImage = defaultValue[0];
+
+        if (firstImage) {
+          return setPreview(firstImage);
+        }
+      }
+
+      return setPreview(null);
+    }
+
+    handleDefaultPreview();
+  }, [defaultValue]);
 
   useEffect(() => {
     registerField({

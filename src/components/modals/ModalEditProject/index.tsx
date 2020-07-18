@@ -1,5 +1,6 @@
 import React, { useRef, useCallback } from 'react';
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
 
 // Components
 import ModalPrototype from '../ModalPrototype';
@@ -38,6 +39,40 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, setProject, deletePr
 
   const handleSubmit = useCallback(
     async (data: Project) => {
+      try {
+        const schema = Yup.object().shape({
+          name: Yup.string()
+            .required('Project name is required.'),
+          fullName: Yup.string()
+            .required('Fullname is required.'),
+          language: Yup.string()
+            .required('Language is required.'),
+          description: Yup.string()
+            .required('Description is required.'),
+          githubUrl: Yup.string()
+            .matches(
+              /^((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}/,
+              'Github URL is invalid'
+            )
+            .required('Github URL is required.'),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+      } catch (error) {
+        const errorMessages = {};
+
+        if (error instanceof Yup.ValidationError) {
+
+          error.inner.forEach(err => {
+            errorMessages[err.path] = err.message;
+          });
+
+          return formRef.current?.setErrors(errorMessages);
+        }
+      }
+
       let certForm = parseToCertification(new Map(Object.entries(data)));
 
       api.put(`/project/${project.id}`, certForm).then(response => {

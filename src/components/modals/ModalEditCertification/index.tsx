@@ -1,5 +1,6 @@
 import React, { useRef, useCallback } from 'react';
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
 
 // Services
 import api from '../../../services/api';
@@ -38,6 +39,36 @@ const ModalEditCertification: React.FC<IModalProps> = ({ certification, setCerti
 
   const handleSubmit = useCallback(
     async (data: Certification) => {
+      try {
+        const schema = Yup.object().shape({
+          title: Yup.string()
+            .required('Title is required.'),
+          description: Yup.string()
+            .required('Description is required.'),
+          certificationUrl: Yup.string()
+            .matches(
+              /^((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}/,
+              'Certification URL is invalid'
+            )
+            .required('Certification URL is required.'),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+      } catch (error) {
+        const errorMessages = {};
+
+        if (error instanceof Yup.ValidationError) {
+
+          error.inner.forEach(err => {
+            errorMessages[err.path] = err.message;
+          });
+
+          return formRef.current?.setErrors(errorMessages);
+        }
+      }
+
       let certForm = parseToCertification(new Map(Object.entries(data)));
 
       api.put(`/certifications/${certification.id}`, certForm).then(response => {

@@ -55,6 +55,6 @@ export const ErrorArea = styled.div`
 
   span {
     font: 16px 'Poppins', sans-serif;
-    color: #d84945;
+    color: #d84945 !important;
   }
 `;

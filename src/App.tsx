@@ -1,8 +1,7 @@
 import React from 'react';
 
 // Context
-import { LoadingProvider } from './contexts/loading';
-import { AuthProvider } from './contexts/auth';
+import AppProvider from './contexts';
 
 // Routes
 import Routes from './routes';
@@ -15,13 +14,11 @@ import Global from './styles/global';
 
 const App: React.FC = () => {
   return (
-    <LoadingProvider>
-      <AuthProvider>
-        <Header />
-        <Routes />
-        <Global />
-      </AuthProvider>
-    </LoadingProvider>
+    <AppProvider>
+      <Header />
+      <Routes />
+      <Global />
+    </AppProvider>
   );
 }
 

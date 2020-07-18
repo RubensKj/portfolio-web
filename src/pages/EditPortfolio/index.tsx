@@ -11,6 +11,9 @@ import { DEFAULT_ID } from '../../services/env';
 import api from '../../services/api';
 import { parseToCertification } from '../../services/FormDataParser';
 
+// Contexts
+import { useLoading } from '../../contexts/loading';
+
 // Components
 import LoadingPage from '../../components/LoadingPage';
 import TransitionText from '../../components/TransitionText';
@@ -35,6 +38,7 @@ import {
   Button, WrapperContent, Title, CardReposArea, CardAddRepo,
   Header, ContainerCard, Footer, EditProjectCard, Bottom, Error
 } from './styles';
+import { useToast } from '../../hooks/toast';
 
 interface Provider {
   url: string;
@@ -47,7 +51,8 @@ const EditPortfolio: React.FC = () => {
   const fromProviderRef = useRef<FormHandles>(null);
   const formCertRef = useRef<FormHandles>(null);
 
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { isLoading, setIsLoading } = useLoading();
+  const { addToast } = useToast();
 
   // Error
   const [error, setError] = useState<string>('');
@@ -81,7 +86,7 @@ const EditPortfolio: React.FC = () => {
     }
 
     getInformation();
-  }, []);
+  }, [setIsLoading]);
 
   function toggleProjectModal(project: Project): void {
     setIsOpenProjectModal(!isOpenProjectModal);
@@ -115,11 +120,17 @@ const EditPortfolio: React.FC = () => {
 
       api.put(`/person/${DEFAULT_ID}`, certForm).then(response => {
         setPerson(response.data);
+
+        addToast({
+          type: 'success',
+          title: 'Person updated',
+          description: 'Person have been updated sucessfully!!'
+        });
       }).catch(error => {
         console.log(error);
       });
     },
-    [],
+    [addToast],
   );
 
   const submitProjectByProvider = useCallback(

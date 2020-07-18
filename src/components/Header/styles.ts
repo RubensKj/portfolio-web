@@ -165,16 +165,23 @@ export const ButtonArea = styled.div`
   padding: 0 15px;
 `;
 
-export const AuthButton = styled.a`
-  margin-top: 8px;
+interface Props {
+  marginTop?: string;
+  padding?: string;
+}
+
+export const AuthButton = styled.a<Props>`
+  margin-top: ${props => props.marginTop ? props.marginTop : '8px'};
   margin-bottom: 5px;
   text-decoration: none;
 
-  padding: 3px 15px;
+  padding: ${props => props.padding ? props.padding : "3px 15px"};
   border-radius: 4px;
 
   background: #00cc74;
   color: #FFF !important;
+
+  cursor: pointer;
 
   border: none;
   border-bottom: 2px solid #017945;
@@ -182,7 +189,7 @@ export const AuthButton = styled.a`
   transition: 0.2s background;
 
   li {
-    padding: 5px 15px !important;
+    padding: ${props => props.padding ? '0' : "5px 15px"} !important;
   }
 
   :hover {

@@ -15,7 +15,7 @@ import {
 } from './styles';
 
 const Header: React.FC = () => {
-  const { signed, login, logout } = useAuth();
+  const { signed, logout } = useAuth();
 
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
@@ -37,6 +37,24 @@ const Header: React.FC = () => {
             <Link href="/certifications">
               <Text>Certifications</Text>
             </Link>
+            {signed ? (
+              <>
+                <Link href="/edit">
+                  <Text>Edit Portfolio</Text>
+                </Link>
+                <AuthButton onClick={logout} marginTop="6px" padding="2px 15px">
+                  <LiItem>
+                    <Text>Logout</Text>
+                  </LiItem>
+                </AuthButton>
+              </>
+            ) : (
+                <AuthButton href="/login" marginTop="5.5px" padding="2px 15px">
+                  <LiItem>
+                    <Text>Login</Text>
+                  </LiItem>
+                </AuthButton>
+              )}
           </UlList>
           <ButtonResponsiveArea onClick={toggleIsClicked}>
             <MenuIcon />

@@ -5,6 +5,9 @@ import { FormHandles } from '@unform/core';
 import api from '../../../services/api';
 import { parseToCertification } from '../../../services/FormDataParser';
 
+// Contexts
+import { useToast } from '../../../hooks/toast';
+
 // Components
 import ModalPrototype from '../ModalPrototype';
 
@@ -31,6 +34,8 @@ interface IModalProps {
 const ModalEditCertification: React.FC<IModalProps> = ({ certification, setCertification, deleteCertification, isOpen, setIsOpen }) => {
   const formRef = useRef<FormHandles>(null);
 
+  const { addToast } = useToast();
+
   const handleSubmit = useCallback(
     async (data: Certification) => {
       let certForm = parseToCertification(new Map(Object.entries(data)));
@@ -39,11 +44,21 @@ const ModalEditCertification: React.FC<IModalProps> = ({ certification, setCerti
         setCertification(response.data);
 
         setIsOpen();
+
+        addToast({
+          type: 'success',
+          title: 'Certification updated',
+          description: 'Certification have been updated sucessfully!!'
+        });
       }).catch(error => {
-        console.log(error);
+        addToast({
+          type: 'error',
+          title: 'Error',
+          description: error.message
+        });
       });
     },
-    [certification.id, setCertification, setIsOpen],
+    [addToast, certification.id, setCertification, setIsOpen],
   );
 
   const handleDelete = useCallback(
@@ -52,11 +67,21 @@ const ModalEditCertification: React.FC<IModalProps> = ({ certification, setCerti
         deleteCertification(certification.id);
 
         setIsOpen();
+
+        addToast({
+          type: 'success',
+          title: 'Certification deleted',
+          description: 'Certification have been deleted sucessfully!!'
+        });
       }).catch(error => {
-        console.log(error);
+        addToast({
+          type: 'error',
+          title: 'Error',
+          description: error.message
+        });
       });
     },
-    [certification.id, deleteCertification, setIsOpen],
+    [addToast, certification.id, deleteCertification, setIsOpen],
   );
 
   return (

@@ -127,7 +127,11 @@ const EditPortfolio: React.FC = () => {
           description: 'Person have been updated sucessfully!!'
         });
       }).catch(error => {
-        console.log(error);
+        addToast({
+          type: 'error',
+          title: 'Error',
+          description: error.message
+        });
       });
     },
     [addToast],
@@ -159,11 +163,21 @@ const EditPortfolio: React.FC = () => {
         setProjects([...projects, project]);
 
         fromProviderRef.current?.reset();
+
+        addToast({
+          type: 'success',
+          title: 'Project created',
+          description: 'Project have been created sucessfully!!'
+        });
       }).catch(error => {
-        console.log(error);
+        addToast({
+          type: 'error',
+          title: 'Error',
+          description: error.message
+        });
       });
     },
-    [projects],
+    [addToast, projects],
   );
 
   const handleSubmitCertification = useCallback(
@@ -174,11 +188,21 @@ const EditPortfolio: React.FC = () => {
         setCertifications([...certifications, response.data]);
 
         formCertRef.current?.reset();
+
+        addToast({
+          type: 'success',
+          title: 'Certification created',
+          description: 'Certification created sucessfully!!'
+        });
       }).catch(error => {
-        console.log(error);
+        addToast({
+          type: 'error',
+          title: 'Error',
+          description: error.message
+        });
       });
     },
-    [certifications],
+    [addToast, certifications],
   );
 
   return (

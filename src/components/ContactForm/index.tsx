@@ -2,6 +2,13 @@ import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+// Services
+import api from '../../services/api';
+import { parseToCertification } from '../../services/FormDataParser';
+
+// Contexts
+import { useToast } from '../../hooks/toast';
+
 // Components
 import TitleTextPrompt from '../TitleTextPrompt';
 import InputPrompt from '../InputPrompt';
@@ -23,6 +30,8 @@ interface Contact {
 
 const ContactForm: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: Contact) => {
@@ -55,9 +64,31 @@ const ContactForm: React.FC = () => {
         }
       }
 
-      console.log(data);
+      let certForm = parseToCertification(new Map(Object.entries(data)));
+
+      api.post('/contact/send', certForm).then(response => {
+        addToast({
+          type: 'success',
+          title: 'Contact sended',
+          description: 'Wow! thanks for contact me!!'
+        });
+      }).catch(error => {
+        if (error.response && error.response.data && error.response.data.message) {
+          return addToast({
+            type: 'error',
+            title: 'Error',
+            description: error.response.data.message
+          });
+        }
+
+        addToast({
+          type: 'error',
+          title: 'Error',
+          description: error.message
+        });
+      });
     },
-    [],
+    [addToast],
   );
 
   return (
@@ -75,7 +106,7 @@ const ContactForm: React.FC = () => {
           <TextAreaPrompt name="description" maxWidth={320} />
           <div style={{ marginTop: '8px' }} />
           <ConsoleText>Attachment</ConsoleText>
-          <InputFilePrompt type="file" name="files" maxWidth={320} multiple />
+          <InputFilePrompt type="file" name="files" maxWidth={320} multiple accept="image/png, image/jpeg, image/gif, image/jpg, application/pdf, application/vnd.ms-excel" />
           <ButtonPrompt text="Send me" marginTop={35} />
         </ContactFormArea>
       </ContactArea>

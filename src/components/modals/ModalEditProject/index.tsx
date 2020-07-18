@@ -135,7 +135,7 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, setProject, deletePr
         <Title>Editting Project</Title>
         <ContentForm ref={formRef} onSubmit={handleSubmit} initialData={project}>
           <Text>Project Images</Text>
-          <InputFile name="images" multiple borderColor="rgba(47,45,58,0.6)" />
+          <InputFile name="images" multiple accept="image/png, image/jpeg, image/gif, image/jpg" borderColor="rgba(47,45,58,0.6)" />
           <Text>Project Name</Text>
           <Input type="text" name="name" placeholder="Ex. Petcare API" borderColor="rgba(47,45,58,0.6)" />
           <Text>Full Name</Text>

@@ -248,7 +248,7 @@ const EditPortfolio: React.FC = () => {
             .required('Title is required.'),
           certificationUrl: Yup.string()
             .matches(
-              /^((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+              /^((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}/,
               'Url from certification is invalid'
             )
             .required('Certification URL is required.'),

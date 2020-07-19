@@ -13,6 +13,8 @@ import { parseToCertification } from '../../../services/FormDataParser';
 import { useToast } from '../../../hooks/toast';
 
 import Input from '../../Input';
+import InputFile from '../../InputFile';
+import InputCheckbox, { CheckboxOption } from '../../InputCheckbox';
 import TextArea from '../../TextArea';
 
 import { Container } from './styles';
@@ -22,7 +24,6 @@ import {
 
 // Interfaces
 import { Project } from '../../ProjectCard';
-import InputFile from '../../InputFile';
 
 interface IModalProps {
   project: Project;
@@ -74,11 +75,8 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, setProject, deletePr
           return formRef.current?.setErrors(errorMessages);
         }
       }
-      console.log(data);
 
       let certForm = parseToCertification(new Map(Object.entries(data)));
-
-      console.log(certForm);
 
       api.put(`/project/${project.id}`, certForm).then(response => {
         setProject(response.data);
@@ -132,6 +130,8 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, setProject, deletePr
     [project.id, deleteProject, setIsOpen, addToast],
   );
 
+  const checkboxOptions: CheckboxOption = { id: 'pinned', value: 'pinned', label: 'It will appear on front page.' };
+
   return (
     <ModalPrototype isOpen={isOpen} setIsOpen={setIsOpen}>
       <Container>
@@ -147,6 +147,8 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, setProject, deletePr
           <Input type="text" name="language" placeholder="Ex. Java" borderColor="rgba(47,45,58,0.6)" />
           <Text>Description</Text>
           <TextArea name="description" placeholder="Description" borderColor="rgba(47,45,58,0.6)" />
+          <Text>Is pinned?</Text>
+          <InputCheckbox name="pinned" option={checkboxOptions} />
           <Text>Project Url</Text>
           <Input type="text" name="projectUrl" placeholder="Ex. https://rubenskj.com/" borderColor="rgba(47,45,58,0.6)" />
           <Text>Github Url</Text>

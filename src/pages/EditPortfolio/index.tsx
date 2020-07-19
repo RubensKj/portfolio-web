@@ -76,7 +76,7 @@ const EditPortfolio: React.FC = () => {
 
   useEffect(() => {
     async function getInformation(): Promise<void> {
-      const response = await api.get(`/information/${DEFAULT_ID}`);
+      const response = await api.get(`/information/edit/${DEFAULT_ID}`);
 
       setPerson(response.data.personDTO);
       setProjects(response.data.projectsDTO);

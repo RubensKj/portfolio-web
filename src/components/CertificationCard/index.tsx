@@ -12,6 +12,7 @@ export interface Certification {
   title: string;
   description?: string;
   certificationUrl: string;
+  pinned?: boolean;
 }
 
 interface Props {

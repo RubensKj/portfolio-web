@@ -14,6 +14,7 @@ import ModalPrototype from '../ModalPrototype';
 
 import Input from '../../Input';
 import InputFile from '../../InputFile';
+import InputCheckbox, { CheckboxOption } from '../../InputCheckbox';
 
 import { Container } from './styles';
 import {
@@ -125,6 +126,8 @@ const ModalEditCertification: React.FC<IModalProps> = ({ certification, setCerti
     [addToast, certification.id, deleteCertification, setIsOpen],
   );
 
+  const checkboxOptions: CheckboxOption = { id: 'pinned', value: 'pinned', label: 'It will appear on front page.' };
+
   return (
     <ModalPrototype isOpen={isOpen} setIsOpen={setIsOpen}>
       <Container>
@@ -136,6 +139,8 @@ const ModalEditCertification: React.FC<IModalProps> = ({ certification, setCerti
           <Input type="text" name="title" placeholder="Ex. Java 13: Tire proveito dos novos recursos da linguagem.." borderColor="rgba(47,45,58,0.6)" />
           <Text>Description</Text>
           <TextArea name="description" placeholder="Description" borderColor="rgba(47,45,58,0.6)" />
+          <Text>Is pinned?</Text>
+          <InputCheckbox name="pinned" option={checkboxOptions} />
           <Text>Certification Url</Text>
           <Input type="text" name="certificationUrl" placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" borderColor="rgba(47,45,58,0.6)" />
           <Buttons>

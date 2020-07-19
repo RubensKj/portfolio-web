@@ -38,7 +38,7 @@ import {
   Container, Redirection, Redirect, BarSection, Bar,
   Description, ContentForm, Text, Strong, ButtonArea,
   Button, WrapperContent, Title, CardReposArea, CardAddRepo,
-  Header, ContainerCard, Footer, EditProjectCard, Bottom, Error
+  Header, ContainerCard, Footer, EditProjectCard, Bottom
 } from './styles';
 
 interface Provider {

@@ -40,11 +40,14 @@ const ContactForm: React.FC = () => {
 
         const schema = Yup.object().shape({
           completeName: Yup.string()
+            .min(3, 'Complete name should have at least 3 characters')
+            .matches(/^[A-Za-z]+([A-Za-z]+)*/, 'Complete name is invalid')
             .required('Complete Name is required.'),
           email: Yup.string()
             .email('E-mail is invalid')
             .required('E-mail  is required.'),
           description: Yup.string()
+            .min(15, 'Description should have at least 15 characters')
             .required('Description is required.'),
         });
 

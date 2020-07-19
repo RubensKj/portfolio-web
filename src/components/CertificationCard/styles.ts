@@ -35,7 +35,6 @@ export const Container = styled.div`
 `;
 
 export const ImageArea = styled.div`
-  max-width: 300px;
   max-height: 200px;
 
   width: 100%;

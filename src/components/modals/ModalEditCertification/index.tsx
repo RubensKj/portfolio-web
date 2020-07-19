@@ -140,7 +140,7 @@ const ModalEditCertification: React.FC<IModalProps> = ({ certification, setCerti
           <Input type="text" name="certificationUrl" placeholder="https://cursos.alura.com.br/degree/certificate/id-certificate" borderColor="rgba(47,45,58,0.6)" />
           <Buttons>
             <Button type="button" onClick={handleDelete} background="#d84945">Delete</Button>
-            <Button type="submit">Add</Button>
+            <Button type="submit">Update</Button>
           </Buttons>
         </ContentForm>
       </Container>

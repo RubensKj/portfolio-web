@@ -67,6 +67,9 @@ const ContactForm: React.FC = () => {
       let certForm = parseToCertification(new Map(Object.entries(data)));
 
       api.post('/contact/send', certForm).then(response => {
+
+        formRef.current?.reset();
+
         addToast({
           type: 'success',
           title: 'Contact sended',

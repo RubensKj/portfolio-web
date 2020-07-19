@@ -242,8 +242,6 @@ const EditPortfolio: React.FC = () => {
         formCertRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          imageFile: Yup.object().nullable()
-            .required('Certification Image required'),
           title: Yup.string()
             .required('Title is required.'),
           certificationUrl: Yup.string()

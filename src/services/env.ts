@@ -1,1 +1,1 @@
-export const DEFAULT_ID = process.env.PERSON_ID;
+export const DEFAULT_ID = process.env.REACT_APP_PERSON_ID;

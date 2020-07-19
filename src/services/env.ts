@@ -1,1 +1,1 @@
-export const DEFAULT_ID = process.env.REACT_APP_PERSON_ID;
+export const DEFAULT_ID = process.env.REACT_APP_PERSON_ID ? process.env.REACT_APP_PERSON_ID : '5f14c2395a3a787558815197';

@@ -55,7 +55,7 @@ const Main: React.FC = () => {
       {isLoading ? <LoadingPage /> : (
         <Container>
           <BeginPageArea id="home">
-            <HiThereArea displayedName={person.displayedName ? person.displayedName : 'Rubens Kleinschmidt Jr'} />
+            <HiThereArea displayedName={person && person.displayedName ? person.displayedName : 'Rubens Kleinschmidt Jr'} />
             <BarInBeginPage width={72} color="#5a5e73" />
           </BeginPageArea>
           <TransitionText title="About me" description="This section shows a little about me and how I started to code" />

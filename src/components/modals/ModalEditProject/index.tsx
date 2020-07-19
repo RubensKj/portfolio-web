@@ -74,8 +74,11 @@ const ModalEditProject: React.FC<IModalProps> = ({ project, setProject, deletePr
           return formRef.current?.setErrors(errorMessages);
         }
       }
+      console.log(data);
 
       let certForm = parseToCertification(new Map(Object.entries(data)));
+
+      console.log(certForm);
 
       api.put(`/project/${project.id}`, certForm).then(response => {
         setProject(response.data);

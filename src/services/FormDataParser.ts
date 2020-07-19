@@ -6,6 +6,13 @@ export const parseToCertification = (data: Map<string, (string | Blob)>): FormDa
       return;
     }
 
+    if (value instanceof FileList) {
+      for (var i = 0; i < value.length; i++) {
+        formData.append(key, value[i]);
+      }
+      return;
+    }
+
     formData.append(key, value);
   });
 

@@ -55,7 +55,7 @@ const InputFile: React.FC<InputProps> = ({ name, borderColor, background, styleC
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: 'files[0]',
+      path: 'files',
       clearValue(ref: HTMLInputElement) {
         ref.value = '';
         setPreview(null);

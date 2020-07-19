@@ -22,7 +22,7 @@ const InputFilePrompt: React.FC<InputProps> = ({ name, maxWidth, ...rest }) => {
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: 'files[0]',
+      path: 'files',
       clearValue(ref: HTMLInputElement) {
         ref.value = '';
       }

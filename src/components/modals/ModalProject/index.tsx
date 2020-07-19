@@ -77,7 +77,7 @@ const ModalProject: React.FC<IModalProjectProps> = ({ project, isOpen, setIsOpen
                   <Image ref={imageRef} key={index} src={image} alt="Project Image" />
                 ))}
               </ImageArea>
-              {activeImage >= 1 && (
+              {project.images.length > 0 && activeImage >= 1 && (
                   <ChangeIcon activeImage={activeImage} direction="left" onClick={() => prevImage(activeImage, imageRef)}>
                     <ArrowLeft size={28} />
                   </ChangeIcon>

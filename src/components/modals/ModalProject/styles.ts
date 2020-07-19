@@ -60,7 +60,6 @@ export const Image = styled.img`
   border-radius: 8px;
 
   max-height: 610px;
-  height: 100%;
 
   margin-right: 8px;
 `;

@@ -40,7 +40,8 @@ const Modal: React.FC<IModalProps> = ({ children, width = '520px', cardBackgroun
           padding: '5px 15px',
           boxShadow: '0px 8px 19px 2px rgba(0,0,0,0.2)',
           transition: '0.2s max-width',
-          zIndex: 125
+          zIndex: 125,
+          maxHeight: '80%'
         },
         overlay: {
           backgroundColor: backgroundColor,

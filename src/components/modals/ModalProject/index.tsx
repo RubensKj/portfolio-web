@@ -32,6 +32,7 @@ const ModalProject: React.FC<IModalProjectProps> = ({ project, isOpen, setIsOpen
 
   useEffect(() => {
     setActiveImage(0);
+    setTranslate(0);
   }, [project]);
 
   function prevImage(activeImg: number, imageRef: RefObject<HTMLImageElement>) {

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo, RefObject } from 'react';
+import React, { useRef, useState, useEffect, useMemo, RefObject } from 'react';
 
 // Assets
 import GitHubIcon from '../../../assets/GitHubIcon';
@@ -29,6 +29,10 @@ const ModalProject: React.FC<IModalProjectProps> = ({ project, isOpen, setIsOpen
   const [translate, setTranslate] = useState<number>(0);
 
   const title = useMemo(() => project.name !== undefined ? project.name.toUpperCase() : '', [project.name]);
+
+  useEffect(() => {
+    setActiveImage(0);
+  }, [project]);
 
   function prevImage(activeImg: number, imageRef: RefObject<HTMLImageElement>) {
     let width = imageRef.current?.width;

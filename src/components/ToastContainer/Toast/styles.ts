@@ -83,4 +83,9 @@ export const Container = styled(animated.div) <ContainerProps>`
         margin-top: 0;
       }
     `}
+
+
+  @media only screen and (max-width: 550px) and (min-width: 0px) {
+    width: 280px;
+  }
 `

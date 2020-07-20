@@ -26,7 +26,7 @@ const Modal: React.FC<IModalProps> = ({ children, width = '520px', cardBackgroun
       ariaHideApp={false}
       style={{
         content: {
-          top: '50%',
+          top: '52%',
           left: '50%',
           right: 'auto',
           bottom: 'auto',

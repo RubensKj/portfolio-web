@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: portfolio-web-container
-          image: rubenskj/portfolio-api:v1.0.3
+          image: rubenskj/portfolio-web:v1.0.2
           ports:
             - containerPort: 80
           envFrom:

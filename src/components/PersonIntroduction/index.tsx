@@ -21,7 +21,7 @@ const PersonIntroduction: React.FC<Props> = ({ person }) => {
     <Container>
       <IntroductionArea>
         <ImageArea>
-          {person.avatar && (
+          {person && person.avatar && (
             <Image
               src={person.avatar ? person.avatar : ''}
               fallback={
@@ -33,7 +33,7 @@ const PersonIntroduction: React.FC<Props> = ({ person }) => {
         </ImageArea>
         <DescriptionArea>
           <Description>
-            {person.description}
+            {person && person.description}
           </Description>
         </DescriptionArea>
       </IntroductionArea>

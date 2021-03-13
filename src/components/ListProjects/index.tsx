@@ -33,7 +33,7 @@ const ListProjects: React.FC<Props> = ({ list }) => {
 
       <Container>
         <List>
-          {list.map(project => (
+          {list && list.map(project => (
             <ProjectCard key={project.id} info={project} onClickOpenModal={toggleOpenModalProject} />
           ))}
         </List>

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-web-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: portfolio-web
+      labels:
+        app: portfolio-web
+    spec:
+      containers:
+        - name: portfolio-web-container
+          image: rubenskj/portfolio-api:v1.0.3
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: portfolio-web-config-map
+          livenessProbe:
+              httpGet:
+                path: /
+                port: 80
+              periodSeconds: 20
+              failureThreshold: 3
+              initialDelaySeconds: 120
+          readinessProbe:
+              httpGet:
+                path: /
+                port: 80
+              periodSeconds: 20
+              failureThreshold: 3
+              initialDelaySeconds: 120
+          resources:
+            limits:
+                cpu: 1000m
+                memory: 3Gi
+            requests:
+              cpu: 200m
+  selector:
+    matchLabels:
+      app: portfolio-web

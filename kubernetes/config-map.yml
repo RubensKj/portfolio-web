@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: portfolio-web-config-map
+data:
+  REACT_APP_API_URL: http://localhost:8080/api
+  REACT_APP_PERSON_ID: 5f14c2395a3a787558815197

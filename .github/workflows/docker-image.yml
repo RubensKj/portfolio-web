@@ -1,15 +1,9 @@
 name: Docker Build Image
 
-# on:
-#   release:
-#     types: [published, created, edited]
-    
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+  release:
+    types: [published, created, edited]
+    
 jobs:
   build:
     runs-on: ubuntu-latest
